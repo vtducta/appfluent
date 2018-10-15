@@ -1,0 +1,17 @@
+ .next-campaigs .col-sm-2, .next-campaigs .col-sm-3, .next-campaigs .col-sm-4{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.text-center .material-icons {
+    margin: 0 5px 5px 0;
+    padding: 15px;
+    border: 1px solid #dee5e7;
+    border-radius: 50%;
+    font-size: 25px;
+    background: #f6f6f6;
+}
+ 
+.fa-user-circle {
+    font-size: 50px !important;
+}
