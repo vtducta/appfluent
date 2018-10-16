@@ -102,19 +102,18 @@ class Policies extends Admin_controller
         $this->load->view('admin/policies/manage_family', $data);
     }
 
-    public function  call_log($client_id = '', $contact_id='',$call_log_id = ''){
+    public function  call_log($policy_id = '',$call_log_id = ''){
         if ($this->input->post() && !$this->input->is_ajax_request()) {
             if ($call_log_id == '') {
                 $datapost = $this->input->post();
-                $datapost['contact_id'] = $contact_id;
-                $datapost['client_id'] = $client_id;
+                $datapost['policy_id'] = $policy_id;
                 $datapost['addedfrom'] = get_staff_user_id();
                 //var_dump($datapost); die;
                 $id = $this->policies_model->add_call_log($datapost);
 
-                if($contact_id){
+                if($policy_id){
                     $this->load->model('policies_model');
-                    $this->policies_model->log_contact_activity($contact_id, 'not_contact_activity_call_log_created', false, serialize(array(
+                    $this->policies_model->log_policy_activity($policy_id, 'not_policy_activity_call_log_created', false, serialize(array(
                         get_staff_full_name(get_staff_user_id()),nl2br($this->input->post()['subject'])
                     )));
                 }
@@ -130,9 +129,9 @@ class Policies extends Admin_controller
                 $datapost = $this->input->post();
 
                 $this->policies_model->update_call_log($datapost,$call_log_id);
-                if($contact_id){
+                if($policy_id){
                     $this->load->model('policies_model');
-                    $this->policies_model->log_contact_activity($contact_id, 'not_contact_activity_call_log_updated', false, serialize(array(
+                    $this->policies_model->log_policy_activity($policy_id, 'not_policy_activity_call_log_updated', false, serialize(array(
                         get_staff_full_name(get_staff_user_id()),nl2br($this->input->post()['subject'])
                     )));
                 }
@@ -141,8 +140,7 @@ class Policies extends Admin_controller
         }else{
             $call_log = $this->policies_model->get_call_log($call_log_id);
             $data['call_log'] =$call_log;
-            $data['customer_id'] =$client_id;
-            $data['contactid'] =$contact_id;
+            $data['policy_id'] =$policy_id;
             $data['call_log_id'] = $call_log_id;
             $this->load->view('admin/policies/modals/note_call_log',$data);
         }
@@ -166,7 +164,7 @@ class Policies extends Admin_controller
             redirect($_SERVER['HTTP_REFERER']);
             die();
     }
-    public function  event($client_id = '', $contact_id='',$event_id = ''){
+    public function  event($policy_id = '',$event_id = ''){
         if ($this->input->post() && !$this->input->is_ajax_request()) {
             if ($event_id == '') {
                 $datapost = $this->input->post();
@@ -191,8 +189,7 @@ class Policies extends Admin_controller
             $this->load->model('utilities_model');
             $event = $this->utilities_model->get_event_by_id($event_id);
             $data['event'] =$event;
-            $data['customer_id'] =$client_id;
-            $data['contactid'] =$contact_id;
+            $data['policy_id'] =$policy_id;
             $data['event_id'] = $event_id;
             $this->load->view('admin/policies/modals/event',$data);
         }
@@ -227,15 +224,9 @@ class Policies extends Admin_controller
         $this->load->view('admin/policies/all_contacts', $data);
     }
 
-    public function send_email($client_id,$contact_id){
+    public function send_email($id){
         if ($this->input->post() ){
             $this->load->model('emails_model');
-//            $this->emails_model->add_attachment(array(
-//                'attachment' => $this->input->post('file_path'),
-//                'filename' => $this->input->post('file_name'),
-//                'type' => $this->input->post('filetype'),
-//                'read' => true
-//            ));
             $message = $this->input->post('content');
             $message = nl2br($message);
             $success = $this->emails_model->send_simple_email($this->input->post('to'), $this->input->post('subject'), $message);
@@ -244,10 +235,10 @@ class Policies extends Admin_controller
                 if($this->input->post('schedule')){
                     $schedule_time=     $this->input->post('send_date') .'|'. $this->input->post('send_at');
                 }
-                $this->policies_model->log_email_activity($contact_id,$client_id,$this->input->post('to'),$this->input->post('schedule'),$schedule_time,$this->input->post('subject'),$message);
+                $this->policies_model->log_email_policy_activity($id,$this->input->post('to'),$this->input->post('schedule'),$schedule_time,$this->input->post('subject'),$message);
 
-                if($contact_id){
-                    $this->policies_model->log_contact_activity($contact_id, 'not_contact_activity_send_mail', false, serialize(array(
+                if($id){
+                    $this->policies_model->log_policy_activity($id, 'not_policy_activity_send_mail', false, serialize(array(
                         get_staff_full_name(get_staff_user_id()),nl2br($this->input->post()['subject'])
                     )));
                 }
@@ -414,7 +405,8 @@ class Policies extends Admin_controller
                 $data['list_custom_tab'] = $this->custom_tabs_model->get_tab_show_in_profile('policy_profile');
 
             } elseif ($group == 'attachments_families') {
-                $data['attachments']   = $this->policies_model->get_all_contacts_attachments($contact_id);
+                $data['attachments']   = $this->policies_model->get_all_policy_attachments($id);
+
             } elseif ($group == 'vault') {
                 $data['vault_entries'] = do_action('check_vault_entries_visibility', $this->policies_model->get_vault_entries($id));
             } elseif ($group == 'estimates') {
@@ -431,8 +423,8 @@ class Policies extends Admin_controller
                 $this->load->model('payment_modes_model');
                 $data['payment_modes'] = $this->payment_modes_model->get();
             } elseif ($group == 'notes_families') {
-                $data['customer_id']=$id;
-                $data['user_notes'] = $this->misc_model->get_notes($data['contact']->id, 'contacts');
+                $data['user_notes'] = $this->misc_model->get_notes($data['policy']->id, 'policies');
+
             }elseif ($group == 'events') {
                 $data['events'] = $this->misc_model->get_events();
                 $data['title']                = _l('events');
@@ -441,12 +433,8 @@ class Policies extends Admin_controller
 
             } elseif ($group == 'emails') {
 
-                $data['emails'] = $this->misc_model->get_emails();
-
+                $data['emails'] = $this->misc_model->get_emails_by_policy($id);
                 $data['title']                = _l('emails');
-
-                // To load js files
-                $data['customer_id']=$id;
 
                 $this->load->model('Newsletter_model');
                 $data['template_list'] = $this->Newsletter_model->getTemplateLists();
@@ -538,7 +526,7 @@ class Policies extends Admin_controller
 
             $obj = array();
             $obj['name'] = $section['name'];
-            $obj['url'] = admin_url('client_families/client/'.$id.'/'.$contact_id.'?group=section_'.$section["slug"]);
+            $obj['url'] = admin_url('policies/policy/'.$id.'?group=section_'.$section["slug"]);
             $obj['icon'] = 'fa fa-list-alt';
             $obj['lang'] = $section['name'];
             $obj['visible'] = true;
@@ -822,13 +810,13 @@ class Policies extends Admin_controller
 
     public function upload_attachment($id)
     {
-        handle_contact_attachments_upload($id);
+        handle_policy_attachments_upload($id);
     }
 
     public function add_external_attachment()
     {
         if ($this->input->post()) {
-            $this->misc_model->add_attachment_to_database($this->input->post('clientid'), 'customer', $this->input->post('files'), $this->input->post('external'));
+            $this->misc_model->add_attachment_to_database($this->input->post('policyid'), 'policies', $this->input->post('files'), $this->input->post('external'));
         }
     }
 
@@ -1742,17 +1730,11 @@ class Policies extends Admin_controller
 
     public function add_activity()
     {
-        $contactid = $this->input->post('contactid');
-        $customer_id = $this->input->post('customer_id');
-        if (!has_permission('customers', '', 'edit')) {
-            if (!is_customer_admin($customer_id)) {
-                access_denied('customers');
-            }
-        }
 
         if ($this->input->post()) {
+            $policyid = $this->input->post('policyid');
             $message = $this->input->post('activity');
-            $this->policies_model->log_contact_activity($contactid, $message,false,'',1);
+            $this->policies_model->log_policy_activity($policyid, $message,false,'',1);
 
             echo json_encode(array('message'=>"done"));
         }

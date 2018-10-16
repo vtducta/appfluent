@@ -1,4 +1,4 @@
-<?php if(isset($contact)){ ?>
+<?php if(isset($policy)){ ?>
 <h4 class="customer-profile-group-heading"><?php echo _l('contracts_events_tab'); ?></h4>
 <div class="col-md-12">
 
@@ -9,7 +9,7 @@
     </div>
     <div class="clearfix"></div>
     <div id="event_data">
-        <?php $this->load->view('admin/clients/modals/event'); ?>
+        <?php $this->load->view('admin/policies/modals/event'); ?>
     </div>
     <div class="clearfix"></div>
     <div class="mtop15">
@@ -54,8 +54,8 @@
                     <td>
 
                         <?php if($event['userid'] == get_staff_user_id() || is_admin()){ ?>
-                            <a href="#" class="btn btn-default btn-icon" onclick="load_event(<?php echo $client->userid.','.$contact->id.','.$event['eventid']; ?>);return false;"><i class="fa fa-pencil-square-o"></i></a>
-                            <a href="<?php echo admin_url('client_families/delete_event/'. $event['eventid']); ?>" class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
+                            <a href="#" class="btn btn-default btn-icon" onclick="load_event(<?php echo $policy->id.','.$event['eventid']; ?>);return false;"><i class="fa fa-pencil-square-o"></i></a>
+                            <a href="<?php echo admin_url('policies/delete_event/'. $event['eventid']); ?>" class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
 
                         <?php } ?>
                     </td>
@@ -65,12 +65,12 @@
         </table>
     </div>
     <script>
-        function load_event(client_id, contact_id,event_id) {
+        function load_event(policy_id,event_id) {
 
             if (typeof(event_id) == 'undefined') {
                 event_id = '';
             }
-            $.post(admin_url + 'client_families/event/' + client_id + '/' + contact_id+'/'+event_id).done(function(response) {
+            $.post(admin_url + 'policies/event/' + policy_id+'/'+event_id).done(function(response) {
                 $('#event_data').html(response);
                 $('#newEventModal').modal({
                     show: true,

@@ -28,7 +28,7 @@
             <div class="panel_s">
                <div class="panel-body">
                    <?php if(isset($policy)){ ?>
-                       <?php echo form_hidden( 'contact_id',$policy->id); ?>
+                       <?php echo form_hidden( 'policy_id',$policy->id); ?>
                    <?php } ?>
                   <?php if(isset($policy)){ ?>
                   <?php echo form_hidden( 'isedit'); ?>

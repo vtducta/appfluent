@@ -22,6 +22,7 @@ function AdminTicketsTableStructure($name = '', $bulk_action = false)
     $table .= '<th class="toggleable" id="th-tags">' . _l('tags') . '</th>';
     $table .= '<th class="toggleable" id="th-department">' . _l('ticket_dt_department') . '</th>';
     $services_th_attrs = '';
+
     if (get_option('services') == 0) {
         $services_th_attrs = ' class="not_visible"';
     }

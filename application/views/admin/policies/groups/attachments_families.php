@@ -3,8 +3,8 @@
     <small class="text-info">Files from projects and tasks linked to the customer are not shown on this table.</small>
 </h4>
 <hr />
-<?php if(isset($contact)){ ?>
-<?php echo form_open_multipart(admin_url('client_families/upload_attachment/'.$contact->id),array('class'=>'dropzone','id'=>'client-attachments-upload')); ?>
+<?php if(isset($policy)){ ?>
+<?php echo form_open_multipart(admin_url('policies/upload_attachment/'.$policy->id),array('class'=>'dropzone','id'=>'policy-attachments-upload')); ?>
 <input type="file" name="file" multiple />
 <?php echo form_close(); ?>
 <div class="text-right mtop15">
@@ -131,7 +131,7 @@
                         <?php } else if(isset($_att['external']) && !empty($_att['external'])) {
                             echo '<a href="'.$_att['external_link'].'" class="btn btn-info btn-icon" target="_blank"><i class="fa fa-dropbox"></i></a>';
                         } ?>
-                        <a href="<?php echo admin_url('client_families/delete_attachment/'.$_att['rel_id'].'/'.$_att['id']); ?>"  class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
+                        <a href="<?php echo admin_url('policies/delete_attachment/'.$_att['rel_id'].'/'.$_att['id']); ?>"  class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
                     </td>
                     <?php } ?>
                 </tr>
@@ -142,5 +142,5 @@
 
 </div>
 <?php
-include_once(APPPATH . 'views/admin/clients/modals/send_file_modal.php');
+include_once(APPPATH . 'views/admin/policies/modals/send_file_modal.php');
 } ?>

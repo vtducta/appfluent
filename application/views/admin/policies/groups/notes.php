@@ -1,4 +1,4 @@
-<?php if(isset($client)){ ?>
+<?php if(isset($policy)){ ?>
 <h4 class="customer-profile-group-heading"><?php echo _l('contracts_notes_tab'); ?></h4>
 <div class="col-md-12">
 
@@ -9,7 +9,7 @@
 </div>
  <div class="clearfix"></div>
  <div class="usernote hide">
-    <?php echo form_open(admin_url( 'misc/add_note/'.$client->userid.'/customer')); ?>
+    <?php echo form_open(admin_url( 'misc/add_note/'.$policy->id.'/policy')); ?>
     <?php echo render_textarea( 'description', 'note_description', '',array( 'rows'=>5)); ?>
     <button class="btn btn-info pull-right mbot15">
         <?php echo _l( 'submit'); ?>
@@ -42,10 +42,11 @@
                   <div data-note-description="<?php echo $note['id']; ?>">
                     <?php echo check_for_links($note['description']); ?>
                 </div>
-                <div data-note-edit-textarea="<?php echo $note['id']; ?>" class="hide">
+
+                <div data-note-edit-textarea="note_<?php echo $note['id']; ?>" class="hide">
                     <textarea name="description" class="form-control" rows="4"><?php echo clear_textarea_breaks($note['description']); ?></textarea>
                     <div class="text-right mtop15">
-                      <button type="button" class="btn btn-default" onclick="toggle_edit_note(<?php echo $note['id']; ?>);return false;"><?php echo _l('cancel'); ?></button>
+                      <button type="button" class="btn btn-default" onclick="toggle_edit_note('note_<?php echo $note['id']; ?>');return false;"><?php echo _l('cancel'); ?></button>
                       <button type="button" class="btn btn-info" onclick="edit_note(<?php echo $note['id']; ?>);"><?php echo _l('update_note'); ?></button>
                   </div>
               </div>
@@ -63,7 +64,7 @@
         </td>
         <td>
             <?php if($note['addedfrom'] == get_staff_user_id() || is_admin()){ ?>
-            <a href="#" class="btn btn-default btn-icon" onclick="toggle_edit_note(<?php echo $note['id']; ?>);return false;"><i class="fa fa-pencil-square-o"></i></a>
+            <a href="#" class="btn btn-default btn-icon" onclick="toggle_edit_note('note_<?php echo $note['id']; ?>');return false;"><i class="fa fa-pencil-square-o"></i></a>
             <a href="<?php echo admin_url('misc/delete_note/'. $note['id']); ?>" class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
             <?php } ?>
         </td>

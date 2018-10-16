@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title"><?php echo _l('utility_calendar_new_event_title'); ?></h4>
       </div>
-      <?php echo form_open('admin/client_families/event/'.$event_id,array('id'=>'event-form')); ?>
+      <?php echo form_open('admin/policies/event/'.$event_id,array('id'=>'event-form')); ?>
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12">

@@ -1129,6 +1129,10 @@ function get_upload_path_by_type($type)
         return NEWSFEED_FOLDER;
 
         break;
+        case 'contact':
+            return CONTACT_FILES_FOLDER;
+        case 'policy':
+            return POLICY_FILES_FOLDER;
         default:
         return false;
     }
@@ -1201,4 +1205,35 @@ function handle_policy_profile_image_upload($policy_id = '')
     }
 
     return false;
+}
+
+function handle_policy_attachments_upload($id)
+{
+    $path = get_upload_path_by_type('policy') . $id . '/';
+    $CI =& get_instance();
+    if (isset($_FILES['file']['name'])) {
+        do_action('before_upload_policy_attachment', $id);
+        // Get the temp file path
+        $tmpFilePath = $_FILES['file']['tmp_name'];
+        // Make sure we have a filepath
+        if (!empty($tmpFilePath) && $tmpFilePath != '') {
+            _maybe_create_upload_path($path);
+            $filename    = unique_filename($path, $_FILES['file']['name']);
+            $newFilePath = $path . $filename;
+            // Upload the file into the temp dir
+            if (move_uploaded_file($tmpFilePath, $newFilePath)) {
+                $attachment = array();
+                $attachment[]= array(
+                    'file_name'=>$filename,
+                    'filetype'=>$_FILES["file"]["type"],
+                );
+                if (is_image($newFilePath)) {
+                    create_img_thumb($newFilePath, $filename);
+                }
+
+
+                $CI->misc_model->add_attachment_to_database($id, 'policies', $attachment);
+            }
+        }
+    }
 }

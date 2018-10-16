@@ -147,7 +147,24 @@ function get_relation_data($type, $rel_id = '', $connection_type = '', $connecti
         if ($rel_id != '') {
             $data = $CI->tasks_model->get($rel_id);
         }
+    } elseif ($type == 'policy' || $type == 'policies') {
+        if ($rel_id != '') {
+            $data = $CI->policies_model->get_policy($rel_id);
+        } else {
+            $where_policies = 'tblpolicies.active=1';
+            if ($CI->input->post('tickets_policies')) {
+                if (!has_permission('customers', '', 'view') && get_option('staff_members_open_tickets_to_all_policies') == 0) {
+                    $where_policies .= ' AND tblpolicies.userid IN (SELECT customer_id FROM tblcustomeradmins WHERE staff_id=' . get_staff_user_id() . ')';
+                }
+            }
+            if ($CI->input->post('policy_userid')) {
+                $where_policies .= ' AND tblpolicies.userid=' . $CI->input->post('policy_userid');
+            }
+            $search = $CI->misc_model->_search_policies($q, 0, $where_policies);
+            $data   = $search['result'];
+        }
     }
+
 
     return $data;
 }
@@ -331,6 +348,16 @@ function get_relation_values($relation, $type)
         $name = '#' . $id . ' - ' . $name . ' - ' . get_company_name($clientId);
 
         $link = admin_url('projects/view/' . $id);
+    } elseif ($type == 'policy' || $type == 'policies') {
+        if (is_array($relation)) {
+            $id     = $relation['id'];
+            $name   = $relation['firstname'] . ' ' . $relation['lastname'];
+        } else {
+            $id     = $relation->id;
+            $name   = $relation->firstname . ' ' . $relation->lastname;
+        }
+        $subtext = $name;
+        $link    = admin_url('policies/policy/' . $id );
     }
 
     return do_action('relation_values', [

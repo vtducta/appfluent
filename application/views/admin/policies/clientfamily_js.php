@@ -5,10 +5,9 @@
 ?>
 <script>
  Dropzone.options.clientAttachmentsUpload = false;
-var customer_id = $('input[name="userid"]').val();
-var contact_id = $('input[name="contact_id"]').val();
-if ($('#client-attachments-upload').length > 0) {
-    new Dropzone('#client-attachments-upload',$.extend({},_dropzone_defaults(),{
+var policy_id = $('input[name="policy_id"]').val();
+if ($('#policy-attachments-upload').length > 0) {
+    new Dropzone('#policy-attachments-upload',$.extend({},_dropzone_defaults(),{
         paramName: "file",
         accept: function(file, done) {
             done();
@@ -133,9 +132,9 @@ $(function() {
     if (typeof(Dropbox) != 'undefined' && $('#dropbox-chooser').length > 0) {
         document.getElementById("dropbox-chooser").appendChild(Dropbox.createChooseButton({
             success: function(files) {
-                $.post(admin_url + 'client_families/add_external_attachment', {
+                $.post(admin_url + 'policies/add_external_attachment', {
                     files: files,
-                    clientid: customer_id,
+                    policyid: customer_id,
                     external: 'dropbox'
                 }).done(function() {
                     window.location.reload();
@@ -148,7 +147,7 @@ $(function() {
 
     /* Custome profile tickets table */
     var ticketsNotSortable = $('.table-tickets-single').find('th').length - 1;
-    _table_api = initDataTable('.table-tickets-single', admin_url + 'tickets/index/false/' + customer_id+'/' + contact_id, [ticketsNotSortable], [ticketsNotSortable], 'undefined', [$('table thead .ticket_created_column').index(), 'DESC'])
+    _table_api = initDataTable('.table-tickets-single', admin_url + 'tickets/index_policy/false/' + policy_id, [ticketsNotSortable], [ticketsNotSortable], 'undefined', [$('table thead .ticket_created_column').index(), 'DESC'])
     if (_table_api) {
         _table_api.column(5).visible(false, false).columns.adjust();
     }
@@ -158,7 +157,7 @@ $(function() {
 
     /* Custome profile contacts table */
     var contactsNotSortable = $('.table-contacts').find('th').length - 1;
-    initDataTable('.table-contacts', admin_url + 'client_families/contacts/' + customer_id, [contactsNotSortable], [contactsNotSortable]);
+    initDataTable('.table-contacts', admin_url + 'policies/contacts/' + customer_id, [contactsNotSortable], [contactsNotSortable]);
 
     /* Customer profile invoices table */
     initDataTable('.table-invoices-single-client',
@@ -350,7 +349,7 @@ function contact(client_id, contact_id) {
     if (typeof(contact_id) == 'undefined') {
         contact_id = '';
     }
-    $.post(admin_url + 'client_families/contact/' + client_id + '/' + contact_id).done(function(response) {
+    $.post(admin_url + 'policies/contact/' + client_id + '/' + contact_id).done(function(response) {
         $('#contact_data').html(response);
         $('#contact').modal({
             show: true,
@@ -400,7 +399,7 @@ function do_share_file_contacts(edit_contacts, file_id) {
         return;
     }
     var file_id = $('input[name="file_id"]').val();
-    $.post(admin_url + 'client_families/update_file_share_visibility', {
+    $.post(admin_url + 'policies/update_file_share_visibility', {
         file_id: file_id,
         share_contacts_id: contacts_shared_ids_selected,
         customer_id: $('input[name="userid"]').val()

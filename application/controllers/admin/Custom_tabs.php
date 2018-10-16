@@ -52,7 +52,7 @@ class Custom_tabs extends Admin_controller
         }
 
         $this->load->model('custom_sections_model');
-        $data['list_custom_section'] = $this->custom_sections_model->get();
+        $data['list_custom_section'] = $this->custom_sections_model->get(false,'');
 
         $data['title']                = $title;
         $this->load->view('admin/custom_tabs/customtab', $data);

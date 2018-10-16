@@ -120,14 +120,14 @@ $customer_tabs = array(
     'visible'=>true,
     'order'=>8
     ),
-    array(
-        'name'=>'campaign',
-        'url'=>admin_url('policies/policy/'.$policy->id.'?group=campaign'),
-        'icon'=>'fa fa-hourglass-o',
-        'lang'=>_l('Campaign'),
-        'visible'=>true,
-        'order'=>9
-    ),
+//    array(
+//        'name'=>'campaign',
+//        'url'=>admin_url('policies/policy/'.$policy->id.'?group=campaign'),
+//        'icon'=>'fa fa-hourglass-o',
+//        'lang'=>_l('Campaign'),
+//        'visible'=>true,
+//        'order'=>9
+//    ),
     array(
         'name'=>'events',
         'url'=>admin_url('policies/policy/'.$policy->id.'?group=events'),

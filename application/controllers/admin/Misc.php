@@ -342,6 +342,15 @@ class Misc extends Admin_controller
                         )));
                     }
 
+
+                    if($note->rel_type=='policies'){
+                        $this->load->model('policies_model');
+                        if($note->rel_id){
+                            $this->policies_model->log_policy_activity($note->rel_id, 'not_policy_activity_note_updated', false, serialize(array(
+                                get_staff_full_name(get_staff_user_id()),nl2br($this->input->post()['description'])
+                            )));
+                        }
+                    }
                 }
             }
             echo json_encode(array(

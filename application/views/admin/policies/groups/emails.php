@@ -1,4 +1,4 @@
-<?php if(isset($contact)){ ?>
+<?php if(isset($policy)){ ?>
 <h4 class="customer-profile-group-heading"><?php echo _l('emails_tab'); ?></h4>
 <div class="col-md-12">
 
@@ -9,7 +9,7 @@
     </div>
     <div class="clearfix"></div>
     <div id="email_data">
-        <?php $this->load->view('admin/clients/modals/email'); ?>
+        <?php $this->load->view('admin/policies/modals/email'); ?>
     </div>
     <div class="clearfix"></div>
     <div class="mtop15">
@@ -54,7 +54,7 @@
                     <td>
 
                         <?php if($email['added_from'] == get_staff_user_id() || is_admin()){ ?>
-                            <a href="<?php echo admin_url('client_families/delete_email/'. $email['id']); ?>" class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
+                            <a href="<?php echo admin_url('policies/delete_email/'. $email['id']); ?>" class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
 
                         <?php } ?>
                     </td>
@@ -69,7 +69,7 @@
             if (typeof(email_id) == 'undefined') {
                 email_id = '';
             }
-            $.post(admin_url + 'client_families/email/' + client_id + '/' + contact_id+'/'+email_id).done(function(response) {
+            $.post(admin_url + 'policies/email/' + client_id + '/' + contact_id+'/'+email_id).done(function(response) {
                 $('#email_data').html(response);
                 $('#newEmailModal').modal({
                     show: true,

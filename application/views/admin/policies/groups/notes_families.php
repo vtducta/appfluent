@@ -1,4 +1,4 @@
-<?php if(isset($contact)){ ?>
+<?php if(isset($policy)){ ?>
 <h4 class="customer-profile-group-heading"><?php echo _l('contracts_notes_tab'); ?></h4>
 <div class="col-md-12">
 
@@ -10,7 +10,7 @@
 </div>
  <div class="clearfix"></div>
  <div class="usernote hide">
-    <?php echo form_open(admin_url( 'misc/add_note/'.$contact->id.'/contacts')); ?>
+    <?php echo form_open(admin_url( 'misc/add_note/'.$policy->id.'/policies')); ?>
     <?php echo render_textarea( 'description', 'note_description', '',array( 'rows'=>5)); ?>
     <button class="btn btn-info pull-right mbot15">
         <?php echo _l( 'submit'); ?>
@@ -18,7 +18,7 @@
     <?php echo form_close(); ?>
 </div>
 <div id="note_call_log_data">
-    <?php $this->load->view('admin/clients/modals/note_call_log');   ?>
+    <?php $this->load->view('admin/policies/modals/note_call_log');   ?>
 </div>
 <div class="clearfix"></div>
 <div class="mtop15">
@@ -48,17 +48,19 @@
                   <div data-note-description="<?php echo $note['id']; ?>">
                     <?php echo $note['description']; ?>
                 </div>
+                    <?php if($note['note_type'] == 'normal'){ ?>
                 <div data-note-edit-textarea="<?php echo $note['id']; ?>" class="hide">
                     <textarea name="description" class="form-control" rows="4"><?php echo clear_textarea_breaks($note['description']); ?></textarea>
                     <div class="text-right mtop15">
                       <button type="button" class="btn btn-default" onclick="toggle_edit_note(<?php echo $note['id']; ?>);return false;"><?php echo _l('cancel'); ?></button>
-                      <button type="button" class="btn btn-info" onclick="edit_note_family(<?php echo $note['id']; ?>,<?php echo $contact->id; ?>);"><?php echo _l('update_note'); ?></button>
+                      <button type="button" class="btn btn-info" onclick="edit_note(<?php echo $note['id']; ?>);"><?php echo _l('update_note'); ?></button>
                     </div>
                 </div>
-          </td>
-          <td>
-            <?php echo '<a href="'.admin_url( 'profile/'.$note[ 'addedfrom']). '">'.$note[ 'firstname'] . ' ' . $note[ 'lastname'] . '</a>' ?>
-        </td>
+                    <?php } ?>
+                </td>
+            <td>
+                <?php echo '<a href="'.admin_url( 'profile/'.$note[ 'addedfrom']). '">'.$note[ 'firstname'] . ' ' . $note[ 'lastname'] . '</a>' ?>
+            </td>
         <td data-order="<?php echo $note['dateadded']; ?>">
          <?php if(!empty($note['date_contacted'])){ ?>
            <span data-toggle="tooltip" data-title="<?php echo _dt($note['date_contacted']); ?>">
@@ -75,7 +77,7 @@
                     <a href="<?php echo admin_url('misc/delete_note/'. $note['id']); ?>" class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
                 <?php } ?>
                 <?php if($note['note_type'] == 'call_log'){ ?>
-                    <a href="#" class="btn btn-default btn-icon" onclick="call_log(<?php echo $client->userid.','.$contact->id.','.$note['id']; ?>);return false;"><i class="fa fa-pencil-square-o"></i></a>
+                    <a href="#" class="btn btn-default btn-icon" onclick="call_log(<?php echo $policy->id.','.$note['id']; ?>);return false;"><i class="fa fa-pencil-square-o"></i></a>
                     <a href="<?php echo admin_url('misc/delete_call_log/'. $note['id']); ?>" class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
                 <?php } ?>
             <?php } ?>
@@ -86,12 +88,12 @@
 </table>
 </div>
     <script>
-        function call_log(client_id, contact_id,call_log_id) {
+        function call_log(policy_id,call_log_id) {
 
             if (typeof(call_log_id) == 'undefined') {
                 call_log_id = '';
             }
-            $.post(admin_url + 'client_families/call_log/' + client_id + '/' + contact_id+'/'+call_log_id).done(function(response) {
+            $.post(admin_url + 'policies/call_log/' + policy_id+'/'+call_log_id).done(function(response) {
                 $('#note_call_log_data').html(response);
                 $('#note_call_log').modal({
                     show: true,

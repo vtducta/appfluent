@@ -37,6 +37,7 @@ $join = [
     'LEFT JOIN tblticketstatus ON tblticketstatus.ticketstatusid = tbltickets.status',
     'LEFT JOIN tblclients ON tblclients.userid = tbltickets.userid',
     'LEFT JOIN tblpriorities ON tblpriorities.priorityid = tbltickets.priority',
+    'LEFT JOIN tblpolicies ON tblpolicies.id = tbltickets.policy_id',
     ];
 
 $custom_fields = get_custom_fields('tickets', array(
@@ -59,7 +60,9 @@ if (count($custom_fields) > 4) {
 
 $where = array();
 $filter = array();
-if ($contact_id != '') {
+if ($policy_id != '') {
+    array_push($where, 'AND tbltickets.policy_id = ' . $policy_id);
+} elseif ($contact_id != '') {
     array_push($where, 'AND tbltickets.contactid = ' . $contact_id);
 } elseif (isset($userid) && $userid != '') {
     array_push($where, 'AND tbltickets.userid = ' . $userid);

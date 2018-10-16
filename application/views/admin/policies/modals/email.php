@@ -6,7 +6,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title"><?php echo _l('new_email'); ?></h4>
       </div>
-      <?php echo form_open('admin/client_families/send_email/'. $client->userid.'/'.$contact->id,array('id'=>'email-form')); ?>
+      <?php echo form_open('admin/policies/send_email/'.$policy->id,array('id'=>'email-form')); ?>
       <div class="modal-body">
         <div class="row">
             <div class="col-md-12">

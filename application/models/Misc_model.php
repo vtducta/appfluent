@@ -199,6 +199,13 @@ class Misc_model extends CRM_Model
 
         }
 
+        if (isset($data['rel_type']) && $data['rel_type'] == 'policies') {
+            $this->load->model('policies_model');
+            $this->policies_model->log_policy_activity($rel_id , 'not_policy_activity_add_files', false, serialize(array(
+                get_staff_full_name(get_staff_user_id())
+            )));
+
+        }
         return $insert_id;
     }
 
@@ -294,6 +301,18 @@ class Misc_model extends CRM_Model
 
         return $arrResult;
     }
+
+    public function get_emails_by_policy($id)
+    {
+
+        $this->db->select('tblemails.*,tblstaff.firstname,tblstaff.lastname ');
+        $this->db->join('tblstaff', 'tblstaff.staffid=tblemails.added_from');
+        $this->db->where('tblemails.policy_id',$id);
+        $this->db->order_by('tblemails.id', 'desc');
+        $arrResult = $this->db->get('tblemails')->result_array();
+
+        return $arrResult;
+    }
     public function get_notes($rel_id, $rel_type)
     {
 //        $this->db->select('tblnotes.*,tblstaff.firstname,tblstaff.lastname,\'normal\' as note_type ');
@@ -306,6 +325,12 @@ class Misc_model extends CRM_Model
 //        $this->db->select('tblcall_logs.*,tblstaff.firstname,tblstaff.lastname,\'call_log\' as note_type ');
 //        $this->db->join('tblstaff', 'tblstaff.staffid=tblnotes.addedfrom');
 
+        $column_select  ='client_id';
+        if($rel_type=='contacts') $column_select='contact_id';
+        if($rel_type=='customers') $column_select='client_id';
+        if($rel_type=='policies') $column_select='policy_id';
+
+
         $query = 'SELECT * FROM
                   ( SELECT id,rel_id,rel_type,description,addedfrom,dateadded,\'normal\' AS note_type,
                     tblstaff.firstname,tblstaff.lastname FROM tblnotes JOIN tblstaff ON tblstaff.staffid=tblnotes.addedfrom
@@ -316,7 +341,7 @@ class Misc_model extends CRM_Model
                     SELECT id, contact_id AS rel_id, \''.$rel_type.'\' AS rel_type, CONCAT(\'Call log - \',`subject`) AS description,
                     addedfrom, created_date AS dateadded, \'call_log\' AS note_type,
                     tblstaff.firstname,tblstaff.lastname  FROM tblcall_logs JOIN tblstaff ON tblstaff.staffid=tblcall_logs.addedfrom
-                    WHERE '.($rel_type=='contacts' ? 'contact_id ': 'client_id') .' = '.$rel_id.'
+                    WHERE '.$column_select .' = '.$rel_id.'
                   ) AS nc ORDER BY dateadded DESC';
 
         $arrResult = $this->db->query($query)->result_array();
@@ -1649,6 +1674,46 @@ class Misc_model extends CRM_Model
             }
             $this->db->order_by('date', 'DESC');
             $result['result'] = $this->db->get()->result_array();
+        }
+
+        return $result;
+    }
+
+    public function _search_policies($q, $limit = 0, $where = '')
+    {
+        $result = [
+            'result'         => [],
+            'type'           => 'policies',
+            'search_heading' => _l('policies'),
+        ];
+
+        $have_assigned_customers        = have_assigned_customers();
+        $have_permission_customers_view = has_permission('customers', '', 'view');
+
+        if ($have_assigned_customers || $have_permission_customers_view) {
+            // Contacts
+            $this->db->select(implode(',', prefixed_table_fields_array('tblpolicies')) );
+            $this->db->from('tblpolicies');
+
+            $this->db->where('(firstname LIKE "%' . $q . '%"
+                OR lastname LIKE "%' . $q . '%"
+                OR email LIKE "%' . $q . '%"
+                OR CONCAT(firstname, \' \', lastname) LIKE "%' . $q . '%"
+                OR phonenumber LIKE "%' . $q . '%"
+                OR title LIKE "%' . $q . '%"
+                )');
+
+            if ($where != '') {
+                $this->db->where($where);
+            }
+
+            if ($limit != 0) {
+                $this->db->limit($limit);
+            }
+
+            $this->db->order_by('firstname', 'ASC');
+            $result['result'] = $this->db->get()->result_array();
+
         }
 
         return $result;

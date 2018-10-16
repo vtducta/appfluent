@@ -2,7 +2,7 @@
 <div class="modal fade" id="note_call_log" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
 
-            <?php echo form_open('admin/client_families/call_log/'.$customer_id.'/'.$contactid.'/'.$call_log_id,array('id'=>'call-log-form','autocomplete'=>'off')); ?>
+            <?php echo form_open('admin/policies/call_log/'.$policy_id.'/'.$call_log_id,array('id'=>'call-log-form','autocomplete'=>'off')); ?>
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -82,18 +82,3 @@
 </div>
 </div>
 
-
-<?php  if(!isset($contact)){ ?>
-    <script>
-        $(function(){
-            // Guess auto email notifications based on the default contact permissios
-            var permInputs = $('input[name="permissions[]"]');
-            $.each(permInputs,function(i,input){
-                input = $(input);
-                if(input.prop('checked') === true){
-                    $('#contact_email_notifications [data-perm-id="'+input.val()+'"]').prop('checked',true);
-                }
-            });
-        });
-    </script>
-<?php }  ?>

@@ -34,21 +34,21 @@
             <?php } ?>
         </div>
         <div class="col-md-12">
-            <?php echo render_textarea('contact_activity_textarea','','',array('placeholder'=>_l('enter_activity')),array(),'mtop15'); ?>
+            <?php echo render_textarea('policy_activity_textarea','','',array('placeholder'=>_l('enter_activity')),array(),'mtop15'); ?>
             <div class="text-right">
-                <button id="contact_enter_activity" class="btn btn-info" onclick="submit_contact_log();"><?php echo _l('submit'); ?></button>
+                <button id="policy_enter_activity" class="btn btn-info" onclick="submit_policy_log();"><?php echo _l('submit'); ?></button>
             </div>
         </div>
         <div class="clearfix"></div>
     </div>
 <?php } ?>
 <script>
-    function submit_contact_log(){
-        var message = $('#contact_activity_textarea').val();
-        var contactId = $('body').find('input[name="contactid"]').val();
+    function submit_policy_log(){
+        var message = $('#policy_activity_textarea').val();
+        var policyId = $('body').find('input[name="policyid"]').val();
         if (message == '') { return; }
-        $.post(admin_url + 'client_families/add_activity', {
-            contactid: contactId,
+        $.post(admin_url + 'policies/add_activity', {
+            policyid: policyId,
             activity: message
         }).done(function(response) {
             response = JSON.parse(response);

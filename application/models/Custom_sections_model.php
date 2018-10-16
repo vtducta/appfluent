@@ -20,7 +20,10 @@ class Custom_sections_model extends CRM_Model
 
             return $this->db->get('tblcustomsections')->row();
         }
-        $this->db->where('menu', $menu);
+        if ($menu){
+            $this->db->where('menu', $menu);
+            return $this->db->get('tblcustomsections')->result_array();
+        }
         return $this->db->get('tblcustomsections')->result_array();
     }
 

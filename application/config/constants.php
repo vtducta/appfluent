@@ -120,6 +120,8 @@ define('STAFF_PROFILE_IMAGES_FOLDER',FCPATH .'uploads/staff_profile_images' . '/
 // Contact profile images
 define('CONTACT_PROFILE_IMAGES_FOLDER',FCPATH .'uploads/client_profile_images' . '/');
 define('POLICY_PROFILE_IMAGES_FOLDER',FCPATH .'uploads/policy_profile_images' . '/');
+define('CONTACT_FILES_FOLDER',FCPATH .'uploads/contact' . '/');
+define('POLICY_FILES_FOLDER',FCPATH .'uploads/policy' . '/');
 // Newsfeed attachments
 define('NEWSFEED_FOLDER',FCPATH . 'uploads/newsfeed' . '/');
 // Contracts attachments

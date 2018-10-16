@@ -34,7 +34,10 @@
 
                                 foreach ($list_custom_section as $custom_section) {
                                     ?>
-                                    <option value="<?= $custom_section['id']?>" <?php if(isset($custom_tab) && $custom_tab->custom_section_id == $custom_section['id']){echo 'selected';} ?>><?php echo ( $custom_section['menu'] .' --- '. $custom_section['name'] ); ?></option>
+                                    <option value="<?= $custom_section['id']?>"
+                                        <?php if(isset($custom_tab) && $custom_tab->custom_section_id == $custom_section['id']){echo 'selected';} ?>>
+                                        <?php echo ( $custom_section['menu'] .' --- '. $custom_section['name'] ); ?>
+                                    </option>
 
                                     <?php
                                 } ?>

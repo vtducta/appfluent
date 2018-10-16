@@ -2284,4 +2284,46 @@ class Policies_model extends CRM_Model
 
         return 0;
     }
+
+    public function log_email_policy_activity($policy,$to,$schedule,$schedule_time,$subject,$content)
+    {
+        $data = array(
+            'created_date' => date('Y-m-d H:i:s'),
+            'subject' => $subject,
+            'content' => $content,
+            'added_from' => get_staff_user_id(),
+            'to' => $to,
+            'policy_id' => $policy,
+            'schedule_option' => $schedule,
+            'sendtime' => $schedule_time,
+        );
+
+        $this->db->insert('tblemails', $data);
+
+        return $this->db->insert_id();
+    }
+
+    public function get_all_policy_attachments($id)
+    {
+        $attachments             = array();
+        $attachments['invoice']  = array();
+        $attachments['estimate'] = array();
+        $attachments['credit_note'] = array();
+        $attachments['proposal'] = array();
+        $attachments['contract'] = array();
+        $attachments['lead']     = array();
+        $attachments['task']     = array();
+        $attachments['customer'] = array();
+        $attachments['ticket']   = array();
+        $attachments['expense']  = array();
+
+        $this->db->where('rel_id', $id);
+        $this->db->where('rel_type', 'policies');
+        $client_main_attachments = $this->db->get('tblfiles')->result_array();
+
+        $attachments['policy'] = $client_main_attachments;
+
+        return $attachments;
+    }
+
 }

@@ -216,6 +216,10 @@
                   <?php if(isset($task) || $this->input->get('rel_type')){if($rel_type == 'contacts'){echo 'selected';}} ?>>
                   <?php echo _l('contact'); ?>
               </option>
+              <option value="policies"
+                  <?php if(isset($task) || $this->input->get('rel_type')){if($rel_type == 'policies'){echo 'selected';}} ?>>
+                  <?php echo _l('policy'); ?>
+              </option>
             <option value="customer"
             <?php if(isset($task) || $this->input->get('rel_type')){if($rel_type == 'customer'){echo 'selected';}} ?>>
               <?php echo _l('client'); ?>

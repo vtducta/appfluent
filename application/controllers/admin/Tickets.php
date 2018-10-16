@@ -59,6 +59,52 @@ class Tickets extends Admin_controller
         $this->load->view('admin/tickets/list', $data);
     }
 
+    public function index_policy($status = '', $policy_id ='')
+    {
+
+        close_setup_menu();
+
+        if(!is_numeric($status)){
+            $status = '';
+        }
+
+        if ($this->input->is_ajax_request()) {
+            if (!$this->input->post('filters_ticket_id')) {
+                $tableParams = array(
+                    'status' => $status,
+                    'policy_id' => $policy_id
+                );
+            } else {
+                // request for othes tickets when single ticket is opened
+                $tableParams = array(
+                    'userid' => $this->input->post('filters_userid'),
+                    'where_not_ticket_id' => $this->input->post('filters_ticket_id')
+                );
+                if ($tableParams['userid'] == 0) {
+                    unset($tableParams['userid']);
+                    $tableParams['by_email'] = $this->input->post('filters_email');
+                }
+            }
+
+            $this->app->get_table_data('tickets', $tableParams);
+        }
+
+        $data['chosen_ticket_status']              = $status;
+        $data['weekly_tickets_opening_statistics'] = json_encode($this->tickets_model->get_weekly_tickets_opening_statistics());
+        $data['title']                             = _l('support_tickets');
+        $this->load->model('departments_model');
+        $data['statuses']             = $this->tickets_model->get_ticket_status();
+        $data['staff_deparments_ids'] = $this->departments_model->get_staff_departments(get_staff_user_id(), true);
+        $data['departments']          = $this->departments_model->get();
+        $data['priorities']           = $this->tickets_model->get_priority();
+        $data['services']             = $this->tickets_model->get_service();
+        $data['ticket_assignees']     = $this->tickets_model->get_tickets_assignes_disctinct();
+        $data['bodyclass']            = 'tickets-page';
+
+        $data['default_tickets_list_statuses'] = do_action('default_tickets_list_statuses', [1, 2, 4]);
+        $this->load->view('admin/tickets/list', $data);
+    }
+
     public function add($userid = false)
     {
         if ($this->input->post()) {
@@ -408,6 +454,18 @@ class Tickets extends Admin_controller
             echo json_encode([
                 'contact_data'          => $this->clients_model->get_contact($contact_id),
                 'customer_has_projects' => customer_has_projects(get_user_id_by_contact_id($contact_id)),
+            ]);
+        }
+    }
+
+    public function ticket_change_data_policy()
+    {
+        if ($this->input->is_ajax_request()) {
+            $policy_id = $this->input->post('policy_id');
+            $policy = $this->policies_model->get_policy($policy_id);
+            echo json_encode([
+                'policy_data'          => $policy,
+                'customer_has_projects' => customer_has_projects($policy->userid),
             ]);
         }
     }
@@ -780,5 +838,56 @@ class Tickets extends Admin_controller
                 set_alert('success', _l('total_tickets_deleted', $total_deleted));
             }
         }
+    }
+
+    public function add_for_policy($policyid = false)
+    {
+        if ($this->input->post()) {
+            $data            = $this->input->post();
+            $data['message'] = $this->input->post('message', false);
+            $data['policy_id'] = $data['policyid'];
+            unset($data['policyid']);
+            $id              = $this->tickets_model->add($data, get_staff_user_id());
+            if ($id) {
+                set_alert('success', _l('new_ticket_added_successfully', $id));
+                redirect(admin_url('tickets/ticket/' . $id));
+            }
+        }
+
+        // Load necessary models
+        $this->load->model('knowledge_base_model');
+        $this->load->model('departments_model');
+
+        $data['departments']        = $this->departments_model->get();
+        $data['predefined_replies'] = $this->tickets_model->get_predefined_reply();
+        $data['priorities']         = $this->tickets_model->get_priority();
+        $data['services']           = $this->tickets_model->get_service();
+        $whereStaff                 = [];
+        if (get_option('access_tickets_to_none_staff_members') == 0) {
+            $whereStaff['is_not_staff'] = 0;
+        }
+        $data['staff']     = $this->staff_model->get('', $whereStaff);
+        $data['articles']  = $this->knowledge_base_model->get();
+        $data['bodyclass'] = 'ticket';
+        $data['title']     = _l('new_ticket');
+
+        if ($this->input->get('project_id') && $this->input->get('project_id') > 0) {
+            // request from project area to create new ticket
+            $data['project_id'] = $this->input->get('project_id');
+            $data['userid']     = get_client_id_by_project_id($data['project_id']);
+            if (total_rows('tblcontacts', ['active' => 1, 'userid' => $data['userid']]) == 1) {
+                $contact = $this->clients_model->get_contacts($data['userid']);
+                if (isset($contact[0])) {
+                    $data['contact'] = $contact[0];
+                }
+            }
+        } elseif ($this->input->get('contact_id') && $this->input->get('contact_id') > 0 && $this->input->get('userid')) {
+            $data['contact'] = (array) $this->clients_model->get_contact($this->input->get('contact_id'));
+
+        }elseif ($this->input->get('policy_id') && $this->input->get('policy_id') > 0 ) {
+            $data['policy'] = (array) $this->policies_model->get_policy($this->input->get('policy_id'));
+
+        }
+        $this->load->view('admin/tickets/add_for_policy', $data);
     }
 }

@@ -56,6 +56,7 @@ class Utilities_model extends CRM_Model
 
             return false;
         }
+        unset($data['eventid']);
         $this->db->insert('tblevents', $data);
         $insert_id = $this->db->insert_id();
 
