@@ -1,44 +1,54 @@
-<h4 class="customer-profile-group-heading"><?php echo _l('client_add_edit_polices'); ?></h4>
-<div class="row">
-   <?php echo form_open_multipart($this->uri->uri_string(),array('class'=>'polices-form','autocomplete'=>'off')); ?>
-   <div class="additional"></div>
-    <?php echo form_hidden('contact[contactid]',$contactid); ?>
-   <div class="col-md-12">
-      <ul class="nav nav-tabs profile-tabs row customer-profile-tabs" role="tablist">
-          <?php $index=0;
-           foreach ($list_custom_tab as $customtab) { ?>
-              <li role="presentation" class="<?php if($index==0){echo 'active';}; ?>">
-                  <a href="#<?=$customtab['slug']?>" aria-controls="<?=$customtab['slug']?>" role="tab" data-toggle="tab">
-                      <?php echo $customtab['name']; ?>
-                  </a>
-              </li>
-              <?php do_action('after_'.$customtab['slug'].'_tab',isset($contact) ? $contact : false); ?>
-          <?php $index++; }?>
-      </ul>
-      <div class="tab-content">
-          <?php $index=0;
-          foreach ($list_custom_tab as $customtab) { ?>
-              <div role="tabpanel" class="tab-pane <?php if($index==0){echo 'active';}; ?>" id="<?=$customtab['slug']?>">
-                  <div class="row">
-                      <div class="col-md-12">
-                          <?php $rel_id=( isset($contact) ? $contact->id : false); ?>
-                          <?php echo render_custom_fields( 'contacts',$rel_id,array('custom_tab_id'=>$customtab['id'])); ?>
-                      </div>
-                  </div>
-              </div>
-          <?php $index++;  }?>
-      </div>
-       <button class="btn btn-info pull-right mbot15">
-           <?php echo _l( 'submit'); ?>
-       </button>
-   </div>
+<?php if(isset($contact)){ ?>
+    <h4 class="customer-profile-group-heading"><?php echo _l('policies_related_tab'); ?></h4>
+    <div class="col-md-12">
+    <div class="clearfix"></div>
+    <div class="row">
+        <hr class="hr-panel-heading" />
+    </div>
+    <div class="clearfix"></div>
+    <div class="mtop15">
 
-   <?php echo form_close(); ?>
-</div>
+        <table class="table dt-table scroll-responsive" data-order-col="2" data-order-type="desc">
+            <thead>
+            <tr>
+                <th >
+                    <?php echo _l( 'policy_name'); ?>
+                </th>
+                <th>
+                    <?php echo _l( 'policy_title'); ?>
+                </th>
+                <th>
+                    <?php echo _l( 'policy_email'); ?>
+                </th>
+                <th>
+                    <?php echo _l( 'policy_phone'); ?>
+                </th>
 
-<!-- /.modal -->
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach($list_policies as $policy){ ?>
+                <tr>
+                    <td>
+                        <div data-note-description="<?php echo $policy['id']; ?>">
+                            <?php echo '<a href="'.admin_url( 'policy/'.$policy['id']). '">' . $policy['firstname'] . ' ' .$policy['lastname'] . '</a>'; ?>
+                        </div>
+                    </td>
+                    <td>
+                            <?php echo  $policy['title'] ; ?>
+                    </td>
+                    <td>
+                            <?php echo  $policy['email'] ; ?>
+                    </td>
+                    <td>
+                            <?php echo  $policy['phonenumber'] ; ?>
+                    </td>
+
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
 
 
-
-
-
+<?php } ?>

@@ -3768,3 +3768,4 @@ $lang['custom_field_policies'] = 'Policies';
 $lang['policy_title'] = 'Title';
 $lang['policy_profile_details'] ='General info';
 $lang['not_policy_activity_updated'] = 'updated policy';
+$lang['policies_related_tab'] = 'Policies';

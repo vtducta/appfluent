@@ -340,9 +340,9 @@ function contact(client_id, contact_id) {
         });
         $('body').off('shown.bs.modal','#contact');
         $('body').on('shown.bs.modal', '#contact', function() {
-            if (contact_id == '') {
-                $('#contact').find('input[name="firstname"]').focus();
-            }
+            // if (contact_id == '') {
+            //     $('#contact').find('input[name="firstname"]').focus();
+            // }
         });
         init_selectpicker();
         init_datepicker();

@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <?php if(isset($contact)){ ?>
-                        <img src="<?php echo contact_profile_image_url($contact->id,'thumb'); ?>" id="contact-img" class="client-profile-image-thumb">
+                        <img src="<?php echo contact_profile_image_url($contact->id,'thumb'); ?>" id="contact-img" class="client-profile-image-small">
                         <?php if(!empty($contact->profile_image)){ ?>
                             <a href="#" onclick="delete_contact_profile_image(<?php echo $contact->id; ?>); return false;" class="text-danger pull-right" id="contact-remove-img"><i class="fa fa-remove"></i></a>
                         <?php } ?>
@@ -64,8 +64,7 @@
                     <!-- // For email exist check -->
                     <?php echo form_hidden('contact[contactid]',$contactid); ?>
                     <?php $value=( isset($contact) ? $contact->firstname : ''); ?>
-                    <?php $attrs = (isset($contact) ? array() : array('autofocus'=>true)); ?>
-                    <?php echo render_input( 'contact[firstname]', 'client_firstname',$value,'text',$attrs); ?>
+                    <?php echo render_input( 'contact[firstname]', 'client_firstname',$value,'text'); ?>
                     <?php $value=( isset($contact) ? $contact->lastname : ''); ?>
                     <?php echo render_input( 'contact[lastname]', 'client_lastname',$value); ?>
                     <?php $value=( isset($contact) ? $contact->title : ''); ?>
@@ -78,7 +77,7 @@
 
                         <?php $value=( isset($client) ? $client->company : '');
                         ?>
-                        <?php $attrs = (isset($client) ? array() : array('autofocus'=>true)); ?>
+
                     <div class="form-group dropdown" app-field-wrapper="client[company]">
                         <label for="client[company]" class="control-label"><?php echo _l('client_company')?></label>
                         <input placeholder="Type to seach company" data-toggle="dropdown" type="text" id="client[company]" name="client[company]" class="form-control " value="<?php echo $value ?>" aria-invalid="false">

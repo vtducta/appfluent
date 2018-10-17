@@ -556,8 +556,8 @@ class Client_families extends Admin_controller
                 $data['template_list'] = $this->Newsletter_model->getTemplateLists();
 
             }  elseif ($group == 'policies') {
-                $this->load->model('custom_tabs_model');
-                $data['list_custom_tab'] = $this->custom_tabs_model->get();
+                $this->load->model('policies_model');
+                $data['list_policies'] = $this->policies_model->get_policy_by_contact($contact_id);
                 $data['title']                = _l('policies');
 
                 // To load js files

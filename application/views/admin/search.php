@@ -17,6 +17,9 @@
                 case 'contacts':
                 $output = '<a href="'.admin_url('clients/client/'.$_result['userid'].'?contactid='.$_result['id']).'">'.$_result['firstname'] .' ' . $_result['lastname'] .' <small>'.get_company_name($_result['userid']).'</small></a>';
                 break;
+                case 'policies':
+                $output = '<a href="'.admin_url('policies/policy/'.$_result['id']).'">'.$_result['firstname'] .' ' . $_result['lastname'] .' <small>'.get_company_name($_result['userid']).'</small></a>';
+                break;
                 case 'staff':
                 $output = '<a href="'.admin_url('staff/member/'.$_result['staffid']).'">'.$_result['firstname']. ' ' . $_result['lastname'] .'</a>';
                 break;

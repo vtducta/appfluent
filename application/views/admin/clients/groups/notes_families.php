@@ -57,7 +57,7 @@
                 </div>
           </td>
           <td>
-            <?php echo '<a href="'.admin_url( 'profile/'.$note[ 'addedfrom']). '">'.$note[ 'firstname'] . ' ' . $note[ 'lastname'] . '</a>' ?>
+            <?php echo '<a href="'.admin_url( 'profile/'.$note[ 'addedfrom']). '">'.$note[ 'firstname'] . ' ' . $note[ 'lastname'] . '</a>' ;?>
         </td>
         <td data-order="<?php echo $note['dateadded']; ?>">
          <?php if(!empty($note['date_contacted'])){ ?>

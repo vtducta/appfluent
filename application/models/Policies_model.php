@@ -2326,4 +2326,10 @@ class Policies_model extends CRM_Model
         return $attachments;
     }
 
+    public function get_policy_by_contact($contact_id)
+    {
+        $this->db->where('contact_id', $contact_id);
+
+        return $this->db->get('tblpolicies')->result_array();
+    }
 }

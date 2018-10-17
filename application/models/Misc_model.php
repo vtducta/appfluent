@@ -673,6 +673,11 @@ class Misc_model extends CRM_Model
         }
 
 
+        $policies_search = $this->_search_policies($q, $limit, '');
+        if (count($policies_search['result']) > 0) {
+            $result[] = $policies_search;
+        }
+
         $where_contacts = '';
         if ($have_assigned_customers && !$have_permission_customers_view) {
             $where_contacts = 'tblcontacts.userid IN (SELECT customer_id FROM tblcustomeradmins WHERE staff_id=' . get_staff_user_id() . ')';
