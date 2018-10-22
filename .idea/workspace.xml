@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="204603cf-630b-47c8-9e8f-40ef4dffd56f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/application/views/admin/emails/email.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/admin/emails/manager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/config/app-config.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/app-config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/admin/Emails.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/admin/Emails.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/language/english/english_lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/language/english/english_lang.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/models/Emails_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Emails_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/Misc_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Misc_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/clients/groups/profile_families.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/clients/groups/profile_families.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/main.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/main.min.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,38 +21,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Emails.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/admin/Emails.php">
+      <file leaf-file-name="custom_section.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/admin/policies/groups/custom_section.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="138" column="33" lean-forward="true" selection-start-line="138" selection-start-column="33" selection-end-line="138" selection-end-column="33" />
+            <state relative-caret-position="136">
+              <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Policies_model.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/models/Policies_model.php">
+      <file leaf-file-name="customtab.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/admin/custom_tabs/customtab.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="2303" column="5" lean-forward="true" selection-start-line="2287" selection-start-column="4" selection-end-line="2303" selection-end-column="5" />
+            <state relative-caret-position="578">
+              <caret line="34" column="61" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="61" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="general_helper.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/helpers/general_helper.php">
+      <file leaf-file-name="Custom_tabs.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/admin/Custom_tabs.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3859">
-              <caret line="227" column="27" selection-start-line="227" selection-start-column="9" selection-end-line="227" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Misc_model.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/models/Misc_model.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="1726" column="44" selection-start-line="1726" selection-start-column="20" selection-end-line="1726" selection-end-column="44" />
+            <state relative-caret-position="918">
+              <caret line="54" column="81" selection-start-line="54" selection-start-column="81" selection-end-line="54" selection-end-column="81" />
             </state>
           </provider>
         </entry>
@@ -62,35 +51,26 @@
       <file leaf-file-name="Emails_model.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/Emails_model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="535" column="38" selection-start-line="535" selection-start-column="20" selection-end-line="535" selection-end-column="38" />
+            <state relative-caret-position="9384">
+              <caret line="552" column="32" selection-start-line="552" selection-start-column="20" selection-end-line="552" selection-end-column="32" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Policies.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/admin/Policies.php">
+      <file leaf-file-name="Emails.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/admin/Emails.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4267">
-              <caret line="251" column="5" selection-start-line="226" selection-start-column="3" selection-end-line="251" selection-end-column="5" />
+            <state relative-caret-position="2856">
+              <caret line="168" column="9" selection-start-line="168" selection-start-column="9" selection-end-line="168" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="emails.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/admin/policies/groups/emails.php">
+      <file leaf-file-name="english_lang.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/language/english/english_lang.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1346">
-              <caret line="83" column="40" selection-start-line="83" selection-start-column="40" selection-end-line="83" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manage_family.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/admin/policies/manage_family.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="37" column="37" selection-start-line="33" selection-start-column="11" selection-end-line="37" selection-end-column="37" />
+            <state relative-caret-position="209">
+              <caret line="559" column="38" selection-start-line="559" selection-start-column="38" selection-end-line="559" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -98,17 +78,35 @@
       <file leaf-file-name="manager.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/admin/emails/manager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1564">
-              <caret line="92" selection-start-line="92" selection-end-line="92" />
+            <state relative-caret-position="1207">
+              <caret line="71" column="104" selection-start-line="71" selection-start-column="85" selection-end-line="71" selection-end-column="104" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="email.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/views/admin/emails/email.php">
+      <file leaf-file-name="Misc.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/admin/Misc.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+            <state relative-caret-position="6290">
+              <caret line="370" column="47" selection-start-line="367" selection-start-column="11" selection-end-line="370" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Misc_model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/models/Misc_model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7089">
+              <caret line="417" column="5" selection-start-line="403" selection-start-column="3" selection-end-line="417" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Custom_sections_model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/models/Custom_sections_model.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="48" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -117,9 +115,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>filters_userid</find>
-      <find>filters_ticket_id</find>
-      <find>policyid</find>
       <find>get_table_data</find>
       <find>params</find>
       <find>add(</find>
@@ -147,6 +142,9 @@
       <find>load_event</find>
       <find>send_email</find>
       <find>log_email_policy_activity</find>
+      <find>delet</find>
+      <find>delete</find>
+      <find>deal</find>
     </findStrings>
     <replaceStrings>
       <replace>policies_model</replace>
@@ -207,16 +205,16 @@
         <option value="$PROJECT_DIR$/application/views/admin/clients/groups/policies.php" />
         <option value="$PROJECT_DIR$/application/controllers/admin/Client_families.php" />
         <option value="$PROJECT_DIR$/application/models/Policies_model.php" />
-        <option value="$PROJECT_DIR$/application/language/english/english_lang.php" />
         <option value="$PROJECT_DIR$/application/views/admin/search.php" />
         <option value="$PROJECT_DIR$/assets/js/main.min.js" />
         <option value="$PROJECT_DIR$/application/views/admin/clients/groups/profile_families.php" />
         <option value="$PROJECT_DIR$/application/helpers/my_functions_helper.php" />
         <option value="$PROJECT_DIR$/application/models/Misc_model.php" />
         <option value="$PROJECT_DIR$/application/views/admin/emails/manager.php" />
+        <option value="$PROJECT_DIR$/application/views/admin/emails/email.php" />
         <option value="$PROJECT_DIR$/application/models/Emails_model.php" />
         <option value="$PROJECT_DIR$/application/controllers/admin/Emails.php" />
-        <option value="$PROJECT_DIR$/application/views/admin/emails/email.php" />
+        <option value="$PROJECT_DIR$/application/language/english/english_lang.php" />
       </list>
     </option>
   </component>
@@ -289,89 +287,130 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="language" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="language" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="english" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="libraries" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="emails" type="462c0819:PsiDirectoryNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="models" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="policies" type="462c0819:PsiDirectoryNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="policies" type="462c0819:PsiDirectoryNode" />
-              <item name="groups" type="462c0819:PsiDirectoryNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="policies" type="462c0819:PsiDirectoryNode" />
-              <item name="modals" type="462c0819:PsiDirectoryNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="custom_fields" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="custom_sections" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="custom_tabs" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="emails" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="policies" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="tables" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="appfluent" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="tickets" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -518,28 +557,30 @@
       <workItem from="1540199688317" duration="840000" />
       <workItem from="1540201589469" duration="1437000" />
       <workItem from="1540203353461" duration="294000" />
+      <workItem from="1540213244821" duration="1526000" />
+      <workItem from="1540215444179" duration="1290000" />
+      <workItem from="1540217469376" duration="1320000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192129000" />
+    <option name="totallyTimeSpent" value="197577000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.32051283" visible="true" weight="0.2532943" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.32051283" visible="true" weight="0.26340482" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" sideWeight="0.67948717" side_tool="true" weight="0.2191689" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -561,6 +602,34 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/application/controllers/admin/Emails.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2856">
+          <caret line="168" column="9" selection-start-line="168" selection-start-column="9" selection-end-line="168" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/custom_tabs/customtab.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="34" column="61" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/Custom_sections_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="48" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/admin/Custom_tabs.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="54" column="81" selection-start-line="54" selection-start-column="81" selection-end-line="54" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/helpers/tickets_helper.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -652,9 +721,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/policies/groups/contacts.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/policies/groups/custom_section.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -678,8 +744,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/admin/Custom_tabs.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="56" column="7" selection-start-line="56" selection-start-column="7" selection-end-line="56" selection-end-column="7" />
+        <state relative-caret-position="918">
+          <caret line="54" column="81" selection-start-line="54" selection-start-column="81" selection-end-line="54" selection-end-column="81" />
         </state>
       </provider>
     </entry>
@@ -696,9 +762,6 @@
           <caret line="306" column="16" selection-start-line="306" selection-start-column="9" selection-end-line="306" selection-end-column="16" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/clients/client_family.php">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/clients/groups_manage.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -761,29 +824,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/language/english/english_lang.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64090">
-          <caret line="3770" column="41" selection-start-line="3770" selection-start-column="41" selection-end-line="3770" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/admin/Misc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4692">
-          <caret line="276" column="39" selection-start-line="276" selection-start-column="33" selection-end-line="276" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/search.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/settings/includes/email.php">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/application/helpers/my_functions_helper.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -820,9 +866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/emails/template.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/helpers/datatables_helper.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1252">
@@ -844,13 +887,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/emails/manager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1564">
-          <caret line="92" selection-start-line="92" selection-end-line="92" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/admin/Policies.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4267">
@@ -865,27 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/Misc_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="1726" column="44" selection-start-line="1726" selection-start-column="20" selection-end-line="1726" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/Emails_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="535" column="38" selection-start-line="535" selection-start-column="20" selection-end-line="535" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/admin/Emails.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="138" column="33" lean-forward="true" selection-start-line="138" selection-start-column="33" selection-end-line="138" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/policies/groups/emails.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1346">
@@ -897,6 +912,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/Misc_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7089">
+          <caret line="417" column="5" selection-start-line="403" selection-start-column="3" selection-end-line="417" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/emails/manager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="71" column="104" selection-start-line="71" selection-start-column="85" selection-end-line="71" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/admin/Misc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6290">
+          <caret line="370" column="47" selection-start-line="367" selection-start-column="11" selection-end-line="370" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/Emails_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9384">
+          <caret line="552" column="32" selection-start-line="552" selection-start-column="20" selection-end-line="552" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/admin/Emails.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2856">
+          <caret line="168" column="9" selection-start-line="168" selection-start-column="9" selection-end-line="168" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/language/english/english_lang.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="559" column="38" selection-start-line="559" selection-start-column="38" selection-end-line="559" selection-end-column="38" />
         </state>
       </provider>
     </entry>

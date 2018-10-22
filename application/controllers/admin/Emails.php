@@ -157,6 +157,20 @@ class Emails extends Admin_controller
         redirect($_SERVER['HTTP_REFERER']);
 
     }
+    public function delete_email($id){
+
+
+        $this->load->model('emails_model');
+        $success = $this->emails_model->delete_email($id);
+        if ($success) {
+            set_alert('success', _l('mail_success_delete'));
+        } else {
+            set_alert('warning', _l('mail_delete_false'));
+        }
+        redirect($_SERVER['HTTP_REFERER']);
+
+    }
+
     /* Edit email template */
     public function email_template($id)
     {

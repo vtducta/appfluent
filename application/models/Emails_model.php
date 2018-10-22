@@ -549,4 +549,15 @@ class Emails_model extends CRM_Model
 
         return $this->db->insert_id();
     }
+
+    public function delete_email($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('tblemails');
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        }
+
+        return false;
+    }
 }
