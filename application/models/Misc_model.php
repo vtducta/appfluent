@@ -1723,4 +1723,16 @@ class Misc_model extends CRM_Model
 
         return $result;
     }
+
+    public function get_emails_by_added_from($id)
+    {
+
+        $this->db->select('tblemails.*,tblstaff.firstname,tblstaff.lastname ');
+        $this->db->join('tblstaff', 'tblstaff.staffid=tblemails.added_from');
+        $this->db->where('tblemails.added_from',$id);
+        $this->db->order_by('tblemails.id', 'desc');
+        $arrResult = $this->db->get('tblemails')->result_array();
+
+        return $arrResult;
+    }
 }

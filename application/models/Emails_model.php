@@ -532,4 +532,21 @@ class Emails_model extends CRM_Model
     {
         return $this->staff_id;
     }
+
+    public function log_email_activity($to,$schedule,$schedule_time,$subject,$content)
+    {
+        $data = array(
+            'created_date' => date('Y-m-d H:i:s'),
+            'subject' => $subject,
+            'content' => $content,
+            'added_from' => get_staff_user_id(),
+            'to' => $to,
+            'schedule_option' => $schedule,
+            'sendtime' => $schedule_time,
+        );
+
+        $this->db->insert('tblemails', $data);
+
+        return $this->db->insert_id();
+    }
 }

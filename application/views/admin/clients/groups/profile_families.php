@@ -96,20 +96,7 @@
                         <input type="text" class="tagsinput" id="contact[tags]" name="contact[tags]" data-role="tagsinput" value="<?php echo $value; ?>">
                     </div>
 
-                    <div class="form-group contact-direction-option hide">
-                        <label for="direction"><?php echo _l('document_direction'); ?></label>
-                        <select class="selectpicker" data-none-selected-text="<?php echo _l('system_default_string'); ?>" data-width="100%" name="contact[direction]" id="direction">
-                            <option value="" <?php if(isset($contact) && empty($contact->direction)){echo 'selected';} ?>></option>
-                            <option value="ltr" <?php if(isset($contact) && $contact->direction == 'ltr'){echo 'selected';} ?>>LTR</option>
-                            <option value="rtl" <?php if(isset($contact) && $contact->direction == 'rtl'){echo 'selected';} ?>>RTL</option>
-                        </select>
-                    </div>
 
-
-
-                    <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
-                    <input  type="text" class="fake-autofill-field" name="fakeusernameremembered" value='' tabindex="-1" />
-                    <input  type="password" class="fake-autofill-field" name="fakepasswordremembered" value='' tabindex="-1"/>
                 </div>
                 <div class="col-md-6 hide">
                     <div class="client_password_set_wrapper">
