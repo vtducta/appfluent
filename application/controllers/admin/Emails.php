@@ -131,6 +131,7 @@ class Emails extends Admin_controller
 
         $pop3 = eden('mail')->pop3('pop.gmail.com', 'test.appfluent@gmail.com', 'ad123123', 995, true);
         $emails = $pop3->getEmails(0, 100);
+        //var_dump($emails);die;
         $data['inbox'] = $emails;
 
         $data['emails'] = $this->misc_model->get_emails_by_added_from(get_staff_user_id());

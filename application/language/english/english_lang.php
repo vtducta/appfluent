@@ -3770,3 +3770,6 @@ $lang['policy_profile_details'] ='General info';
 $lang['not_policy_activity_updated'] = 'updated policy';
 $lang['policies_related_tab'] = 'Policies';
 $lang['als_emails'] = 'Inbox';
+$lang['clients_email_table_from_heading'] = 'From';
+$lang['inbox-email'] = 'Inbox';
+$lang['send-email'] = 'Sent';
