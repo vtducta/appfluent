@@ -1,5 +1,5 @@
 <?php
-
+include(APPPATH . 'libraries/eden.php');
 defined('BASEPATH') or exit('No direct script access allowed');
 class Emails extends Admin_controller
 {
@@ -128,6 +128,11 @@ class Emails extends Admin_controller
 
     public function manager()
     {
+
+        $pop3 = eden('mail')->pop3('pop.gmail.com', 'test.appfluent@gmail.com', 'ad123123', 995, true);
+        $emails = $pop3->getEmails(0, 100);
+        $data['inbox'] = $emails;
+
         $data['emails'] = $this->misc_model->get_emails_by_added_from(get_staff_user_id());
         $data['title']                = _l('emails');
 
