@@ -62,7 +62,7 @@
                                                         <?php echo _l( 'clients_email_table_from_heading'); ?>
                                                     </th>
                                                     <th>
-                                                        <?php echo _l( 'clients_email_table_start_heading'); ?>
+                                                        <?php echo _l( 'clients_email_table_received_heading'); ?>
                                                     </th>
                                                     <th>
                                                         <?php echo _l( 'options'); ?>

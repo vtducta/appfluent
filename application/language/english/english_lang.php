@@ -3773,3 +3773,4 @@ $lang['als_emails'] = 'Inbox';
 $lang['clients_email_table_from_heading'] = 'From';
 $lang['inbox-email'] = 'Inbox';
 $lang['send-email'] = 'Sent';
+$lang['clients_email_table_received_heading'] = 'Receiced date';
