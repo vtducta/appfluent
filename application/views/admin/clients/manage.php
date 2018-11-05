@@ -42,7 +42,7 @@
                             <a href="<?php echo admin_url('clients/import'); ?>" class="btn btn-info pull-left display-block mright5 hidden-xs">
                                 <?php echo _l('import_customers'); ?></a>
                                 <?php } ?>
-                                <a href="<?php echo admin_url('clients/all_contacts'); ?>" class="btn btn-info pull-left display-block mright5">
+                                <a href="<?php echo admin_url('client_families'); ?>" class="btn btn-info pull-left display-block mright5">
                                     <?php echo _l('customer_contacts'); ?></a>
                                     <div class="visible-xs">
                                         <div class="clearfix"></div>
@@ -54,7 +54,7 @@
                                         <ul class="dropdown-menu dropdown-menu-left" style="width:300px;">
                                             <li class="active"><a href="#" data-cview="all" onclick="dt_custom_view('','.table-clients',''); return false;"><?php echo _l('customers_sort_all'); ?></a>
                                             </li>
-                                            <?php if(get_option('customer_requires_registration_confirmation') == '1' || total_rows('tblclients','registration_confirmed=0') > 0) { ?>
+                                            <?php if(get_option('customer_requires_registration_confirmation') == '1' || total_rows('tblclients','registration_confirmed=0 and is_client=0') > 0) { ?>
                                              <li class="divider"></li>
                                              <li>
                                                   <a href="#" data-cview="requires_registration_confirmation" onclick="dt_custom_view('requires_registration_confirmation','.table-clients','requires_registration_confirmation'); return false;">
@@ -184,7 +184,7 @@
                                 <?php if(has_permission('customers','','view') || have_assigned_customers()) {
                                     $where_summary = '';
                                     if(!has_permission('customers','','view')){
-                                        $where_summary = ' AND userid IN (SELECT customer_id FROM tblcustomeradmins WHERE staff_id='.get_staff_user_id().')';
+                                        $where_summary = ' AND is_client=0 AND userid IN (SELECT customer_id FROM tblcustomeradmins WHERE  staff_id='.get_staff_user_id().')';
                                     }
                                     ?>
                                     <hr class="hr-panel-heading" />
@@ -193,33 +193,33 @@
                                             <h4 class="no-margin"><?php echo _l('customers_summary'); ?></h4>
                                         </div>
                                         <div class="col-md-2 col-xs-6 border-right">
-                                            <h3 class="bold"><?php echo total_rows('tblclients',($where_summary != '' ? substr($where_summary,5) : '')); ?></h3>
+                                            <h3 class="bold"><?php echo total_rows('tblclients',($where_summary != '' ? substr($where_summary,5) : ' is_client=0')); ?></h3>
                                             <span class="text-dark"><?php echo _l('customers_summary_total'); ?></span>
                                         </div>
                                         <div class="col-md-2 col-xs-6 border-right">
-                                            <h3 class="bold"><?php echo total_rows('tblclients','active=1'.$where_summary); ?></h3>
+                                            <h3 class="bold"><?php echo total_rows('tblclients','active=1 and is_client=0'.$where_summary); ?></h3>
                                             <span class="text-success"><?php echo _l('active_customers'); ?></span>
                                         </div>
                                         <div class="col-md-2 col-xs-6 border-right">
-                                            <h3 class="bold"><?php echo total_rows('tblclients','active=0'.$where_summary); ?></h3>
+                                            <h3 class="bold"><?php echo total_rows('tblclients','is_client=0 and active=0'.$where_summary); ?></h3>
                                             <span class="text-danger"><?php echo _l('inactive_active_customers'); ?></span>
                                         </div>
                                         <div class="col-md-2 col-xs-6 border-right">
-                                            <h3 class="bold"><?php echo total_rows('tblcontacts','active=1'.$where_summary); ?></h3>
+                                            <h3 class="bold"><?php echo total_rows('tblcontacts','userid in (select userid from tblclients where is_client=0) and active=1'.$where_summary); ?></h3>
                                             <span class="text-info"><?php echo _l('customers_summary_active'); ?></span>
                                         </div>
                                         <div class="col-md-2  col-xs-6 border-right">
-                                            <h3 class="bold"><?php echo total_rows('tblcontacts','active=0'.$where_summary); ?></h3>
+                                            <h3 class="bold"><?php echo total_rows('tblcontacts','userid in (select userid from tblclients where is_client=0) and active=0'.$where_summary); ?></h3>
                                             <span class="text-danger"><?php echo _l('customers_summary_inactive'); ?></span>
                                         </div>
                                         <div class="col-md-2 col-xs-6">
-                                            <h3 class="bold"><?php echo total_rows('tblcontacts','last_login LIKE "'.date('Y-m-d').'%"'.$where_summary); ?></h3>
+                                            <h3 class="bold"><?php echo total_rows('tblcontacts','userid in (select userid from tblclients where is_client=0) and last_login LIKE "'.date('Y-m-d').'%"'.$where_summary); ?></h3>
                                             <span class="text-muted">
                                                 <?php
                                                 $contactsTemplate = '';
                                                 if(count($contacts_logged_in_today)> 0){
                                                    foreach($contacts_logged_in_today as $contact){
-                                                    $url = admin_url('clients/client/'.$contact['userid'].'?contactid='.$contact['id']);
+                                                    $url = admin_url('client_families/client/'.$contact['userid'].'/'.$contact['id']);
                                                     $fullName = $contact['firstname'] . ' ' . $contact['lastname'];
                                                     $dateLoggedIn = _dt($contact['last_login']);
                                                     $html = "<a href='$url' target='_blank'>$fullName</a><br /><small>$dateLoggedIn</small><br />";
