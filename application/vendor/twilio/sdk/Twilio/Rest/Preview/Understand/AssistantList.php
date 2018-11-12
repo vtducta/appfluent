@@ -134,9 +134,11 @@ class AssistantList extends ListResource {
             'FriendlyName' => $options['friendlyName'],
             'LogQueries' => Serialize::booleanToString($options['logQueries']),
             'UniqueName' => $options['uniqueName'],
-            'ResponseUrl' => $options['responseUrl'],
             'CallbackUrl' => $options['callbackUrl'],
             'CallbackEvents' => $options['callbackEvents'],
+            'FallbackActions' => Serialize::jsonObject($options['fallbackActions']),
+            'InitiationActions' => Serialize::jsonObject($options['initiationActions']),
+            'StyleSheet' => Serialize::jsonObject($options['styleSheet']),
         ));
 
         $payload = $this->version->create(
@@ -152,7 +154,8 @@ class AssistantList extends ListResource {
     /**
      * Constructs a AssistantContext
      * 
-     * @param string $sid The sid
+     * @param string $sid A 34 character string that uniquely identifies this
+     *                    resource.
      * @return \Twilio\Rest\Preview\Understand\AssistantContext 
      */
     public function getContext($sid) {

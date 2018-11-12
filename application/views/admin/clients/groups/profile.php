@@ -57,13 +57,34 @@
                      <label for="show_primary_contact"><?php echo _l('show_primary_contact',_l('invoices').', '._l('estimates').', '._l('payments').', '._l('credit_notes')); ?></label>
                   </div>
                </div>
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <?php $value=( isset($client) ? $client->first_name : ''); ?>
+                        <?php $attrs = (isset($client) ? array() : array('autofocus'=>true)); ?>
+                        <?php echo render_input( 'first_name', 'client_first_name',$value,'text',$attrs); ?>
+
+                    </div>
+                    <div class="col-md-4">
+                        <?php $value=( isset($client) ? $client->middle_name : ''); ?>
+                        <?php $attrs = (isset($client) ? array() : array('autofocus'=>true)); ?>
+                        <?php echo render_input( 'middle_name', 'client_middle_name',$value,'text',$attrs); ?>
+
+                    </div>
+                    <div class="col-md-4">
+                        <?php $value=( isset($client) ? $client->middle_name : ''); ?>
+                        <?php $attrs = (isset($client) ? array() : array('autofocus'=>true)); ?>
+                        <?php echo render_input( 'last_name', 'client_last_name',$value,'text',$attrs); ?>
+                    </div>
+                </div>
+                <div class="col-md-12">
                <div class="col-md-6">
+
                   <?php $value=( isset($client) ? $client->company : ''); ?>
                   <?php $attrs = (isset($client) ? array() : array('autofocus'=>true)); ?>
                   <?php echo render_input( 'company', 'client_company',$value,'text',$attrs); ?>
                   <?php if(get_option('company_requires_vat_number_field') == 1){
                      $value=( isset($client) ? $client->vat : '');
-                     echo render_input( 'vat', 'client_vat_number',$value);
+                     //echo render_input( 'vat', 'client_vat_number',$value);
                      } ?>
                   <?php $value=( isset($client) ? $client->phonenumber : ''); ?>
                   <?php echo render_input( 'phonenumber', 'client_phonenumber',$value); ?>
@@ -94,7 +115,7 @@
                       }
                      ?>
                   <?php if(!isset($client)){ ?>
-                  <i class="fa fa-question-circle pull-left" data-toggle="tooltip" data-title="<?php echo _l('customer_currency_change_notice'); ?>"></i>
+                 <!-- <i class="fa fa-question-circle pull-left" data-toggle="tooltip" data-title="<?php echo _l('customer_currency_change_notice'); ?>"></i> -->
                   <?php }
                      $s_attrs = array('data-none-selected-text'=>_l('system_default_string'));
                      $selected = '';
@@ -109,7 +130,7 @@
                       }
                      }
                             // Do not remove the currency field from the customer profile!
-                     echo render_select('default_currency',$currencies,array('id','name','symbol'),'invoice_add_edit_currency',$selected,$s_attrs); ?>
+                     //echo render_select('default_currency',$currencies,array('id','name','symbol'),'invoice_add_edit_currency',$selected,$s_attrs); ?>
                   <?php if(get_option('disable_language') == 0){ ?>
                   <div class="form-group select-placeholder">
                      <label for="default_language" class="control-label"><?php echo _l('localization_default_language'); ?>
@@ -145,6 +166,7 @@
                      echo render_select( 'country',$countries,array( 'country_id',array( 'short_name')), 'clients_country',$selected,array('data-none-selected-text'=>_l('dropdown_non_selected_tex')));
                      ?>
                </div>
+                </div>
             </div>
          </div>
          <?php if(isset($client)){ ?>

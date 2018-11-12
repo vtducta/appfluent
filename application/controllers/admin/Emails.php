@@ -1,6 +1,7 @@
 <?php
 include(APPPATH . 'libraries/eden.php');
 defined('BASEPATH') or exit('No direct script access allowed');
+use IMAP\IMAPMailbox;
 class Emails extends Admin_controller
 {
     public function __construct()
@@ -129,20 +130,60 @@ class Emails extends Admin_controller
     public function manager()
     {
 
-        $pop3 = eden('mail')->pop3('pop.gmail.com', 'test.appfluent@gmail.com', 'ad123123', 995, true);
-        $emails = $pop3->getEmails(0, 100);
-        //var_dump($emails);die;
-        $data['inbox'] = $emails;
+//        $pop3 = eden('mail')->pop3('pop.gmail.com', 'test.appfluent@gmail.com', 'ad123123', 995, true);
+//        $emails = $pop3->getEmails(0, 100);
 
-        $data['emails'] = $this->misc_model->get_emails_by_added_from(get_staff_user_id());
-        $data['title']                = _l('emails');
+        $host = '{imap.gmail.com:993/imap/ssl}';
+        $user = 'test.appfluent@gmail.com';
+        $pwd = 'ad123123';
+        $mailbox = new IMAPMailbox($host, $user, $pwd);
+        $emails = $mailbox->search('ALL');
+        foreach ($emails as $email) {
 
-        $this->load->model('Newsletter_model');
-        $data['template_list'] = $this->Newsletter_model->getTemplateLists();
-        $this->load->view('admin/emails/manager', $data);
+            // Header info
+            $headerinfo = $email->fetchHeaderinfo();
+
+            $this->emails_model->insert_inbox($headerinfo, $email->getBody());
+
+//            var_dump($headerinfo,  '</br>');
+//            // Author
+//            $author = $headerinfo->from->personal;
+//            echo     $author . '</br>';
+//            // Sender address
+//            $from = $headerinfo->from->mailbox.'@'.$headerinfo->from->host;
+//            echo     $from . '</br>';
+//            // Timestamp
+//            $timstamp = $headerinfo->udate;
+//            echo     $timstamp . '</br>';
+//            // Contents
+//            $contents = $email->getBody();
+//            echo     $contents . '</br>';
+        }
+//        var_dump($emails);die;
+//        $data['inbox'] = $emails;
+
+        $this->group('inbox');
+
+
     }
 
-    public function send_email(){
+    public function group($group ='inbox')
+    {
+        $data['title']                = _l('emails');
+        $data['group'] = $group;
+        $this->load->model('Newsletter_model');
+        $data['template_list'] = $this->Newsletter_model->getTemplateLists();
+
+        if($group=='sent'){
+            $data['emails'] = $this->misc_model->get_emails_by_added_from(get_staff_user_id());
+            $this->load->view('admin/emails/group_sent', $data);
+        }else{
+            $data['inbox'] = $this->emails_model->getReceivedEmail(array('group'=>$group));
+            //var_dump($data['inbox']);die;
+            $this->load->view('admin/emails/group_received', $data);
+        }
+    }
+        public function send_email(){
         if ($this->input->post() ){
             $this->load->model('emails_model');
             $message = $this->input->post('content');
@@ -177,6 +218,19 @@ class Emails extends Admin_controller
 
     }
 
+    public function trash_email($auto_id){
+
+
+        $this->load->model('emails_model');
+        $success = $this->emails_model->trash_email($auto_id);
+        if ($success) {
+            set_alert('success', _l('mail_success_trash'));
+        } else {
+            set_alert('warning', _l('mail_trash_false'));
+        }
+        redirect($_SERVER['HTTP_REFERER']);
+
+    }
     /* Edit email template */
     public function email_template($id)
     {

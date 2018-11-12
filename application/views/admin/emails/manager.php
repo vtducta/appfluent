@@ -2,9 +2,21 @@
 <div id="wrapper">
     <div class="content">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-3">
+                <div class="panel_s">
+                    <div class="panel-body customer-profile-tabs">
+                        <h4 class="customer-heading-profile bold">
+                            Email
+                        </h4>
+                        <?php $this->load->view('admin/emails/tabs_email'); ?>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
                 <div class="panel_s">
                     <div class="panel-body">
+
                         <div class="row mbot20">
                             <div class="col-md-3" style="float:left">
                                 <h3 class="text-success no-margin"><?php echo _l('emails_tab'); ?></h3>

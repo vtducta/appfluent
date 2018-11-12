@@ -1,5 +1,6 @@
 <?php
    ob_start();
+
    ?>
 <li id="top_search" class="dropdown" data-toggle="tooltip" data-placement="bottom" data-title="<?php echo _l('search_by_tags'); ?>">
    <input type="search" id="search_input" class="form-control" placeholder="<?php echo _l('top_search_placeholder'); ?>">
@@ -35,6 +36,7 @@
             <li class="dropdown notifications-wrapper header-notifications">
                <?php $this->load->view('admin/includes/notifications'); ?>
             </li>
+            <!--
             <li class="header-timers">
                <a href="#" id="top-timers" class="dropdown-toggle top-timers" data-toggle="dropdown"><i class="fa fa-clock-o fa-fw fa-lg"></i>
                <span class="label bg-success icon-total-indicator icon-started-timers<?php if ($totalTimers = count($startedTimers) == 0){ echo ' hide'; }?>"><?php echo count($startedTimers); ?></span>
@@ -43,12 +45,15 @@
                   <?php $this->load->view('admin/tasks/started_timers',array('startedTimers'=>$startedTimers)); ?>
                </ul>
             </li>
+            -->
             <?php } ?>
          </ul>
          <div class="mobile-navbar collapse" id="mobile-collapse" aria-expanded="false" style="height: 0px;" role="navigation" >
             <ul class="nav navbar-nav">
                <li class="header-my-profile"><a href="<?php echo admin_url('profile'); ?>"><?php echo _l('nav_my_profile'); ?></a></li>
+                <!--
                <li class="header-my-timesheets"><a href="<?php echo admin_url('staff/timesheets'); ?>"><?php echo _l('my_timesheets'); ?></a></li>
+                -->
                <li class="header-edit-profile"><a href="<?php echo admin_url('staff/edit_profile'); ?>"><?php echo _l('nav_edit_profile'); ?></a></li>
               <?php if(is_staff_member()){ ?>
                <li class="header-newsfeed">
@@ -73,8 +78,10 @@
             </a>
             <ul class="dropdown-menu animated fadeIn">
                <li class="header-my-profile"><a href="<?php echo admin_url('profile'); ?>"><?php echo _l('nav_my_profile'); ?></a></li>
-               <li class="header-my-timesheets"><a href="<?php echo admin_url('staff/timesheets'); ?>"><?php echo _l('my_timesheets'); ?></a></li>
-               <li class="header-edit-profile"><a href="<?php echo admin_url('staff/edit_profile'); ?>"><?php echo _l('nav_edit_profile'); ?></a></li>
+               <!--
+                <li class="header-my-timesheets"><a href="<?php echo admin_url('staff/timesheets'); ?>"><?php echo _l('my_timesheets'); ?></a></li>
+               -->
+                <li class="header-edit-profile"><a href="<?php echo admin_url('staff/edit_profile'); ?>"><?php echo _l('nav_edit_profile'); ?></a></li>
                <?php if(get_option('disable_language') == 0){ ?>
                <li class="dropdown-submenu pull-left header-languages">
                   <a href="#" tabindex="-1"><?php echo _l('language'); ?></a>
@@ -102,6 +109,8 @@
             <span class="label bg-warning icon-total-indicator nav-total-todos<?php if($current_user->total_unfinished_todos == 0){echo ' hide';} ?>"><?php echo $current_user->total_unfinished_todos; ?></span>
             </a>
          </li>
+
+          <!--
          <li class="icon header-timers timer-button" data-placement="bottom" data-toggle="tooltip" data-title="<?php echo _l('my_timesheets'); ?>">
             <a href="#" id="top-timers" class="dropdown-toggle top-timers" data-toggle="dropdown">
             <i class="fa fa-clock-o fa-fw fa-lg" aria-hidden="true"></i>
@@ -113,6 +122,7 @@
                <?php $this->load->view('admin/tasks/started_timers',array('startedTimers'=>$startedTimers)); ?>
             </ul>
          </li>
+          -->
          <li class="dropdown notifications-wrapper header-notifications" data-toggle="tooltip" title="<?php echo _l('nav_notifications'); ?>" data-placement="bottom">
             <?php $this->load->view('admin/includes/notifications'); ?>
          </li>

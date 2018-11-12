@@ -682,6 +682,23 @@ class EmailFunctionalTest extends PHPUnit_Framework_TestCase
         ]);
     }
 
+    public function testParseEmailm0022()
+    {
+        $this->runEmailTest('m0022', [
+            'From' => [
+                'email' => 'test@test.sk'
+            ],
+            'Subject' => 'long att',
+            'attachments' => 1,
+            'parts' => [
+                'multipart/mixed' => [
+                    'text/html',
+                    'text/plain'
+                ]
+            ],
+        ]);
+    }
+
     public function testParseEmailm1001()
     {
         $this->runEmailTest('m1001', [
@@ -2742,5 +2759,15 @@ class EmailFunctionalTest extends PHPUnit_Framework_TestCase
 
         $this->runEmailTestForMessage($messageWritten, $props, $failMessage);
         $this->assertEquals($text, trim($messageWritten->getTextContent()));
+    }
+
+    public function testReadEmailWithLongHeader()
+    {
+        $handle = fopen($this->messageDir . '/m0009.txt', 'r');
+        $message = $this->parser->parse($handle);
+        fclose($handle);
+        $this->assertEquals('Normal', $message->getHeaderValue('Importance'));
+        $this->assertNotEmpty($message->getHeaderValue('X-Test-Long-Header'));
+        $this->assertEquals('A-OK', $message->getHeaderValue('X-Test-Next-Header'));
     }
 }

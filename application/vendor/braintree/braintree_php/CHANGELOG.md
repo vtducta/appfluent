@@ -1,3 +1,14 @@
+## 3.36.0
+* Fix dispute results in transactions not showing the correct status sometimes
+* Add `externalVault` option to transaction sale
+* Add `LocalPaymentCompleted` webhook
+
+## 3.35.0
+* Add subscription charged unsuccessfully sample webhook to webhook testing gateway
+* Add `processor_response_code` and `processor_response_text` to authorization adjustments subfield in transaction response.
+* Fix issue where result objects could not be printed with `echo` (thanks @cmeon)
+* Add Samsung Pay support
+
 ## 3.34.0
 * Allow payee ID to be passed in options params for transaction create
 * Add `merchant_id` to `ConnectedMerchantStatusTransitioned` and `ConnectedMerchantPayPalStatusChanged` Auth webhooks
@@ -267,7 +278,7 @@
 * Allow payee_email to be passed in options params for Transaction create
 
 ## 2.31.0
-* Added paypal specific fields to transaction calls               
+* Added paypal specific fields to transaction calls
 * Added SettlementPending, SettlementDeclined transaction statuses
 
 ## 2.30.0

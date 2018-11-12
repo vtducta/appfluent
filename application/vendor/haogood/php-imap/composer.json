@@ -1,0 +1,28 @@
+{
+    "name": "haogood/php-imap",
+    "description": "Get email contents and attachments using php imap extension.",
+    "keywords": [
+        "php",
+        "imap",
+        "pop3",
+        "mailbox",
+        "receive emails"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Benny Sun",
+            "email": "haogood.sun@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "ext-imap": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "IMAP\\": "lib"
+        }
+    }
+}

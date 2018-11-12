@@ -2,7 +2,7 @@
 
 Standalone, testable and PSR-compliant mail mime parser alternative to PHP's imap* functions and Pear libraries for reading messages in _Internet Message Format_ ([RFC 5322](http://tools.ietf.org/html/rfc5322), [RFC 2822](http://tools.ietf.org/html/rfc2822) and [RFC 822](http://tools.ietf.org/html/rfc822)).
 
-[![Build Status](https://travis-ci.org/zbateson/MailMimeParser.svg?branch=master)](https://travis-ci.org/zbateson/MailMimeParser) [![Code Coverage](https://scrutinizer-ci.com/g/zbateson/MailMimeParser/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/zbateson/MailMimeParser/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/zbateson/MailMimeParser/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/zbateson/MailMimeParser/?branch=master)
+[![Build Status](https://travis-ci.org/zbateson/MailMimeParser.svg?branch=0.4)](https://travis-ci.org/zbateson/MailMimeParser) [![Code Coverage](https://scrutinizer-ci.com/g/zbateson/MailMimeParser/badges/coverage.png?b=0.4)](https://scrutinizer-ci.com/g/zbateson/MailMimeParser/?branch=0.4) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/zbateson/MailMimeParser/badges/quality-score.png?b=0.4)](https://scrutinizer-ci.com/g/zbateson/MailMimeParser/?branch=0.4)
 [![Total Downloads](https://poser.pugx.org/zbateson/mail-mime-parser/downloads)](https://packagist.org/packages/zbateson/mail-mime-parser)
 [![Latest Stable Version](https://poser.pugx.org/zbateson/mail-mime-parser/version)](https://packagist.org/packages/zbateson/mail-mime-parser)
 
@@ -21,7 +21,7 @@ composer require zbateson/mail-mime-parser
 
 ## Requirements
 
-MailMimeParser requires PHP 5.4 or newer or HHVM.  Tested on PHP 5.4, 5.5, 5.6, 7 and 7.1 and HHVM 3.6, 3.9, 3.12, 3.15 and 3.18.
+MailMimeParser requires PHP 5.4 or newer or HHVM.  Tested on PHP 5.4, 5.5, 5.6, 7, 7.1 and 7.2 and HHVM 3.6, 3.12, 3.24 and 'current' on travis.
 
 ## Usage
 
@@ -55,9 +55,9 @@ echo stream_get_contents(                       // get the attached file
 
 ## Documentation
 
-* [Wiki Introduction](https://github.com/zbateson/MailMimeParser/wiki)
-* [Usage Guide](https://github.com/zbateson/MailMimeParser/wiki/Usage-Guide)
-* [API Reference](https://github.com/zbateson/MailMimeParser/wiki/ApiIndex)
+* [About](https://mail-mime-parser.org/)
+* [Usage Guide](https://mail-mime-parser.org/usage-guide-0.4.html)
+* [API Reference](https://mail-mime-parser.org/api/0.4)
 
 ## License
 

@@ -271,12 +271,12 @@
                            $_table_data = array(
                             '<span class="hide"> - </span><div class="checkbox mass_select_all_wrap"><input type="checkbox" id="mass_select_all" data-to-table="clients"><label></label></div>',
                             _l('the_number_sign'),
-                            _l('clients_list_company'),
                             _l('contact_primary'),
                             _l('company_primary_email'),
+                               _l('clients_list_company'),
                             _l('clients_list_phone'),
-                            _l('customer_active'),
-                            _l('customer_groups'),
+//                            _l('customer_active'),
+//                            _l('customer_groups'),
                             _l('date_created'),
                             );
 

@@ -196,6 +196,32 @@ foreach ($rResult as $aRow) {
         $url .= '?contactid=' . $aRow['contact_id'];
     }
 
+//    $company = '<a href="' . $url . '">' . $company . '</a>';
+//
+//    $company .= '<div class="row-options">';
+//    $company .= '<a href="' . $url . '">' . _l('view') . '</a>';
+//
+//    if ($aRow['registration_confirmed'] == 0 && is_admin()) {
+//        $company .= ' | <a href="' . admin_url('clients/confirm_registration/' . $aRow['userid']) . '" class="text-success bold">' . _l('confirm_registration') . '</a>';
+//    }
+//    if (!$isPerson) {
+//        $company .= ' | <a href="' . admin_url('clients/client/' . $aRow['userid'] . '?group=contacts') . '">' . _l('customer_contacts') . '</a>';
+//    }
+//    if ($hasPermissionDelete) {
+//        $company .= ' | <a href="' . admin_url('clients/delete/' . $aRow['userid']) . '" class="text-danger _delete">' . _l('delete') . '</a>';
+//    }
+//
+//    $company .= '</div>';
+//
+//    $row[] = $company;
+
+    // Primary contact
+    $row[] = ($aRow['contact_id'] ? '<a href="' . admin_url('client_families/client/' . $aRow['userid'] . '/' . $aRow['contact_id']) . '" target="_blank">' . $aRow['firstname'] . ' ' . $aRow['lastname'] . '</a>' : '');
+
+    // Primary contact email
+    $row[] = ($aRow['email'] ? '<a href="mailto:' . $aRow['email'] . '">' . $aRow['email'] . '</a>' : '');
+
+
     $company = '<a href="' . $url . '">' . $company . '</a>';
 
     $company .= '<div class="row-options">';
@@ -215,12 +241,6 @@ foreach ($rResult as $aRow) {
 
     $row[] = $company;
 
-    // Primary contact
-    $row[] = ($aRow['contact_id'] ? '<a href="' . admin_url('client_families/client/' . $aRow['userid'] . '/' . $aRow['contact_id']) . '" target="_blank">' . $aRow['firstname'] . ' ' . $aRow['lastname'] . '</a>' : '');
-
-    // Primary contact email
-    $row[] = ($aRow['email'] ? '<a href="mailto:' . $aRow['email'] . '">' . $aRow['email'] . '</a>' : '');
-
     // Primary contact phone
     $row[] = ($aRow['phonenumber'] ? '<a href="tel:' . $aRow['phonenumber'] . '">' . $aRow['phonenumber'] . '</a>' : '');
 
@@ -231,20 +251,20 @@ foreach ($rResult as $aRow) {
     </div>';
 
     // For exporting
-    $toggleActive .= '<span class="hide">' . ($aRow['tblclients.active'] == 1 ? _l('is_active_export') : _l('is_not_active_export')) . '</span>';
-
-    $row[] = $toggleActive;
-
-    // Customer groups parsing
-    $groupsRow = '';
-    if ($aRow['customerGroups']) {
-        $groups = explode(',', $aRow['customerGroups']);
-        foreach ($groups as $group) {
-            $groupsRow .= '<span class="label label-default mleft5 inline-block customer-group-list pointer">' . $group . '</span>';
-        }
-    }
-
-    $row[] = $groupsRow;
+//    $toggleActive .= '<span class="hide">' . ($aRow['tblclients.active'] == 1 ? _l('is_active_export') : _l('is_not_active_export')) . '</span>';
+//
+//    $row[] = $toggleActive;
+//
+//    // Customer groups parsing
+//    $groupsRow = '';
+//    if ($aRow['customerGroups']) {
+//        $groups = explode(',', $aRow['customerGroups']);
+//        foreach ($groups as $group) {
+//            $groupsRow .= '<span class="label label-default mleft5 inline-block customer-group-list pointer">' . $group . '</span>';
+//        }
+//    }
+//
+//    $row[] = $groupsRow;
 
     $row[] = _dt($aRow['datecreated']);
 

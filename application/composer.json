@@ -20,6 +20,6 @@
         "omnipay/authorizenet": "3.x@dev",
         "2checkout/2checkout-php": "^0.3.1",
         "willdurand/email-reply-parser": "^2.8",
-        "symfony/http-foundation": "3.4"
+        "haogood/php-imap": "^1.0"
     }
 }

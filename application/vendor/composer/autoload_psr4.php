@@ -25,6 +25,7 @@ return array(
     'Nabble\\' => array($vendorDir . '/nabble/semalt-blocker/src'),
     'Money\\' => array($vendorDir . '/moneyphp/money/src'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
+    'IMAP\\' => array($vendorDir . '/haogood/php-imap/lib'),
     'Http\\Promise\\' => array($vendorDir . '/php-http/promise/src'),
     'Http\\Message\\' => array($vendorDir . '/php-http/message/src', $vendorDir . '/php-http/message-factory/src'),
     'Http\\Discovery\\' => array($vendorDir . '/php-http/discovery/src'),

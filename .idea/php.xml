@@ -45,6 +45,7 @@
       <path value="$PROJECT_DIR$/application/vendor/neitanod/forceutf8" />
       <path value="$PROJECT_DIR$/application/vendor/studio-42/elfinder" />
       <path value="$PROJECT_DIR$/application/vendor/willdurand/email-reply-parser" />
+      <path value="$PROJECT_DIR$/application/vendor/haogood/php-imap" />
     </include_path>
   </component>
 </project>

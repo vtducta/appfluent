@@ -560,4 +560,48 @@ class Emails_model extends CRM_Model
 
         return false;
     }
+
+    public  function  insert_inbox($emailHeader,$emailBody){
+        $this->db->select('*');
+        $this->db->from('tblInboxs');
+        $this->db->where('id', $emailHeader->message_id);
+        $found = $this->db->get()->result_array();
+        if($found && count($found)>0){
+            return;
+        }
+
+        $data = array(
+            'id' => $emailHeader->message_id,
+            'subject' => $emailHeader->subject,
+            'from' => json_encode($emailHeader->from),
+            'to' => json_encode($emailHeader->to),
+            'cc' => json_encode($emailHeader->cc),
+            'bcc' => json_encode($emailHeader->bcc),
+            'content' => $emailBody,
+            'group' => 'inbox',
+            'udate' => $emailHeader->udate,
+        );
+
+        $this->db->insert('tblInboxs', $data);
+
+    }
+
+    public function getReceivedEmail($where = [])
+    {
+        $this->db->where($where);
+        $this->db->order_by('udate', 'desc');
+        return $this->db->get('tblInboxs')->result_array();
+    }
+
+    public function trash_email($auto_id)
+    {
+        $this->db->where('auto_id', $auto_id);
+        $this->db->update('tblInboxs',['group'=>'trash']);
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
 }

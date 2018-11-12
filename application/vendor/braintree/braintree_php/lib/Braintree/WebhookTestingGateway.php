@@ -76,6 +76,9 @@ class WebhookTestingGateway
             case WebhookNotification::SUBSCRIPTION_CHARGED_SUCCESSFULLY:
                 $subjectXml = self::_subscriptionChargedSuccessfullySampleXml($id);
                 break;
+            case WebhookNotification::SUBSCRIPTION_CHARGED_UNSUCCESSFULLY:
+                $subjectXml = self::_subscriptionChargedUnsuccessfullySampleXml($id);
+                break;
             case WebhookNotification::CHECK:
                 $subjectXml = self::_checkSampleXml();
                 break;
@@ -90,6 +93,9 @@ class WebhookTestingGateway
                 break;
             case WebhookNotification::GRANTED_PAYMENT_INSTRUMENT_UPDATE:
                 $subjectXml = self::_grantedPaymentInstrumentUpdateSampleXml();
+                break;
+            case WebhookNotification::LOCAL_PAYMENT_COMPLETED:
+                $subjectXml = self::_localPaymentCompletedSampleXml();
                 break;
             default:
                 $subjectXml = self::_subscriptionSampleXml($id);
@@ -355,7 +361,30 @@ class WebhookTestingGateway
             <billing-period-end-date type=\"date\">2017-03-31</billing-period-end-date>
             <transactions type=\"array\">
                 <transaction>
+                    <id>{$id}</id>
                     <status>submitted_for_settlement</status>
+                    <amount>49.99</amount>
+                </transaction>
+            </transactions>
+            <add_ons type=\"array\">
+            </add_ons>
+            <discounts type=\"array\">
+            </discounts>
+        </subscription>
+        ";
+    }
+
+    private static function _subscriptionChargedUnsuccessfullySampleXml($id)
+    {
+        return "
+        <subscription>
+            <id>{$id}</id>
+            <billing-period-start-date type=\"date\">2016-03-21</billing-period-start-date>
+            <billing-period-end-date type=\"date\">2017-03-31</billing-period-end-date>
+            <transactions type=\"array\">
+                <transaction>
+                    <id>{$id}</id>
+                    <status>failed</status>
                     <amount>49.99</amount>
                 </transaction>
             </transactions>
@@ -498,6 +527,16 @@ class WebhookTestingGateway
 			<item>expiration-year</item>
 		  </updated-fields>
 		</granted-payment-instrument-update>
+        ";
+    }
+
+    private static function _localPaymentCompletedSampleXml()
+	{
+        return "
+		<local-payment>
+            <payment-id>a-payment-id</payment-id>
+            <payer-id>a-payer-id</payer-id>
+		</local-payment>
         ";
     }
 
