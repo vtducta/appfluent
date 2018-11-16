@@ -130,37 +130,20 @@ class Emails extends Admin_controller
     public function manager()
     {
 
-//        $pop3 = eden('mail')->pop3('pop.gmail.com', 'test.appfluent@gmail.com', 'ad123123', 995, true);
-//        $emails = $pop3->getEmails(0, 100);
-
-        $host = '{imap.gmail.com:993/imap/ssl}';
-        $user = 'test.appfluent@gmail.com';
-        $pwd = 'ad123123';
-        $mailbox = new IMAPMailbox($host, $user, $pwd);
-        $emails = $mailbox->search('ALL');
-        foreach ($emails as $email) {
-
-            // Header info
-            $headerinfo = $email->fetchHeaderinfo();
-
-            $this->emails_model->insert_inbox($headerinfo, $email->getBody());
-
-//            var_dump($headerinfo,  '</br>');
-//            // Author
-//            $author = $headerinfo->from->personal;
-//            echo     $author . '</br>';
-//            // Sender address
-//            $from = $headerinfo->from->mailbox.'@'.$headerinfo->from->host;
-//            echo     $from . '</br>';
-//            // Timestamp
-//            $timstamp = $headerinfo->udate;
-//            echo     $timstamp . '</br>';
-//            // Contents
-//            $contents = $email->getBody();
-//            echo     $contents . '</br>';
-        }
-//        var_dump($emails);die;
-//        $data['inbox'] = $emails;
+//        $host = '{imap.gmail.com:993/imap/ssl}';
+//        $user = 'test.appfluent@gmail.com';
+//        $pwd = 'ad123123';
+//        $mailbox = new IMAPMailbox($host, $user, $pwd);
+//        $emails = $mailbox->search('ALL');
+//
+//        foreach ($emails as $email) {
+//
+//            // Header info
+//            $headerinfo = $email->fetchHeaderinfo();
+//            //var_dump($headerinfo);die;
+//            $this->emails_model->insert_inbox($headerinfo, $email->getBody());
+//
+//        }
 
         $this->group('inbox');
 

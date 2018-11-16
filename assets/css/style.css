@@ -4843,7 +4843,7 @@ table.items tr.main td {
 }
 
 .customer-profile-tabs {
-    margin-top: -16px;
+    /*margin-top: -16px;*/
     margin-left: -20px;
     margin-right: -20px;
 }

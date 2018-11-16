@@ -2,9 +2,9 @@
 <div id="wrapper">
     <div class="content">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="panel_s">
-                    <div class="panel-body customer-profile-tabs">
+                    <div class="panel-body " style="margin-right:20px">
                         <h4 class="customer-heading-profile bold">
                             Email
                         </h4>
@@ -13,11 +13,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-10">
                 <div class="panel_s">
                     <div class="panel-body">
 
-                        <div class="row mbot20">
+                        <div class="row ">
                             <div class="col-md-3" style="float:left">
                                 <h3 class="text-success no-margin"><?php echo _l('emails_tab'); ?></h3>
                             </div>
