@@ -722,7 +722,7 @@ function _inject_no_index()
 
 function admin_body_class($class = '')
 {
-    echo 'class="' . join(' ', get_admin_body_class($class)) . '"';
+    echo 'class="' . join(' ', get_admin_body_class($class)) . ' hide-sidebar"';
 }
 
 function get_admin_body_class($class = '')

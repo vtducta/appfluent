@@ -72,7 +72,7 @@
                        <li>
                         <a href="<?php echo $url; ?>">
                             <?php if(!empty($submenu->icon)){ ?>
-                            <i class="<?php echo $submenu->icon; ?> menu-icon"></i>
+                            <i class="<?php echo $submenu->icon; ?> menu-icon" title="<?php _l($submenu->name,'', false); ?>"></i>
                             <?php } ?>
                             <?php echo _l($submenu->name,'', false); ?>
                         </a>

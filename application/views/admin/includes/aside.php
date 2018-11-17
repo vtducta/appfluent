@@ -15,7 +15,7 @@
          <?php echo _l('welcome_top',$current_user->firstname); ?> <i class="fa fa-power-off top-left-logout pull-right" data-toggle="tooltip" data-title="<?php echo _l('nav_logout'); ?>" data-placement="right" onclick="logout(); return false;"></i>
       </li>
       <?php if($total_qa_removed != count($quickActions)){ ?>
-      <li class="quick-links">
+      <li class="quick-links" title="Quick links">
          <div class="dropdown dropdown-quick-links">
             <a href="#" class="dropdown-toggle" id="dropdownQuickLinks" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <i class="fa fa-gavel" aria-hidden="true"></i>
@@ -156,8 +156,8 @@
          $url = admin_url($url);
          }
          ?>
-      <li class="menu-item-<?php echo $item->id; ?>">
-         <a href="<?php echo $url; ?>" aria-expanded="false"><i class="<?php echo $item->icon; ?> menu-icon"></i>
+      <li class="menu-item-<?php echo $item->id; ?>" title="<?php echo _l($item->name); ?>">
+         <a href="<?php echo $url; ?>" aria-expanded="false"><i class="<?php echo $item->icon; ?> menu-icon" ></i>
          <?php echo _l($item->name); ?>
          <?php if($submenu == true){ ?>
          <span class="fa arrow"></span>
@@ -231,7 +231,7 @@
          do_action('after_render_single_aside_menu',$m); ?>
       <?php } ?>
       <?php if((is_staff_member() || is_admin()) && $this->app->show_setup_menu() == true){ ?>
-      <li<?php if(get_option('show_setup_menu_item_only_on_hover') == 1) { echo ' style="display:none;"'; } ?> id="setup-menu-item">
+      <li<?php if(get_option('show_setup_menu_item_only_on_hover') == 1) { echo ' style="display:none;"'; } ?> id="setup-menu-item" title="Setup">
          <a href="#" class="open-customizer"><i class="fa fa-cog menu-icon"></i>
          <?php echo _l('setting_bar_heading'); ?></a>
          <?php } ?>
