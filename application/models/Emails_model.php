@@ -593,6 +593,7 @@ class Emails_model extends CRM_Model
         return $this->db->get('tblInboxs')->result_array();
     }
 
+
     public function trash_email($auto_id)
     {
         $this->db->where('auto_id', $auto_id);
@@ -603,5 +604,35 @@ class Emails_model extends CRM_Model
 
         return false;
     }
+    public  function  insert_inbox_staff($staffid,$emailHeader,$emailBody){
+        $this->db->select('*');
+        $this->db->from('tblInboxs_staff');
+        $this->db->where('id', $emailHeader->message_id);
+        $found = $this->db->get()->result_array();
+        if($found && count($found)>0){
+            return;
+        }
 
+        $data = array(
+            'id' => $emailHeader->message_id,
+            'subject' => $emailHeader->subject,
+            'from' => json_encode($emailHeader->from),
+            'to' => json_encode($emailHeader->to),
+            'cc' => json_encode($emailHeader->cc),
+            'bcc' => json_encode($emailHeader->bcc),
+            'content' => $emailBody,
+            'group' => 'inbox',
+            'udate' => $emailHeader->udate,
+            'staffid' => $staffid
+        );
+
+        $this->db->insert('tblInboxs_staff', $data);
+
+    }
+    public function getReceivedStaffEmail($where = [])
+    {
+        $this->db->where($where);
+        $this->db->order_by('udate', 'desc');
+        return $this->db->get('tblInboxs_staff')->result_array();
+    }
 }

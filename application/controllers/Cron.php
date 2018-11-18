@@ -44,4 +44,27 @@ class Cron extends CRM_Controller
         echo 'sync system email done';
 
     }
+    public function sync_staff_email()
+    {
+        $host = '{imap.gmail.com:993/imap/ssl}';
+        $this->load->model('staff_model');
+        $staff_list= $this->staff_model->get();
+        //var_dump($staff_list);die();
+        $this->load->model('emails_model');
+        foreach ($staff_list as $staff){
+            $user = $staff['email'];
+            $pwd = $staff['email_password'];
+            $mailbox = new IMAPMailbox($host, $user, $pwd);
+            $emails = $mailbox->search('ALL');
+
+            foreach ($emails as $email) {
+                $headerinfo = $email->fetchHeaderinfo();
+                $this->emails_model->insert_inbox_staff($staff['staffid'],$headerinfo, $email->getBody());
+            }
+        }
+
+
+        echo 'sync system email done';
+
+    }
 }
