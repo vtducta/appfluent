@@ -66,6 +66,24 @@
                                     <?php echo _l('staff_add_edit_permissions'); ?>
                                 </a>
                             </li>
+                            <li role="presentation">
+                                <a href="#tab_staff_social" aria-controls="tab_staff_social" role="tab"
+                                   data-toggle="tab">
+                                    <?php echo _l('staff_social'); ?>
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#tab_staff_email" aria-controls="tab_staff_email" role="tab"
+                                   data-toggle="tab">
+                                    <?php echo _l('staff_email'); ?>
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#tab_staff_carriers" aria-controls="tab_staff_carriers" role="tab"
+                                   data-toggle="tab">
+                                    <?php echo _l('staff_carriers'); ?>
+                                </a>
+                            </li>
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="tab_staff_profile">
@@ -124,14 +142,12 @@
                                 <?php echo render_input('firstname', 'staff_add_edit_firstname', $value, 'text', $attrs); ?>
                                 <?php $value = (isset($member) ? $member->lastname : ''); ?>
                                 <?php echo render_input('lastname', 'staff_add_edit_lastname', $value); ?>
-                                <?php $value = (isset($member) ? $member->email : ''); ?>
-                                <?php echo render_input('email', 'staff_add_edit_email', $value, 'email', array('autocomplete' => 'off')); ?>
                                 <div class="form-group">
                                     <input type="text" class="fake-autofill-field" name="fakeusernameremembered"
                                            value='' tabindex="-1"/>
                                     <input type="password" class="fake-autofill-field" name="fakepasswordremembered"
                                            value='' tabindex="-1"/>
-                                    
+
                                     <label for="password"
                                            class="control-label"><?php echo _l('staff_add_edit_password'); ?></label>
                                     <div class="input-group">
@@ -149,33 +165,7 @@
                                 </div>
                                 <?php $value = (isset($member) ? $member->phonenumber : ''); ?>
                                 <?php echo render_input('phonenumber', 'staff_add_edit_phonenumber', $value); ?>
-                                <div class="form-group">
-                                    <label for="facebook" class="control-label"><i
-                                                class="fa fa-facebook"></i> <?php echo _l('staff_add_edit_facebook'); ?>
-                                    </label>
-                                    <input type="text" class="form-control" name="facebook"
-                                           value="<?php if (isset($member)) {
-                                               echo $member->facebook;
-                                           } ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="linkedin" class="control-label"><i
-                                                class="fa fa-linkedin"></i> <?php echo _l('staff_add_edit_linkedin'); ?>
-                                    </label>
-                                    <input type="text" class="form-control" name="linkedin"
-                                           value="<?php if (isset($member)) {
-                                               echo $member->linkedin;
-                                           } ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="skype" class="control-label"><i
-                                                class="fa fa-skype"></i> <?php echo _l('staff_add_edit_skype'); ?>
-                                    </label>
-                                    <input type="text" class="form-control" name="skype"
-                                           value="<?php if (isset($member)) {
-                                               echo $member->skype;
-                                           } ?>">
-                                </div>
+
                                 <?php if (get_option('disable_language') == 0) { ?>
                                     <div class="form-group select-placeholder">
                                         <label for="default_language"
@@ -470,6 +460,54 @@
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane " id="tab_staff_social">
+
+
+                                <div class="form-group">
+                                    <label for="facebook" class="control-label"><i
+                                                class="fa fa-facebook"></i> <?php echo _l('staff_add_edit_facebook'); ?>
+                                    </label>
+                                    <input type="text" class="form-control" name="facebook"
+                                           value="<?php if (isset($member)) {
+                                               echo $member->facebook;
+                                           } ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="linkedin" class="control-label"><i
+                                                class="fa fa-linkedin"></i> <?php echo _l('staff_add_edit_linkedin'); ?>
+                                    </label>
+                                    <input type="text" class="form-control" name="linkedin"
+                                           value="<?php if (isset($member)) {
+                                               echo $member->linkedin;
+                                           } ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="skype" class="control-label"><i
+                                                class="fa fa-skype"></i> <?php echo _l('staff_add_edit_skype'); ?>
+                                    </label>
+                                    <input type="text" class="form-control" name="skype"
+                                           value="<?php if (isset($member)) {
+                                               echo $member->skype;
+                                           } ?>">
+                                </div>
+
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane " id="tab_staff_email">
+                                <?php $value = (isset($member) ? $member->email : ''); ?>
+                                <?php echo render_input('email', 'staff_add_edit_email', $value, 'email', array('autocomplete' => 'off')); ?>
+
+                                <?php $value = (isset($member) ? $member->email_password : ''); ?>
+                                <?php echo render_input('email_password', 'staff_email_password', $value); ?>
+
+
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane " id="tab_staff_carriers">
+
+
+
                             </div>
                         </div>
                     </div>

@@ -3785,3 +3785,7 @@ $lang['mail_trash_false'] = 'mail removed false';
 $lang['client_first_name'] = 'First name';
 $lang['client_middle_name'] = 'Middle name';
 $lang['client_last_name'] = 'Last name';
+$lang['staff_social'] ='Social';
+$lang['staff_email'] ='Email';
+$lang['staff_carriers'] ='Carriers';
+$lang['staff_email_password']='Email password';
