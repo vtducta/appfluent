@@ -54,8 +54,8 @@ class Cron extends CRM_Controller
         foreach ($staff_list as $staff){
             $host = $staff['email_imap_host'].':'.$staff['email_imap_port'].'/imap/ssl';
             //    '{imap.gmail.com:993/imap/ssl}';
-            var_dump($staff['email_imap_host']);
-            var_dump($host);die();
+            //var_dump($staff['email_imap_host']);
+            //var_dump($host);die();
 
             $user = $staff['email'];
             $pwd = $staff['email_password'];
