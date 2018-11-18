@@ -500,6 +500,10 @@
 
                                 <?php $value = (isset($member) ? $member->email_password : ''); ?>
                                 <?php echo render_input('email_password', 'staff_email_password', $value); ?>
+                                <?php $value = (isset($member) ? $member->email_imap_host : ''); ?>
+                                <?php echo render_input('email_imap_host', 'staff_email_imap_host', $value); ?>
+                                <?php $value = (isset($member) ? $member->email_imap_port : ''); ?>
+                                <?php echo render_input('email_imap_port', 'staff_email_imap_port', $value); ?>
 
 
 

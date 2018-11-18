@@ -46,12 +46,17 @@ class Cron extends CRM_Controller
     }
     public function sync_staff_email()
     {
-        $host = '{imap.gmail.com:993/imap/ssl}';
+
         $this->load->model('staff_model');
         $staff_list= $this->staff_model->get();
         //var_dump($staff_list);die();
         $this->load->model('emails_model');
         foreach ($staff_list as $staff){
+            $host = $staff['email_imap_host'].':'.$staff['email_imap_port'].'/imap/ssl';
+            //    '{imap.gmail.com:993/imap/ssl}';
+            var_dump($staff['email_imap_host']);
+            var_dump($host);die();
+
             $user = $staff['email'];
             $pwd = $staff['email_password'];
             $mailbox = new IMAPMailbox($host, $user, $pwd);
@@ -64,7 +69,7 @@ class Cron extends CRM_Controller
         }
 
 
-        echo 'sync system email done';
+        echo 'sync staff email done';
 
     }
 }

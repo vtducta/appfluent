@@ -3789,3 +3789,5 @@ $lang['staff_social'] ='Social';
 $lang['staff_email'] ='Email';
 $lang['staff_carriers'] ='Carriers';
 $lang['staff_email_password']='Email password';
+$lang['staff_email_imap_host'] ='Email imap host';
+$lang['staff_email_imap_port']='Email imap port';
