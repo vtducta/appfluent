@@ -3791,3 +3791,6 @@ $lang['staff_carriers'] ='Carriers';
 $lang['staff_email_password']='Email password';
 $lang['staff_email_imap_host'] ='Email imap host';
 $lang['staff_email_imap_port']='Email imap port';
+$lang['staff_email_smtp_encryption']='Email Encryption';
+$lang['staff_email_smtp_host']='SMTP Host';
+$lang['staff_email_smtp_port']='SMTP Port';

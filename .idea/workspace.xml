@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="204603cf-630b-47c8-9e8f-40ef4dffd56f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/application/models/Emails_staff_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Cron.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Cron.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/admin/Emails.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/admin/Emails.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/language/english/english_lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/language/english/english_lang.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/Emails_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Emails_model.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/admin/staff/member.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/staff/member.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,6 +17,9 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/appfluent$Emails_staff_model_php.dat" NAME="Emails_staff_model.php Coverage Results" MODIFIED="1542704521755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="265" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-1898874531">
@@ -83,8 +82,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/admin/Emails.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="172" column="24" lean-forward="true" selection-start-line="172" selection-start-column="24" selection-end-line="172" selection-end-column="24" />
+            <state relative-caret-position="289">
+              <caret line="174" column="27" lean-forward="true" selection-start-line="174" selection-start-column="27" selection-end-line="174" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -145,7 +144,7 @@
         <entry file="file://$PROJECT_DIR$/application/models/Emails_model.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="161" column="54" selection-start-line="160" selection-start-column="11" selection-end-line="161" selection-end-column="54" />
+              <caret line="161" column="54" selection-start-line="160" selection-start-column="11" selection-end-line="160" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -598,12 +597,12 @@
       <workItem from="1542526689184" duration="7037000" />
       <workItem from="1542540124471" duration="3382000" />
       <workItem from="1542612324382" duration="5337000" />
-      <workItem from="1542685777090" duration="12526000" />
+      <workItem from="1542685777090" duration="13074000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="277481000" />
+    <option name="totallyTimeSpent" value="278029000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -616,13 +615,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.31540343" visible="true" weight="0.27836612" />
-      <window_info id="Structure" order="1" sideWeight="0.6845966" side_tool="true" visible="true" weight="0.27836612" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.3147541" visible="true" weight="0.27836612" />
+      <window_info id="Structure" order="1" sideWeight="0.68524593" side_tool="true" visible="true" weight="0.27836612" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32905984" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3295082" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -632,6 +632,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32980332" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -643,22 +644,6 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/application/views/admin/policies/groups/profile_families.php</url>
-          <line>26</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/application/controllers/Cron.php</url>
-          <line>33</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/application/views/admin/tables/clients.php">
@@ -978,7 +963,7 @@
     <entry file="file://$PROJECT_DIR$/application/models/Emails_model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="161" column="54" selection-start-line="160" selection-start-column="11" selection-end-line="161" selection-end-column="54" />
+          <caret line="161" column="54" selection-start-line="160" selection-start-column="11" selection-end-line="160" selection-end-column="53" />
         </state>
       </provider>
     </entry>
@@ -998,8 +983,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/admin/Emails.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="172" column="24" lean-forward="true" selection-start-line="172" selection-start-column="24" selection-end-line="172" selection-end-column="24" />
+        <state relative-caret-position="289">
+          <caret line="174" column="27" lean-forward="true" selection-start-line="174" selection-start-column="27" selection-end-line="174" selection-end-column="27" />
         </state>
       </provider>
     </entry>

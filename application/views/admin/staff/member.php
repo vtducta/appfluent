@@ -504,6 +504,19 @@
                                 <?php echo render_input('email_imap_host', 'staff_email_imap_host', $value); ?>
                                 <?php $value = (isset($member) ? $member->email_imap_port : ''); ?>
                                 <?php echo render_input('email_imap_port', 'staff_email_imap_port', $value); ?>
+                                <?php $value = (isset($member) ? $member->email_smtp_encryption : ''); ?>
+                                <div class="form-group mtop15">
+                                    <label for="email_smtp_encryption"><?php echo _l('staff_email_smtp_encryption'); ?></label><br />
+                                    <select name="email_smtp_encryption" class="selectpicker" data-width="100%">
+                                        <option value="" <?php if($value == ''){echo 'selected';} ?>><?php echo _l('smtp_encryption_none'); ?></option>
+                                        <option value="ssl" <?php if($value == 'ssl'){echo 'selected';} ?>>SSL</option>
+                                        <option value="tls" <?php if($value == 'tls'){echo 'selected';} ?>>TLS</option>
+                                    </select>
+                                </div>
+                                <?php $value = (isset($member) ? $member->email_smtp_host : ''); ?>
+                                <?php echo render_input('email_smtp_host','staff_email_smtp_host',$value); ?>
+                                <?php $value = (isset($member) ? $member->email_smtp_port : ''); ?>
+                                <?php echo render_input('email_smtp_port','staff_email_smtp_port',$value); ?>
 
 
 
