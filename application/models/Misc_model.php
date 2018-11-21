@@ -1735,4 +1735,15 @@ class Misc_model extends CRM_Model
 
         return $arrResult;
     }
+    public function get_staff_emails_by_added_from($id)
+    {
+
+        $this->db->select('tblemails_staff.*,tblstaff.firstname,tblstaff.lastname ');
+        $this->db->join('tblstaff', 'tblstaff.staffid=tblemails_staff.added_from');
+        $this->db->where('tblemails_staff.added_from',$id);
+        $this->db->order_by('tblemails_staff.id', 'desc');
+        $arrResult = $this->db->get('tblemails_staff')->result_array();
+
+        return $arrResult;
+    }
 }

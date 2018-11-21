@@ -158,7 +158,7 @@ class Emails extends Admin_controller
         $data['template_list'] = $this->Newsletter_model->getTemplateLists();
 
         if($group=='sent'){
-            $data['emails'] = $this->misc_model->get_emails_by_added_from(get_staff_user_id());
+            $data['emails'] = $this->misc_model->get_staff_emails_by_added_from(get_staff_user_id());
             $this->load->view('admin/emails/group_sent', $data);
         }else{
             $data['inbox'] = $this->emails_model->getReceivedStaffEmail(array('group'=>$group,'staffid'=>get_staff_user_id()));
@@ -168,16 +168,17 @@ class Emails extends Admin_controller
     }
         public function send_email(){
         if ($this->input->post() ){
-            $this->load->model('emails_model');
+            $this->load->model('Emails_model');
             $message = $this->input->post('content');
             $message = nl2br($message);
-            $success = $this->emails_model->send_simple_email($this->input->post('to'), $this->input->post('subject'), $message);
+            $success = $this->Emails_model->send_staff_email($this->input->post('to'), $this->input->post('subject'), $message);
+            //$success= $this->sent_smtp_test_email();
             if ($success) {
                 $schedule_time="";
                 if($this->input->post('schedule')){
                     $schedule_time=     $this->input->post('send_date') .'|'. $this->input->post('send_at');
                 }
-                $this->emails_model->log_email_activity($this->input->post('to'),$this->input->post('schedule'),$schedule_time,$this->input->post('subject'),$message);
+                $this->Emails_model->log_email_activity($this->input->post('to'),$this->input->post('schedule'),$schedule_time,$this->input->post('subject'),$message);
 
                 set_alert('success', _l('mail_success_send', $this->input->post('to')));
             } else {

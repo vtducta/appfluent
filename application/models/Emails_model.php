@@ -545,7 +545,7 @@ class Emails_model extends CRM_Model
             'sendtime' => $schedule_time,
         );
 
-        $this->db->insert('tblemails', $data);
+        $this->db->insert('tblemails_staff', $data);
 
         return $this->db->insert_id();
     }
@@ -635,4 +635,111 @@ class Emails_model extends CRM_Model
         $this->db->order_by('udate', 'desc');
         return $this->db->get('tblInboxs_staff')->result_array();
     }
+    public function send_staff_email($email, $subject, $message)
+    {
+        $this->load->model('staff_model');
+        $staff= $this->staff_model->get(get_staff_user_id());
+
+        $cnf = [
+            'from_email' => $staff->email,
+            'from_name'  => $staff->lastname,
+            'email'      => $email,
+            'subject'    => $subject,
+            'message'    => $message,
+        ];
+
+        // Simulate fake template to be parsed
+        $template           = new StdClass();
+        $template->message  = get_option('email_header') . $cnf['message'] . get_option('email_footer');
+        $template->fromname = $cnf['from_name'];
+        $template->subject  = $cnf['subject'];
+
+        $template = parse_email_template($template);
+
+        $cnf['message']   = $template->message;
+        $cnf['from_name'] = $template->fromname;
+        $cnf['subject']   = $template->subject;
+
+        $cnf['message'] = check_for_links($cnf['message']);
+
+        $cnf = do_action('before_send_simple_email', $cnf);
+
+        if (isset($cnf['prevent_sending']) && $cnf['prevent_sending'] == true) {
+            $this->clear_attachments();
+
+            return false;
+        }
+
+        $this->load->config('email');
+        $config['protocol']     = 'smtp';
+        $host=$staff->email_smtp_encryption.'://'.$staff->email_stmp_host;
+        //'ssl://smtp.googlemail.com'
+        $config['smtp_host']    = 'ssl://smtp.googlemail.com'; //neu sử dụng gmail
+        $config['smtp_user']    = $staff->email;
+        $config['smtp_pass']    = $staff->email_password;
+        $config['smtp_port']    = '465';
+        $this->email->initialize($config);
+        //$this->email->set_smtp_debug(3);
+        $this->email->clear(true);
+        $this->email->set_newline(config_item('newline'));
+        $this->email->from($cnf['from_email'], $cnf['from_name']);
+        $this->email->to($cnf['email']);
+
+        $bcc = '';
+        // Used for action hooks
+        if (isset($cnf['bcc'])) {
+            $bcc = $cnf['bcc'];
+            if (is_array($bcc)) {
+                $bcc = implode(', ', $bcc);
+            }
+        }
+
+        $systemBCC = get_option('bcc_emails');
+        if ($systemBCC != '') {
+            if ($bcc != '') {
+                $bcc .= ', ' . $systemBCC;
+            } else {
+                $bcc .= $systemBCC;
+            }
+        }
+        if ($bcc != '') {
+            $this->email->bcc($bcc);
+        }
+
+        if (isset($cnf['cc'])) {
+            $this->email->cc($cnf['cc']);
+        }
+
+        if (isset($cnf['reply_to'])) {
+            $this->email->reply_to($cnf['reply_to']);
+        }
+
+        $this->email->subject($cnf['subject']);
+        $this->email->message($cnf['message']);
+
+        $this->email->set_alt_message(strip_html_tags($cnf['message'], '<br/>, <br>, <br />'));
+
+        if (count($this->attachment) > 0) {
+            foreach ($this->attachment as $attach) {
+                if (!isset($attach['read'])) {
+                    $this->email->attach($attach['attachment'], 'attachment', $attach['filename'], $attach['type']);
+                } else {
+                    if (!isset($attach['filename']) || (isset($attach['filename']) && empty($attach['filename']))) {
+                        $attach['filename'] = basename($attach['attachment']);
+                    }
+                    $this->email->attach($attach['attachment'], '', $attach['filename']);
+                }
+            }
+        }
+
+        $this->clear_attachments();
+        if ($this->email->send()) {
+            logActivity('Email sent to: ' . $cnf['email'] . ' Subject: ' . $cnf['subject']);
+
+            return true;
+        }
+
+        return false;
+    }
+
 }

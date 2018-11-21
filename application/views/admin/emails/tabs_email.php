@@ -66,7 +66,7 @@ usort($customer_tabs, function($a, $b) {
             <?php
                 $total_reminders=0;
                 if($tab['name']=='sent'){
-                    $total_reminders = total_rows('tblemails' );
+                    $total_reminders = total_rows('tblemails_staff');
                 }else{
                     $total_reminders = total_rows('tblInboxs_staff',
                         array(
