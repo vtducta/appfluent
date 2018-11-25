@@ -70,7 +70,9 @@ usort($customer_tabs, function($a, $b) {
                 }else{
                     $total_reminders = total_rows('tblInboxs_staff',
                         array(
-                            'group'=>$tab['name']
+                            'group'=>$tab['name'],
+                            'staffid'=>get_staff_user_id(),
+                            'status'=>1
                         )
                     );
                 }

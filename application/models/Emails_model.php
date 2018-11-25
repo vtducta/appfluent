@@ -545,7 +545,7 @@ class Emails_model extends CRM_Model
             'sendtime' => $schedule_time,
         );
 
-        $this->db->insert('tblemails_staff', $data);
+        $this->db->insert('tblemails', $data);
 
         return $this->db->insert_id();
     }
@@ -634,6 +634,22 @@ class Emails_model extends CRM_Model
         $this->db->where($where);
         $this->db->order_by('udate', 'desc');
         return $this->db->get('tblInboxs_staff')->result_array();
+    }
+    public function log_email_staff_activity($to,$schedule,$schedule_time,$subject,$content)
+    {
+        $data = array(
+            'created_date' => date('Y-m-d H:i:s'),
+            'subject' => $subject,
+            'content' => $content,
+            'added_from' => get_staff_user_id(),
+            'to' => $to,
+            'schedule_option' => $schedule,
+            'sendtime' => $schedule_time,
+        );
+
+        $this->db->insert('tblemails_staff', $data);
+
+        return $this->db->insert_id();
     }
     public function send_staff_email($email, $subject, $message)
     {
@@ -741,5 +757,40 @@ class Emails_model extends CRM_Model
 
         return false;
     }
+    public function getReceivedEmail_staff($where = [])
+    {
+        $this->db->where($where);
+        $this->db->order_by('udate', 'desc');
+        return $this->db->get('tblInboxs_staff')->result_array();
+    }
+    public function trash_email_staff($auto_id)
+    {
+        $this->db->where('auto_id', $auto_id);
+        $this->db->update('tblInboxs_staff',['group'=>'trash']);
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        }
 
+        return false;
+    }
+    public function delete_email_staff($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('tblemails_staff');
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        }
+
+        return false;
+    }
+    public function delete_trash_staff($auto_id)
+    {
+        $this->db->where('auto_id', $auto_id);
+        $this->db->update('tblInboxs_staff',['status'=>'-1']);
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        }
+
+        return false;
+    }
 }

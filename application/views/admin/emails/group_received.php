@@ -84,7 +84,11 @@
                                                             <?php echo date("Y-m-d H:i:s", $item['udate']); ?>
                                                         </td>
                                                         <td>
-                                                            <a href="<?php echo admin_url('emails/trash_email/'. $item['auto_id']); ?>" class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
+                                                            <?php if($group=="trash") {?>
+                                                                <a href="<?php echo admin_url('emails/delete_trash_staff/'. $item['auto_id']); ?>" class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
+                                                            <?php } else {?>
+                                                                <a href="<?php echo admin_url('emails/trash_email_staff/'. $item['auto_id']); ?>" class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
+                                                            <?php } ?>
                                                         </td>
                                                     </tr>
                                                 <?php } ?>

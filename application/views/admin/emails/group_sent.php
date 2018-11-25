@@ -83,7 +83,7 @@
                                                         <td>
 
                                                             <?php if($email['added_from'] == get_staff_user_id() || is_admin()){ ?>
-                                                                <a href="<?php echo admin_url('emails/delete_email/'. $email['id']); ?>" class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
+                                                                <a href="<?php echo admin_url('emails/delete_email_staff/'. $email['id']); ?>" class="btn btn-danger btn-icon _delete"><i class="fa fa-remove"></i></a>
 
                                                             <?php } ?>
                                                         </td>
