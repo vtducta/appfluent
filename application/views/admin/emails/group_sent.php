@@ -1,4 +1,6 @@
 <?php init_head(); ?>
+
+
 <div id="wrapper">
     <div class="content">
         <div class="row">
@@ -56,12 +58,16 @@
                                                         <?php echo _l( 'clients_email_table_start_heading'); ?>
                                                     </th>
                                                     <th>
+                                                        <?php echo _l( 'clients_email_table_content_heading'); ?>
+                                                    </th>
+                                                    <th>
                                                         <?php echo _l( 'options'); ?>
                                                     </th>
 
                                                 </tr>
                                                 </thead>
                                                 <tbody>
+
                                                 <?php foreach($emails as $email){ ?>
                                                     <tr>
                                                         <td width="50%">
@@ -71,15 +77,25 @@
                                                         </td>
                                                         <td>
                                                             <?php echo $email['to'] ?>
+
                                                         </td>
                                                         <td data-order="<?php echo $email['created_date']; ?>">
                                                             <?php if(!empty($email['created_date'])){ ?>
                                                                 <span data-toggle="tooltip" data-title="<?php echo _dt($email['created_date']); ?>">
-                                <i class="fa fa-calendar-check-o text-success font-medium valign" aria-hidden="true"></i>
-                            </span>
+                                                                       <i class="fa fa-calendar-check-o text-success font-medium valign" aria-hidden="true"></i>
+                                                                  </span>
                                                             <?php } ?>
                                                             <?php echo _dt($email[ 'created_date']); ?>
                                                         </td>
+                                                        <td>
+                                                            <script>
+                                                                <?php echo $email['content']; ?>
+                                                            </script>
+                                                            <a href="#" class="btn btn-default buttons-collection btn-default-dt-options" style="float: right; margin-left: 10px" data-toggle="modal" data-target="#newEmailModal" onclick="readmore()" data-whatever="<?php echo $email['to'] ?>" data-subject="<?php echo $email['subject']; ?>">
+                                                            <span> Read more</span>
+                                                        </a>
+                                                        </td>
+
                                                         <td>
 
                                                             <?php if($email['added_from'] == get_staff_user_id() || is_admin()){ ?>
@@ -87,10 +103,15 @@
 
                                                             <?php } ?>
                                                         </td>
+
                                                     </tr>
                                                 <?php } ?>
+
                                                 </tbody>
+
                                             </table>
+
+
                                         </div>
                                     </div>
                                 </div>

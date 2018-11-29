@@ -14,11 +14,11 @@
 
                     <div class="col-md-12"><div class="form-group">
                             <label><?php echo _l('email_to'); ?></label>
-                            <input required type="text" value="" name="to" class="form-control"/>
+                            <input required type="text" value="" name="to" id="to" class="form-control"/>
                         </div></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3" id="schedulea">
                         <div class="checkbox checkbox-inline mbot25">
                             <input type="checkbox" value="schedule" id="chkShowSchedule" name="schedule" onchange="checkSchedule();">
                             <label for="chkShowSchedule">Schedule</label>
@@ -45,7 +45,7 @@
 
 
 
-            <div class="form-group" style="position: relative">
+            <div class="form-group" style="position: relative" id="template">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?php echo _l('email_select_template');?> <span class="caret"></span>
                 </button>
@@ -66,8 +66,10 @@
                     <input required type="text" value="" name="subject" class="form-control"/>
                 </div>
             <div class="form-group">
-                <label><?php echo _l('newsletter_campaign_content'); ?></label>
-                <textarea id="campaign-text-content" class="form-control tinymce" rows="25" name="content"></textarea>
+                <label ><?php echo _l('newsletter_campaign_content'); ?> </label>
+                <div id="email"></div>
+                <textarea id="campaign-text-content" class="form-control tinymce" rows="25" name="content" ></textarea>
+
             </div>
             </div>
         </div>
@@ -75,7 +77,7 @@
 
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo _l('close'); ?></button>
-    <button type="submit" class="btn btn-info"><?php echo _l('submit'); ?></button>
+    <button type="submit" id="submit" class="btn btn-info"><?php echo _l('submit'); ?></button>
   </div>
     </div>
   <?php echo form_close(); ?>
@@ -91,4 +93,44 @@
        }
     };
 
+</script>
+<script type="text/javascript">
+    function readmore(){
+
+        $('#newEmailModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var recipient = button.data('whatever');
+            var subject = button.data('subject');
+            var content= button.closest('tr').find('script:first').text();
+            var modal = $(this);
+            var from= button.data('from');
+            if(subject){
+                modal.find("input[name='subject']").val(subject);
+                $("#email").show();
+                $("#mceu_15").hide();
+                $("#submit").hide();
+                $("#schedulea").hide();
+                $("#template").hide();
+                $("#email").html(content).text();
+                         if(recipient){
+                    modal.find('.modal-title').text('Email to ' + recipient);
+                    modal.find('.modal-body input:first').val(recipient);
+                    modal.find("input[name='subject']").val(subject);
+                             }else {
+                    modal.find('.modal-title').text('Email from ' + from);
+                    modal.find('.modal-body input:first').val(from);
+                    modal.find('.modal-body label:first').text('From');
+                                }
+            }else {
+                modal.find('.modal-title').text('New Email' );
+                modal.find('.modal-body label:first').text('To');
+                modal.find('.modal-body input').val('');
+                $("#mceu_15").show();
+                $("#submit").show();
+                $("#schedulea").show();
+                $("#template").show();
+                $("#email").hide();
+                    }
+                 });
+              };
 </script>

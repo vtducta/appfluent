@@ -58,6 +58,9 @@
                                                         <?php echo _l( 'clients_email_table_received_heading'); ?>
                                                     </th>
                                                     <th>
+                                                        <?php echo _l( 'clients_email_table_content_heading'); ?>
+                                                    </th>
+                                                    <th>
                                                         <?php echo _l( 'options'); ?>
                                                     </th>
 
@@ -73,7 +76,8 @@
                                                         </td>
                                                         <td>
                                                             <?php $from = json_decode($item['from']);
-                                                                    echo $from->mailbox .'@'. $from->host ;?>
+                                                                  $from= $from->mailbox .'@'. $from->host ;
+                                                                  echo $from;  ?>
                                                         </td>
                                                         <td data-order="<?php echo $item['udate']; ?>">
                                                             <?php if(!empty($item['udate'])){ ?>
@@ -82,6 +86,15 @@
                                                                 </span>
                                                             <?php } ?>
                                                             <?php echo date("Y-m-d H:i:s", $item['udate']); ?>
+                                                        </td>
+
+                                                        <td>
+                                                            <script>
+                                                                <?php echo ($item['content']); ?>
+                                                            </script>
+                                                            <a href="#" class="btn btn-default buttons-collection btn-default-dt-options" style="float: right; margin-left: 10px" data-toggle="modal" data-target="#newEmailModal" onclick="readmore()" data-from="<?php echo $from; ?>" data-subject="<?php echo $item['subject']; ?>" >
+                                                                <span> Read more</span>
+                                                            </a>
                                                         </td>
                                                         <td>
                                                             <?php if($group=="trash") {?>

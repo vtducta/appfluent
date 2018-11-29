@@ -3794,3 +3794,4 @@ $lang['staff_email_imap_port']='Email imap port';
 $lang['staff_email_smtp_encryption']='Email Encryption';
 $lang['staff_email_smtp_host']='SMTP Host';
 $lang['staff_email_smtp_port']='SMTP Port';
+$lang['clients_email_table_content_heading']='Content';

@@ -685,22 +685,17 @@ class Emails_model extends CRM_Model
 
             return false;
         }
-
-        $this->load->config('email');
+        $this->load->library('email');
         $config['protocol']     = 'smtp';
-        $host=$staff->email_smtp_encryption.'://'.$staff->email_stmp_host;
-        //'ssl://smtp.googlemail.com'
-        $config['smtp_host']    = 'ssl://smtp.googlemail.com'; //neu sử dụng gmail
+        $config['smtp_host']    = $staff->email_smtp_encryption.'://'.$staff->email_smtp_host; //neu sử dụng gmail
         $config['smtp_user']    = $staff->email;
         $config['smtp_pass']    = $staff->email_password;
-        $config['smtp_port']    = '465';
+        $config['smtp_port']    = $staff->email_smtp_port;
         $this->email->initialize($config);
-        //$this->email->set_smtp_debug(3);
         $this->email->clear(true);
         $this->email->set_newline(config_item('newline'));
         $this->email->from($cnf['from_email'], $cnf['from_name']);
         $this->email->to($cnf['email']);
-
         $bcc = '';
         // Used for action hooks
         if (isset($cnf['bcc'])) {
