@@ -1625,14 +1625,27 @@ $(function() {
     });
 
     // Open customizer and add that is open to session
+
+
+
+
     $('.open-customizer').on('click', function(e) {
         e.preventDefault();
 
+
+        if (setup_menu.hasClass('display-block')) {
+            $('.close-customizer').click();
+        }
+
         if (setup_menu.hasClass(isRTL == 'true' ? "fadeOutRight" : "fadeOutLeft")) {
             setup_menu.removeClass(isRTL == 'true' ? "fadeOutRight" : "fadeOutLeft");
+
         }
 
         setup_menu.addClass('display-block ' + (isRTL == 'true' ? "fadeInRight" : "fadeInLeft"));
+
+
+
         // Set session that the setup menu is open in case of reload
         if (!is_mobile()) {
             requestGet('misc/set_setup_menu_open');
