@@ -437,10 +437,11 @@ $(function() {
         } else {
             $('body').removeClass('show-sidebar').addClass('hide-sidebar');
         }
+
         // $("body").toggleClass($(window).width() < 769 ? 'show-sidebar' : 'hide-sidebar');
-        if (setup_menu.hasClass('display-block')) {
-            $('.close-customizer').click();
-        }
+         if (setup_menu.hasClass('display-block')) {
+             setup_menu.addClass(isRTL == 'true' ? "fadeOutRight" : "fadeOutLeft");
+         }
     });
 
     // Hide sidebar on content click on mobile
@@ -450,7 +451,7 @@ $(function() {
                 $('.hide-menu').click();
             }
             if (setup_menu.hasClass('display-block')) {
-                $('.close-customizer').click();
+                setup_menu.addClass(isRTL == 'true' ? "fadeOutRight" : "fadeOutLeft");
             }
         });
     }
@@ -1620,6 +1621,11 @@ $(function() {
         e.preventDefault();
 
         setup_menu.addClass(isRTL == 'true' ? "fadeOutRight" : "fadeOutLeft");
+
+        if(!$('body').hasClass('hide-sidebar')){
+            $('body').addClass('hide-sidebar');
+            $('body').removeClass('show-sidebar');
+        }
         // Clear the session for setup menu so in reload wont be closed
         requestGet('misc/set_setup_menu_closed');
     });
@@ -1644,7 +1650,9 @@ $(function() {
 
         setup_menu.addClass('display-block ' + (isRTL == 'true' ? "fadeInRight" : "fadeInLeft"));
 
-
+        if(!$('body').hasClass('show-sidebar')){
+            $('body').addClass('show-sidebar');
+        }
 
         // Set session that the setup menu is open in case of reload
         if (!is_mobile()) {

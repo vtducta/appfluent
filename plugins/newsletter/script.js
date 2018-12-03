@@ -41,11 +41,11 @@ $(function () {
         }
     });
     
-    if(schedule_on !== 'undefined' && schedule_on !== null) {
-        $('.schedule_on').val(schedule_on);
-    }
-    if(schedule_at !== 'undefined'  && schedule_at !== null) {
-        $('.schedule_at').val(schedule_at);
-    }
+    // if(schedule_on !== 'undefined' && schedule_on !== null) {
+    //     $('.schedule_on').val(schedule_on);
+    // }
+    // if(schedule_at !== 'undefined'  && schedule_at !== null) {
+    //     $('.schedule_at').val(schedule_at);
+    // }
     
 });

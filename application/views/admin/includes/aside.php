@@ -236,6 +236,9 @@
          <?php echo _l('setting_bar_heading'); ?></a>
          <?php } ?>
       </li>
+       <script >
+
+       </script>
       <?php do_action('after_render_aside_menu'); ?>
       <?php
          $pinnedProjects = get_user_pinned_projects();
