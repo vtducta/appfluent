@@ -2816,12 +2816,13 @@ label:not(.control-label) {
 }
 
 .hide-menu {
-    padding: 18px 14px 18px 14px;
+    padding: 18px 19px 18px 14px;
     font-size: 14px;
     float: left;
-    color: #d0d0d0;
+    color: #ffffff;
     cursor: pointer;
-    line-height: 27px
+    line-height: 27px;
+    background: #7266ba;
 }
 
 body.rtl .hide-menu {

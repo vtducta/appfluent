@@ -243,9 +243,19 @@ class Clients_model extends CRM_Model
         if (isset($data['fakeusernameremembered'])) {
             unset($data['fakeusernameremembered']);
         }
+
         if (isset($data['fakepasswordremembered'])) {
             unset($data['fakepasswordremembered']);
         }
+
+        if (isset($data['related_to_contact_custom_fields'])) {
+            unset($data['related_to_contact_custom_fields']);
+        }
+
+        if (isset($data['related_to_company_custom_fields'])) {
+            unset($data['related_to_company_custom_fields']);
+        }
+
         foreach (array('fakeusernameremembered', 'fakepasswordremembered', 'DataTables_Table_0_length', 'DataTables_Table_1_length', 'onoffswitch') as $not_used) {
             if (isset($data[$not_used])) {
                 unset($data[$not_used]);
@@ -404,10 +414,21 @@ class Clients_model extends CRM_Model
             unset($data['fakepasswordremembered']);
         }
 
+        if (isset($data['related_to_contact_custom_fields'])) {
+            unset($data['related_to_contact_custom_fields']);
+        }
+
+        if (isset($data['related_to_company_custom_fields'])) {
+            unset($data['related_to_company_custom_fields']);
+        }
+
         if (isset($data['custom_fields'])) {
             $custom_fields = $data['custom_fields'];
             unset($data['custom_fields']);
         }
+
+
+
         if (isset($data['send_set_password_email'])) {
             $send_set_password_email = true;
             unset($data['send_set_password_email']);
@@ -486,7 +507,6 @@ class Clients_model extends CRM_Model
 
         $this->db->insert('tblcontacts', $data);
         $contact_id = $this->db->insert_id();
-
         if ($contact_id) {
             if (isset($custom_fields)) {
                 handle_custom_fields_post($contact_id, $custom_fields);

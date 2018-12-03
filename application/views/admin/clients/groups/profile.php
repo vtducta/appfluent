@@ -58,22 +58,23 @@
                   </div>
                </div>
                 <div class="col-md-12">
+                    <?php echo form_hidden('contact[id]',$contact->id); ?>
                     <div class="col-md-4">
-                        <?php $value=( isset($client) ? $client->first_name : ''); ?>
-                        <?php $attrs = (isset($client) ? array() : array('autofocus'=>true)); ?>
-                        <?php echo render_input( 'first_name', 'client_first_name',$value,'text',$attrs); ?>
+                        <?php $value=( isset($contact) ? $contact->firstname : ''); ?>
+                        <?php $attrs = (isset($contact) ? array() : array('autofocus'=>true)); ?>
+                        <?php echo render_input( 'contact[firstname]', 'client_first_name',$value,'text',$attrs); ?>
 
                     </div>
                     <div class="col-md-4">
-                        <?php $value=( isset($client) ? $client->middle_name : ''); ?>
-                        <?php $attrs = (isset($client) ? array() : array('autofocus'=>true)); ?>
-                        <?php echo render_input( 'middle_name', 'client_middle_name',$value,'text',$attrs); ?>
+                        <?php $value=( isset($contact) ? $contact->middle_name : ''); ?>
+                        <?php $attrs = (isset($contact) ? array() : array('autofocus'=>true)); ?>
+                        <?php echo render_input( 'contact[middle_name]', 'client_middle_name',$value,'text',$attrs); ?>
 
                     </div>
                     <div class="col-md-4">
-                        <?php $value=( isset($client) ? $client->middle_name : ''); ?>
-                        <?php $attrs = (isset($client) ? array() : array('autofocus'=>true)); ?>
-                        <?php echo render_input( 'last_name', 'client_last_name',$value,'text',$attrs); ?>
+                        <?php $value=( isset($contact) ? $contact->lastname : ''); ?>
+                        <?php $attrs = (isset($contact) ? array() : array('autofocus'=>true)); ?>
+                        <?php echo render_input( 'contact[lastname]', 'client_last_name',$value,'text',$attrs); ?>
                     </div>
                 </div>
                 <div class="col-md-12">

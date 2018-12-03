@@ -176,7 +176,10 @@ $(function() {
     var vRules = {};
     if (app_company_is_required == 1) {
         vRules = {
-            company: 'required',
+            //company: 'required',
+            'contact[firstname]': 'required',
+            'contact[lastname]': 'required',
+            'contact[middle_name]': 'required',
         }
     }
     _validate_form($('.client-form'), vRules);
@@ -220,17 +223,18 @@ function delete_contact_profile_image(contact_id) {
 function validate_contact_form() {
     _validate_form('#contact-form', {
         firstname: 'required',
+        middle_name: 'required',
         lastname: 'required',
-        password: {
-            required: {
-                depends: function(element) {
-                    var sent_set_password = $('input[name="send_set_password_email"]');
-                    if ($('#contact input[name="contactid"]').val() == '' && sent_set_password.prop('checked') == false) {
-                        return true;
-                    }
-                }
-            }
-        },
+        // password: {
+        //     required: {
+        //         depends: function(element) {
+        //             var sent_set_password = $('input[name="send_set_password_email"]');
+        //             if ($('#contact input[name="contactid"]').val() == '' && sent_set_password.prop('checked') == false) {
+        //                 return true;
+        //             }
+        //         }
+        //     }
+        // },
         email: {
             <?php if(do_action('contact_email_required',"true") === "true"){ ?>
             required: true,

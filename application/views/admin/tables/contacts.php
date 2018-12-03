@@ -6,7 +6,7 @@ $total_client_contacts = total_rows('tblcontacts', ['userid' => $client_id]);
 $this->ci->load->model('gdpr_model');
 
 $consentContacts = get_option('gdpr_enable_consent_for_contacts');
-$aColumns        = [ 'CONCAT(firstname, \' \', lastname) as full_name'];
+$aColumns        = [ 'CONCAT(firstname, \' \',firstname, \' \', lastname) as full_name'];
 if (is_gdpr() && $consentContacts == '1') {
     array_push($aColumns, '1');
 }
@@ -46,12 +46,12 @@ $rResult = $result['rResult'];
 foreach ($rResult as $aRow) {
     $row = [];
 
-    $rowName = '<img src="' . contact_profile_image_url($aRow['id']) . '" class="client-profile-image-small mright5"><a href="client_families/client/' . $aRow['userid'] . '/' . $aRow['id'] .'" >' . $aRow['full_name'] . '</a>';
+    $rowName = '<img src="' . contact_profile_image_url($aRow['id']) . '" class="client-profile-image-small mright5"><a href="#" onclick="contact(' . $aRow['userid'] . ',' . $aRow['id'] . ');return false;" >' . $aRow['full_name'] . '</a>';
 
     $rowName .= '<div class="row-options">';
 
     //$rowName .= '<a href="#" onclick="contact(' . $aRow['userid'] . ',' . $aRow['id'] . ');return false;">' . _l('edit') . '</a>';
-    $rowName .= '<a href="client_families/client/"' . $aRow['userid'] . '/' . $aRow['id'] .'" >' . _l('edit') . '</a>';
+    $rowName .= '<a href="#" onclick="contact(' . $aRow['userid'] . ',' . $aRow['id'] . ');return false;" >' . _l('edit') . '</a>';
 
     if (is_gdpr() && get_option('gdpr_enable_consent_for_contacts') == '1' && is_admin()) {
         $rowName .= ' | <a href="' . admin_url('clients/export/' . $aRow['id']) . '">
@@ -61,7 +61,7 @@ foreach ($rResult as $aRow) {
 
     if (has_permission('customers', '', 'delete') || is_customer_admin($aRow['userid'])) {
         if ($aRow['is_primary'] == 0 || ($aRow['is_primary'] == 1 && $total_client_contacts == 1)) {
-            $rowName .= ' | <a href="' . admin_url('client_families/delete/' . $aRow['id']) . '" class="text-danger _delete">' . _l('delete') . '</a>';
+            $rowName .= ' | <a href="' . admin_url('clients/delete_contact/' . $aRow['userid'] . '/' . $aRow['id']) . '" class="text-danger _delete">' . _l('delete') . '</a>';
         }
     }
 

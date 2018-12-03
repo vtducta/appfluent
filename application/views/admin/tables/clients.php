@@ -166,6 +166,7 @@ if (count($custom_fields) > 4) {
 $result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, $where, [
     'tblcontacts.id as contact_id',
     'lastname',
+    'middle_name',
     'tblclients.zip as zip',
     'registration_confirmed',
 ], 'group by tblclients.userid', [7 => 'name']);
@@ -216,7 +217,7 @@ foreach ($rResult as $aRow) {
 //    $row[] = $company;
 
     // Primary contact
-    $row[] = ($aRow['contact_id'] ? '<a href="' . admin_url('client_families/client/' . $aRow['userid'] . '/' . $aRow['contact_id']) . '" target="_blank">' . $aRow['firstname'] . ' ' . $aRow['lastname'] . '</a>' : '');
+    $row[] = ($aRow['contact_id'] ? '<a href="' .$url . '" target="_blank">' . $aRow['firstname'] . ' ' . $aRow['middle_name'] . ' '. $aRow['lastname'] . '</a>' : '');
 
     // Primary contact email
     $row[] = ($aRow['email'] ? '<a href="mailto:' . $aRow['email'] . '">' . $aRow['email'] . '</a>' : '');

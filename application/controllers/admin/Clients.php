@@ -91,12 +91,21 @@ class Clients extends Admin_controller
         }
 
         if ($this->input->post() && !$this->input->is_ajax_request()) {
-            if ($id == '') {
+            if ($id == '') {//add_new
                 if (!has_permission('customers', '', 'create')) {
                     access_denied('customers');
                 }
 
                 $data = $this->input->post();
+
+
+                $data_contact= $data['contact'];
+                $data_contact['is_primary']=1;
+                unset($data['contact']);
+
+
+
+
 
                 $save_and_add_contact = false;
                 if (isset($data['save_and_add_contact'])) {
@@ -110,6 +119,10 @@ class Clients extends Admin_controller
                     $this->clients_model->assign_admins($assign, $id);
                 }
                 if ($id) {
+                    //add contact primary
+                    $this->clients_model->add_contact($data_contact,$id);
+
+                    //
                     set_alert('success', _l('added_successfully', _l('client')));
                     if ($save_and_add_contact == false) {
                         redirect(admin_url('clients/client/' . $id));
@@ -117,13 +130,25 @@ class Clients extends Admin_controller
                         redirect(admin_url('clients/client/' . $id . '?group=contacts&new_contact=true'));
                     }
                 }
-            } else {
+            } else {//update client
+
                 if (!has_permission('customers', '', 'edit')) {
                     if (!is_customer_admin($id)) {
                         access_denied('customers');
                     }
                 }
-                $success = $this->clients_model->update($this->input->post(), $id);
+                $data = $this->input->post();
+
+                //update primary contact
+                $data_contact= $data['contact'];
+                unset($data['contact']);
+                if($data_contact['id']){
+                    $data_contact['is_primary']=1;
+                    $this->clients_model->update_contact($data_contact,$data_contact['id']);
+                }
+
+
+                $success = $this->clients_model->update($data, $id);
                 if ($success == true) {
                     set_alert('success', _l('updated_successfully', _l('client')));
                 }
@@ -150,6 +175,11 @@ class Clients extends Admin_controller
             $title = _l('add_new', _l('client_lowercase'));
         } else {
             $client = $this->clients_model->get($id);
+            $contact_primary = $this->clients_model->get_contact_primary($id);
+            if($contact_primary){
+                $data['contact']= $contact_primary;
+            }
+
             if (!$client) {
                 blank_page('Client Not Found');
             }
@@ -318,6 +348,7 @@ class Clients extends Admin_controller
                         die;
                     }
                 }
+
                 $id      = $this->clients_model->add_contact($data, $customer_id);
                 $message = '';
                 $success = false;

@@ -3795,3 +3795,5 @@ $lang['staff_email_smtp_encryption']='Email Encryption';
 $lang['staff_email_smtp_host']='SMTP Host';
 $lang['staff_email_smtp_port']='SMTP Port';
 $lang['clients_email_table_content_heading']='Content';
+$lang['contact_basic_info']='Basic info';
+$lang['contact_other_info']='Other info';

@@ -1,4 +1,5 @@
 <div id="setup-menu-wrapper" class="animated <?php if($this->session->has_userdata('setup-menu-open') && $this->session->userdata('setup-menu-open') == true){echo 'display-block';} ?>">
+
     <ul class="nav metis-menu" id="setup-menu">
         <li>
             <a class="close-customizer"><i class="fa fa-close"></i></a>

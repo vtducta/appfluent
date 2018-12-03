@@ -44,5 +44,10 @@
     </script>
     <?php do_action('app_admin_head'); ?>
 </head>
-<body <?php echo admin_body_class(isset($bodyclass) ? $bodyclass : ''); ?><?php if($isRTL === 'true'){ echo 'dir="rtl"';}; ?>>
+<?php
+if($this->session->has_userdata('setup-menu-open') && $this->session->userdata('setup-menu-open') == true){
+    $class_slidebar = " show-sidebar";
+}
+?>
+<body <?php echo admin_body_class(isset($bodyclass) ? $bodyclass : '',$class_slidebar); ?><?php if($isRTL === 'true'){ echo 'dir="rtl"';}; ?>>
 <?php do_action('after_body_start'); ?>

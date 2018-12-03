@@ -720,9 +720,10 @@ function _inject_no_index()
     echo '<meta name="robots" content="noindex">' . PHP_EOL;
 }
 
-function admin_body_class($class = '')
+function admin_body_class($class = '', $class_slidebar=' hide-sidebar')
 {
-    echo 'class="' . join(' ', get_admin_body_class($class)) . ' hide-sidebar"';
+
+    echo 'class="' . join(' ', get_admin_body_class($class)) . $class_slidebar.'"';
 }
 
 function get_admin_body_class($class = '')
