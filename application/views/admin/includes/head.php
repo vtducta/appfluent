@@ -45,6 +45,7 @@
     <?php do_action('app_admin_head'); ?>
 </head>
 <?php
+$class_slidebar = " hide-sidebar";
 if($this->session->has_userdata('setup-menu-open') && $this->session->userdata('setup-menu-open') == true){
     $class_slidebar = " show-sidebar";
 }
