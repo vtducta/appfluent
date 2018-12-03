@@ -57,9 +57,7 @@
                                                     <th>
                                                         <?php echo _l( 'clients_email_table_start_heading'); ?>
                                                     </th>
-                                                    <th>
-                                                        <?php echo _l( 'clients_email_table_content_heading'); ?>
-                                                    </th>
+                                                   
                                                     <th>
                                                         <?php echo _l( 'options'); ?>
                                                     </th>
@@ -71,9 +69,13 @@
                                                 <?php foreach($emails as $email){ ?>
                                                     <tr>
                                                         <td width="50%">
+                                                               <script>
+                                                                <?php echo $email['content']; ?>
+                                                            </script>
                                                             <div data-note-description="<?php echo $email['id']; ?>">
-                                                                <?php echo $email['subject']; ?>
-                                                            </div>
+                                                                <a href="#"  data-toggle="modal" data-target="#newEmailModal" onclick="readmore()" data-whatever="<?php echo $email['to'] ?>" data-subject="<?php echo $email['subject']; ?>">
+                                                                    <?php echo $email['subject']; ?>
+                                                                </a>
                                                         </td>
                                                         <td>
                                                             <?php echo $email['to'] ?>
@@ -87,14 +89,7 @@
                                                             <?php } ?>
                                                             <?php echo _dt($email[ 'created_date']); ?>
                                                         </td>
-                                                        <td>
-                                                            <script>
-                                                                <?php echo $email['content']; ?>
-                                                            </script>
-                                                            <a href="#" class="btn btn-default buttons-collection btn-default-dt-options" style="float: right; margin-left: 10px" data-toggle="modal" data-target="#newEmailModal" onclick="readmore()" data-whatever="<?php echo $email['to'] ?>" data-subject="<?php echo $email['subject']; ?>">
-                                                            <span> Read more</span>
-                                                        </a>
-                                                        </td>
+                                                        
 
                                                         <td>
 
