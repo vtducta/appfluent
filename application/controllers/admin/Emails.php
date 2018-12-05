@@ -162,7 +162,7 @@ class Emails extends Admin_controller
             $this->load->view('admin/emails/group_sent', $data);
         }
         else{
-            $data['inbox'] = $this->emails_model->getReceivedEmail_staff(array('group'=>$group,'staffid'=>get_staff_user_id()));
+            $data['inbox'] = $this->emails_model->getReceivedEmail_staff(array('group'=>$group,'status'=>1,'staffid'=>get_staff_user_id()));
             //var_dump($data['inbox']);die;
             $this->load->view('admin/emails/group_received', $data);
         }
