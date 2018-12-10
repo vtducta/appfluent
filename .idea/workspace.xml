@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a07940db-74ac-4926-8a6c-772c58a6594a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/includes/head.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/includes/head.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,7 +61,7 @@
       <file leaf-file-name="head.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/admin/includes/head.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="391">
               <caret line="47" column="24" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
             </state>
           </provider>
@@ -400,18 +399,18 @@
       <workItem from="1543823450420" duration="1788000" />
       <workItem from="1543825259006" duration="1791000" />
       <workItem from="1543827072676" duration="1785000" />
-      <workItem from="1543828892398" duration="25000" />
+      <workItem from="1543828892398" duration="624000" />
+      <workItem from="1543830991488" duration="612000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22836000" />
+    <option name="totallyTimeSpent" value="24047000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8436912" visible="true" weight="0.30711043" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8418079" visible="true" weight="0.31164902" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
@@ -419,7 +418,7 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" visible="true" weight="0.12376238" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info id="Structure" order="1" sideWeight="0.15630884" side_tool="true" visible="true" weight="0.30711043" />
+      <window_info id="Structure" order="1" sideWeight="0.15819208" side_tool="true" visible="true" weight="0.31164902" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -725,7 +724,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/includes/head.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="391">
           <caret line="47" column="24" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
         </state>
       </provider>
