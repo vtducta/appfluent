@@ -21,13 +21,18 @@
     <?php if(isset($projects_assets)){ ?>
     <link href='<?php echo base_url('assets/plugins/jquery-comments/css/jquery-comments.css'); ?>' rel='stylesheet' />
     <link href='<?php echo base_url('assets/plugins/gantt/css/style.css'); ?>' rel='stylesheet' />
+
     <?php } ?>
     <?php echo app_stylesheet('assets/css','style.css'); ?>
+
     <?php if(file_exists(FCPATH.'assets/css/custom.css')){ ?>
     <link href="<?php echo base_url('assets/css/custom.css'); ?>" rel="stylesheet">
+
     <?php } ?>
     <?php render_custom_styles(array('general','tabs','buttons','admin','modals','tags')); ?>
     <?php render_admin_js_variables(); ?>
+    <link href="<?php echo base_url('assets/css/materialdesignicons.min.css'); ?>" media="all" rel="stylesheet" type="text/css" />
+
     <script>
         appLang['datatables'] = <?php echo json_encode(get_datatables_language_array()); ?>;
         var totalUnreadNotifications = <?php echo $current_user->total_unread_notifications; ?>,
