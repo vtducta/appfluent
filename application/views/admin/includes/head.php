@@ -32,7 +32,11 @@
     <?php render_custom_styles(array('general','tabs','buttons','admin','modals','tags')); ?>
     <?php render_admin_js_variables(); ?>
     <link href="<?php echo base_url('assets/css/materialdesignicons.min.css'); ?>" media="all" rel="stylesheet" type="text/css" />
-
+    <style type="text/css">
+        .sidebar .menu-icon {
+            font-family: "Material Design Icons";
+        }
+    </style>
     <script>
         appLang['datatables'] = <?php echo json_encode(get_datatables_language_array()); ?>;
         var totalUnreadNotifications = <?php echo $current_user->total_unread_notifications; ?>,
