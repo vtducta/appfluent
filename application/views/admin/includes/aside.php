@@ -232,7 +232,7 @@
       <?php } ?>
       <?php if((is_staff_member() || is_admin()) && $this->app->show_setup_menu() == true){ ?>
       <li<?php if(get_option('show_setup_menu_item_only_on_hover') == 1) { echo ' style="display:none;"'; } ?> id="setup-menu-item" title="Setup">
-         <a href="#" class="open-customizer"><i class="mdi mdi-settings mdi-24px"></i>
+         <a href="#" class="open-customizer"><i class="fa fa-cog menu-icon"></i>
          <?php echo _l('setting_bar_heading'); ?></a>
          <?php } ?>
       </li>
