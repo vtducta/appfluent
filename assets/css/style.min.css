@@ -1402,7 +1402,8 @@ body.page-small.show-sidebar #wrapper {
     position: absolute;
     top: 53px;
     -webkit-transition: all .5s ease 0s;
-    transition: all .5s ease 0s
+    transition: all .5s ease 0s;
+    z-index: -1;
 }
 
 #side-menu {
@@ -2896,7 +2897,8 @@ body.rtl.hide-sidebar #wrapper {
 }
 
 #mobile-search #top_search {
-    width: 100%!important
+    width: 100%!important;
+    margin-left: 60px;
 }
 
 #mobile-search #top_search_button button {
@@ -3984,7 +3986,7 @@ body.rtl .home-activity .tab-content {
 #top_search {
     display: inline-block;
     width: 230px;
-    background: #363f44;
+    background: #4e5966;
 }
 
 #top_search input {
@@ -8094,7 +8096,7 @@ textarea[data-task-ae-editor="1"] {
     position: fixed;
     bottom: 0;
     padding: 15px;
-    padding-right: 41px;
+    padding-right: 90px;
     margin: 0 0 0 -46px;
     -webkit-box-shadow: 0 -4px 1px -4px rgba(0, 0, 0, .1);
     box-shadow: 0 -4px 1px -4px rgba(0, 0, 0, .1);
