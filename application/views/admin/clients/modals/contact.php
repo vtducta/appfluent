@@ -32,49 +32,52 @@
                         </div>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="contact_basic_info">
+                                <?php if(isset($contact)){ ?>
+                                    <div class="alert alert-warning hide" role="alert" id="contact_proposal_warning">
+                                        <?php echo _l('proposal_warning_email_change',array(_l('contact_lowercase'),_l('contact_lowercase'),_l('contact_lowercase'))); ?>
+                                        <hr />
+                                        <a href="#" id="contact_update_proposals_emails" data-original-email="" onclick="update_all_proposal_emails_linked_to_contact(<?php echo $contact->id; ?>); return false;"><?php echo _l('update_proposal_email_yes'); ?></a>
+                                        <br />
+                                        <a href="#" onclick="close_modal_manually('#contact'); return false;"><?php echo _l('update_proposal_email_no'); ?></a>
+                                    </div>
+                                <?php } ?>
 
-                                <?php if(isset($contact)){ ?>
-                                <img src="<?php echo contact_profile_image_url($contact->id,'thumb'); ?>" id="contact-img" class="client-profile-image-small">
-                                <?php if(!empty($contact->profile_image)){ ?>
-                                <a href="#" onclick="delete_contact_profile_image(<?php echo $contact->id; ?>); return false;" class="text-danger pull-right" id="contact-remove-img"><i class="fa fa-remove"></i></a>
-                                <?php } ?>
-                                <hr />
-                                <?php } ?>
-                                <div id="contact-profile-image" class="form-group<?php if(isset($contact) && !empty($contact->profile_image)){echo ' hide';} ?>">
-                                    <label for="profile_image" class="profile-image"><?php echo _l('client_profile_image'); ?></label>
-                                    <input type="file" name="profile_image" class="form-control" id="profile_image">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <?php echo form_hidden('contactid',$contactid); ?>
+                                        <?php $value=( isset($contact) ? $contact->firstname : ''); ?>
+                                        <?php echo render_input( 'firstname', 'client_firstname',$value); ?>
+
+                                    </div>
+                                    <div class="col-md-2">
+                                        <?php $value=( isset($contact) ? $contact->middle_name : ''); ?>
+                                        <?php echo render_input( 'middle_name', 'client_middle_name',$value); ?>
+
+                                    </div>
+                                    <div class="col-md-2">
+                                        <?php $value=( isset($contact) ? $contact->lastname : ''); ?>
+                                        <?php echo render_input( 'lastname', 'client_lastname',$value); ?>
+
+                                    </div>
+                                    <div class="col-md-2">
+                                        <?php $value=( isset($contact) ? $contact->title : ''); ?>
+                                        <?php echo render_input( 'title', 'contact_position',$value); ?>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <?php $value=( isset($contact) ? $contact->email : ''); ?>
+                                        <?php echo render_input( 'email', 'client_email',$value, 'email'); ?>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <?php $value=( isset($contact) ? $contact->phonenumber : ''); ?>
+                                        <?php echo render_input( 'phonenumber', 'client_phonenumber',$value,'text',array('autocomplete'=>'off')); ?>
+                                    </div>
+                                    <div class="col-md-2">
+
+                                    </div>
                                 </div>
-                                <?php if(isset($contact)){ ?>
-                                <div class="alert alert-warning hide" role="alert" id="contact_proposal_warning">
-                                    <?php echo _l('proposal_warning_email_change',array(_l('contact_lowercase'),_l('contact_lowercase'),_l('contact_lowercase'))); ?>
-                                    <hr />
-                                    <a href="#" id="contact_update_proposals_emails" data-original-email="" onclick="update_all_proposal_emails_linked_to_contact(<?php echo $contact->id; ?>); return false;"><?php echo _l('update_proposal_email_yes'); ?></a>
-                                    <br />
-                                    <a href="#" onclick="close_modal_manually('#contact'); return false;"><?php echo _l('update_proposal_email_no'); ?></a>
-                                </div>
-                                <?php } ?>
                                 <!-- // For email exist check -->
-                                <?php echo form_hidden('contactid',$contactid); ?>
-                                <?php $value=( isset($contact) ? $contact->firstname : ''); ?>
-                                <?php echo render_input( 'firstname', 'client_firstname',$value); ?>
-                                <?php $value=( isset($contact) ? $contact->middle_name : ''); ?>
-                                <?php echo render_input( 'middle_name', 'client_middle_name',$value); ?>
-                                <?php $value=( isset($contact) ? $contact->lastname : ''); ?>
-                                <?php echo render_input( 'lastname', 'client_lastname',$value); ?>
-                                <?php $value=( isset($contact) ? $contact->title : ''); ?>
-                                <?php echo render_input( 'title', 'contact_position',$value); ?>
-                                <?php $value=( isset($contact) ? $contact->email : ''); ?>
-                                <?php echo render_input( 'email', 'client_email',$value, 'email'); ?>
-                                <?php $value=( isset($contact) ? $contact->phonenumber : ''); ?>
-                                <?php echo render_input( 'phonenumber', 'client_phonenumber',$value,'text',array('autocomplete'=>'off')); ?>
-                                <div class="form-group contact-direction-option">
-                                  <label for="direction"><?php echo _l('document_direction'); ?></label>
-                                  <select class="selectpicker" data-none-selected-text="<?php echo _l('system_default_string'); ?>" data-width="100%" name="direction" id="direction">
-                                    <option value="" <?php if(isset($contact) && empty($contact->direction)){echo 'selected';} ?>></option>
-                                    <option value="ltr" <?php if(isset($contact) && $contact->direction == 'ltr'){echo 'selected';} ?>>LTR</option>
-                                    <option value="rtl" <?php if(isset($contact) && $contact->direction == 'rtl'){echo 'selected';} ?>>RTL</option>
-                                </select>
-                            </div>
+
+
                             <?php $rel_id=( isset($contact) ? $contact->id : false); ?>
                             <?php echo render_custom_fields( 'contacts',$rel_id); ?>
 
@@ -82,11 +85,23 @@
                     </div>
                             <div role="tabpanel" class="tab-pane" id="contact_other_info">
 
+                                <?php if(isset($contact)){ ?>
+                                    <img src="<?php echo contact_profile_image_url($contact->id,'thumb'); ?>" id="contact-img" class="client-profile-image-small">
+                                    <?php if(!empty($contact->profile_image)){ ?>
+                                        <a href="#" onclick="delete_contact_profile_image(<?php echo $contact->id; ?>); return false;" class="text-danger pull-right" id="contact-remove-img"><i class="fa fa-remove"></i></a>
+                                    <?php } ?>
+                                    <hr />
+                                <?php } ?>
+                                <div id="contact-profile-image" class="form-group<?php if(isset($contact) && !empty($contact->profile_image)){echo ' hide';} ?>">
+                                    <label for="profile_image" class="profile-image"><?php echo _l('client_profile_image'); ?></label>
+                                    <input type="file" name="profile_image" class="form-control" id="profile_image">
+                                </div>
+                                
                                 <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
                                 <input  type="text" class="fake-autofill-field" name="fakeusernameremembered" value='' tabindex="-1" />
                                 <input  type="password" class="fake-autofill-field" name="fakepasswordremembered" value='' tabindex="-1"/>
 
-                                <div class="client_password_set_wrapper">
+                                <div class="client_password_set_wrapper form-group">
                                     <label for="password" class="control-label">
                                         <?php echo _l( 'client_password'); ?>
                                     </label>
@@ -110,6 +125,16 @@
                                         }
                                     } ?>
                                 </div>
+
+                                <div class="form-group contact-direction-option">
+                                    <label for="direction"><?php echo _l('document_direction'); ?></label>
+                                    <select class="selectpicker" data-none-selected-text="<?php echo _l('system_default_string'); ?>" data-width="100%" name="direction" id="direction">
+                                        <option value="" <?php if(isset($contact) && empty($contact->direction)){echo 'selected';} ?>></option>
+                                        <option value="ltr" <?php if(isset($contact) && $contact->direction == 'ltr'){echo 'selected';} ?>>LTR</option>
+                                        <option value="rtl" <?php if(isset($contact) && $contact->direction == 'rtl'){echo 'selected';} ?>>RTL</option>
+                                    </select>
+                                </div>
+
                                 <hr />
                                 <div class="checkbox checkbox-primary">
                                     <input type="checkbox" name="is_primary" id="contact_primary" <?php if((!isset($contact) && total_rows('tblcontacts',array('is_primary'=>1,'userid'=>$customer_id)) == 0) || (isset($contact) && $contact->is_primary == 1)){echo 'checked';}; ?> <?php if((isset($contact) && total_rows('tblcontacts',array('is_primary'=>1,'userid'=>$customer_id)) == 1 && $contact->is_primary == 1)){echo 'disabled';} ?>>

@@ -87,9 +87,18 @@
                      $value=( isset($client) ? $client->vat : '');
                      //echo render_input( 'vat', 'client_vat_number',$value);
                      } ?>
-                  <?php $value=( isset($client) ? $client->phonenumber : ''); ?>
-                  <?php echo render_input( 'phonenumber', 'client_phonenumber',$value); ?>
-                  <?php if((isset($client) && empty($client->website)) || !isset($client)){
+
+                  <?php //$value=( isset($client) ? $client->phonenumber : ''); ?>
+                  <?php //echo render_input( 'phonenumber', 'client_phonenumber',$value); ?>
+
+                   <?php $value=( isset($contact) ? $contact->phonenumber : ''); ?>
+                   <?php echo render_input( 'contact[phonenumber]', 'contact_phonenumber',$value,'text'); ?>
+
+                   <?php $value=( isset($contact) ? $contact->email : ''); ?>
+                   <?php echo render_input( 'contact[email]', 'contact_email',$value,'text'); ?>
+
+
+                   <?php if((isset($client) && empty($client->website)) || !isset($client)){
                      $value=( isset($client) ? $client->website : '');
                      echo render_input( 'website', 'client_website',$value);
                      } else { ?>

@@ -179,7 +179,6 @@ $(function() {
             //company: 'required',
             'contact[firstname]': 'required',
             'contact[lastname]': 'required',
-            'contact[middle_name]': 'required',
         }
     }
     _validate_form($('.client-form'), vRules);
@@ -223,7 +222,7 @@ function delete_contact_profile_image(contact_id) {
 function validate_contact_form() {
     _validate_form('#contact-form', {
         firstname: 'required',
-        middle_name: 'required',
+        //middle_name: 'required',
         lastname: 'required',
         // password: {
         //     required: {
@@ -235,27 +234,27 @@ function validate_contact_form() {
         //         }
         //     }
         // },
-        email: {
-            <?php if(do_action('contact_email_required',"true") === "true"){ ?>
-            required: true,
-            <?php } ?>
-            email: true,
-            // Use this hook only if the contacts are not logging into the customers area and you are not using support tickets piping.
-            <?php if(do_action('contact_email_unique',"true") === "true"){ ?>
-            remote: {
-                url: admin_url + "misc/contact_email_exists",
-                type: 'post',
-                data: {
-                    email: function() {
-                        return $('#contact input[name="email"]').val();
-                    },
-                    userid: function() {
-                        return $('body').find('input[name="contactid"]').val();
-                    }
-                }
-            }
-            <?php } ?>
-        }
+        //email: {
+        //    <?php //if(do_action('contact_email_required',"true") === "true"){ ?>
+        //    required: true,
+        //    <?php //} ?>
+        //    email: true,
+        //    // Use this hook only if the contacts are not logging into the customers area and you are not using support tickets piping.
+        //    <?php //if(do_action('contact_email_unique',"true") === "true"){ ?>
+        //    remote: {
+        //        url: admin_url + "misc/contact_email_exists",
+        //        type: 'post',
+        //        data: {
+        //            email: function() {
+        //                return $('#contact input[name="email"]').val();
+        //            },
+        //            userid: function() {
+        //                return $('body').find('input[name="contactid"]').val();
+        //            }
+        //        }
+        //    }
+        //    <?php //} ?>
+        //}
     }, contactFormHandler);
 }
 
