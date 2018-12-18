@@ -2898,7 +2898,6 @@ body.rtl.hide-sidebar #wrapper {
 
 #mobile-search #top_search {
     width: 100%!important;
-    margin-left: 60px;
 }
 
 #mobile-search #top_search_button button {
@@ -8891,4 +8890,21 @@ body.gantt {
     margin-top: 30px !important;;
     margin-right: 60px !important;;
     margin-left: 60px !important;;
+}
+
+@media (max-width:768px) {
+    body.hide-sidebar:not(.show-sidebar) #menu {
+        margin-left:-210px;
+    }
+
+    body.hide-sidebar:not(.show-sidebar) #wrapper{
+        margin-left: 0px;
+    }
+    body.page-small #wrapper {
+        margin-left: 0px;
+    }
+
+    #wrapper {
+        margin-left: 0px;
+    }
 }
