@@ -1403,7 +1403,7 @@ body.page-small.show-sidebar #wrapper {
     top: 53px;
     -webkit-transition: all .5s ease 0s;
     transition: all .5s ease 0s;
-    z-index: -1;
+    /*z-index: -1;*/
 }
 
 #side-menu {
