@@ -15,7 +15,10 @@
    ob_end_clean();
    ?>
 <div id="header">
-   <div class="hide-menu"><i class="fa fa-bars"></i></div>
+   <div class="hide-menu">
+       <i class="fa fa-bars"></i>
+        <span  >Revv CRM</span>
+   </div>
    <div id="logo">
       <?php get_company_logo(get_admin_uri().'/') ?>
    </div>

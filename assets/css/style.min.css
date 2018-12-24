@@ -1157,7 +1157,7 @@ body.page-small.show-sidebar #wrapper {
 }
 
 .navbar-nav>li>a {
-    color: #363f44;
+    color: #626f80;
     font-size: 13px;
     padding: 0px 12px 4px 12px;
     line-height: 57px;
@@ -1416,7 +1416,7 @@ body.page-small.show-sidebar #wrapper {
 
 #side-menu li a {
     color: #fff;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     padding: 11px 20px 11px 20px;
     font-size: 13px;
     font-family: Roboto
@@ -1617,7 +1617,7 @@ li .nav-second-level li {
     color: #fff;
     font-size: 14px;
     font-family: Roboto;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     padding: 7px 16px
 }
 
@@ -3985,7 +3985,7 @@ body.rtl .home-activity .tab-content {
 #top_search {
     display: inline-block;
     width: 230px;
-    background: #4e5966;
+    background: #626f80;
 }
 
 #top_search input {
@@ -4014,7 +4014,7 @@ body.rtl .home-activity .tab-content {
     width: 60px;
     padding: 0px 0 5px 5px;
     font-size: 20px;
-    color: #363f44;/*rgba(255, 255, 255, .5);*/
+    color: #626f80;/*rgba(255, 255, 255, .5);*/
     background: 0 0;
     font-weight: 500
 }
@@ -8907,4 +8907,20 @@ body.gantt {
     #wrapper {
         margin-left: 0px;
     }
+}
+
+body.hide-sidebar:not(.show-sidebar) .hide-menu {
+    width: 60px;
+}
+body.show-sidebar:not(.hide-sidebar) .hide-menu {
+    width: 200px;
+}
+body.hide-sidebar:not(.show-sidebar) .hide-menu span{
+    display: none;
+}
+body.show-sidebar:not(.hide-sidebar) .hide-menu span{
+    display: unset;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 20px;
 }
