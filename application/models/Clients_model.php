@@ -2184,4 +2184,9 @@ class Clients_model extends CRM_Model
 
         return $this->db->insert_id();
     }
+
+    public function get_contact_phone($contact_id){
+        $this->db->where('contact_id',$contact_id);
+        return $this->db->get('tblcontact_phonenumbers')->result_array();
+    }
 }

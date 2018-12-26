@@ -217,7 +217,7 @@ foreach ($rResult as $aRow) {
 //    $row[] = $company;
 
     // Primary contact
-    $row[] = ($aRow['contact_id'] ? '<a href="' .$url . '" target="_blank">' . $aRow['firstname'] . ' ' . $aRow['middle_name'] . ' '. $aRow['lastname'] . '</a>' : '');
+    $row[] = ($aRow['contact_id'] ? '<a href="' .admin_url('clients/client/' . $aRow['userid']) . '">' . $aRow['firstname'] . ' ' . $aRow['middle_name'] . ' '. $aRow['lastname'] . '</a>' : '');
 
     // Primary contact email
     $row[] = ($aRow['email'] ? '<a href="mailto:' . $aRow['email'] . '">' . $aRow['email'] . '</a>' : '');

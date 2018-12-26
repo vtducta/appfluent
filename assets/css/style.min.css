@@ -8912,13 +8912,13 @@ body.gantt {
 body.hide-sidebar:not(.show-sidebar) .hide-menu {
     width: 60px;
 }
-body.show-sidebar:not(.hide-sidebar) .hide-menu {
+body:not(.hide-sidebar) .hide-menu {
     width: 200px;
 }
 body.hide-sidebar:not(.show-sidebar) .hide-menu span{
     display: none;
 }
-body.show-sidebar:not(.hide-sidebar) .hide-menu span{
+body:not(.hide-sidebar) .hide-menu span{
     display: unset;
     font-size: 16px;
     font-weight: bold;

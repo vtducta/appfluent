@@ -178,6 +178,8 @@ class Clients extends Admin_controller
             $contact_primary = $this->clients_model->get_contact_primary($id);
             if($contact_primary){
                 $data['contact']= $contact_primary;
+                $contact_phone = $this->clients_model->get_contact_phone($contact_primary->id);
+                $data['contact_phone'] = $contact_phone;
             }
 
             if (!$client) {
