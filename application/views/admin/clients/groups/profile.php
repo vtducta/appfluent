@@ -145,7 +145,7 @@
                                 $html = '<div class="row _contact_phone _ctp'.$numItems.'">' ;
                                 $html .=    '                        <div class="col-md-6">' .
                                     '                            <div class="form-group" app-field-wrapper="contact_info[phone][value]['.$numItems.']">' .
-                                    '                                <input type="text" id="contact_info[phone]['.$numItems.']" name="contact_info[phone]['.$numItems.']" class="form-control" value="'.$ctp['phone_number'].'">' .
+                                    '                                <input type="text" id="contact_info[phone][value]['.$numItems.']" name="contact_info[phone][value]['.$numItems.']" class="form-control" value="'.$ctp['phone_number'].'">' .
                                     '                            </div>' .
                                     '                        </div>' .
                                     '                        <div class="col-md-6">' .
@@ -395,13 +395,13 @@
         var numItems = $('._contact_phone').length+1;
         html = '<div class="row _contact_phone _ctp'+numItems+'">' +
             '                        <div class="col-md-6">' +
-            '                            <div class="form-group" app-field-wrapper="contact_info[phone][value][1]">' +
-            '                                <input type="text" id="contact_info[phone][1]" name="contact_info[phone][1]" class="form-control" value="">' +
+            '                            <div class="form-group" app-field-wrapper="contact_info[phone][value]['+numItems+']">' +
+            '                                <input type="text" id="contact_info[phone][value]['+numItems+']" name="contact_info[phone][value]['+numItems+']" class="form-control" value="">' +
             '                            </div>' +
             '                        </div>' +
             '                        <div class="col-md-6">' +
-            '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[phone][type][1]">' +
-            '                                <select name="contact_info[phone][type][1]" id="contact_info[phone][type][1]"   class="form-control" >' +
+            '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[phone][type]['+numItems+']">' +
+            '                                <select name="contact_info[phone][type]['+numItems+']" id="contact_info[phone][type]['+numItems+']"   class="form-control" >' +
             '                                    <option value=""></option>' +
             '                                    <option value="work">Work</option>' +
             '                                    <option value="personal">Personal</option>' +
