@@ -103,7 +103,8 @@ class Clients extends Admin_controller
                 $data_contact['is_primary']=1;
                 unset($data['contact']);
 
-
+                $data_contact_info =  $data['contact_info'];
+                unset($data['contact_info']);
 
 
 
@@ -120,8 +121,12 @@ class Clients extends Admin_controller
                 }
                 if ($id) {
                     //add contact primary
-                    $this->clients_model->add_contact($data_contact,$id);
-
+                    $contact_id = $this->clients_model->add_contact($data_contact,$id);
+                    if($contact_id && $data_contact_info){
+                        if($data_contact_info['phone']){
+                            $this->clients_model->insert_contact_phone($contact_id,$data_contact_info['phone']);
+                        }
+                    }
                     //
                     set_alert('success', _l('added_successfully', _l('client')));
                     if ($save_and_add_contact == false) {
@@ -142,9 +147,19 @@ class Clients extends Admin_controller
                 //update primary contact
                 $data_contact= $data['contact'];
                 unset($data['contact']);
+
+                $data_contact_info =  $data['contact_info'];
+                unset($data['contact_info']);
+
                 if($data_contact['id']){
                     $data_contact['is_primary']=1;
                     $this->clients_model->update_contact($data_contact,$data_contact['id']);
+
+                    if($data_contact['id'] && $data_contact_info){
+                        if($data_contact_info['phone']){
+                            $this->clients_model->insert_contact_phone($data_contact['id'],$data_contact_info['phone']);
+                        }
+                    }
                 }
 
 
@@ -176,6 +191,7 @@ class Clients extends Admin_controller
         } else {
             $client = $this->clients_model->get($id);
             $contact_primary = $this->clients_model->get_contact_primary($id);
+
             if($contact_primary){
                 $data['contact']= $contact_primary;
                 $contact_phone = $this->clients_model->get_contact_phone($contact_primary->id);

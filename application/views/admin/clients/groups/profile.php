@@ -58,6 +58,29 @@
                   </div>
                </div>
                 <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="form-group" >
+
+                            <label for="salutation" class="control-label"><?php echo _l('contact_salutation') ?></label>
+                            <?php
+                            $value=( isset($contact) ? $contact->salutation : '');
+                            ?>
+                            <select name="contact[salutation]" id="contact[salutation]"   class="form-control selectpicker">
+                                <option <?php if($value=="") echo 'selected' ?> value=""></option>
+                                <option <?php if($value=="Mr.") echo 'selected' ?> value="Mr.">Mr.</option>
+                                <option <?php if($value=="Mrs.") echo 'selected' ?> value="Mrs.">Mrs.</option>
+                                <option <?php if($value=="Ms.") echo 'selected' ?> value="Ms.">Ms.</option>
+                                <option <?php if($value=="Miss.") echo 'selected' ?> value="Miss.">Miss.</option>
+                                <option <?php if($value=="Mx.") echo 'selected' ?> value="Mx.">Mx.</option>
+                                <option <?php if($value=="Dr.") echo 'selected' ?> value="Dr.">Dr.</option>
+                                <option <?php if($value=="Prof.") echo 'selected' ?> value="Prof.">Prof.</option>
+                                <option <?php if($value=="Rev.") echo 'selected' ?> value="Rev.">Rev.</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+
                     <?php echo form_hidden('contact[id]',$contact->id); ?>
                     <div class="col-md-4">
                         <?php $value=( isset($contact) ? $contact->firstname : ''); ?>
@@ -95,13 +118,13 @@
                    <?php //echo render_input( 'contact[phonenumber]', 'contact_phonenumber',$value,'text'); ?>
                    <div id="phone_row_1" class="row _contact_phone">
                        <div class="col-md-6">
-                           <div class="form-group" app-field-wrapper="contact_info[phone][value][1]">
+                           <div class="form-group" app-field-wrapper="contact_info[phone][1][value]">
                                <div style="float:left; margin-top: -5px; margin-right: 5px">
                                    <a style="cursor: pointer;font-size: 17px" href="javascript:add_phone()">
                                        <i class="mdi mdi-plus-circle-outline"></i>
                                    </a>
                                </div>
-                               <label for="contact_info[phone][value][1]" class="control-label">Phone</label>
+                               <label for="contact_info[phone][1][value]" class="control-label">Phone</label>
                                <?php
                                  $value="";
                                  if($contact_phone){
@@ -109,13 +132,13 @@
                                        $value = $contact_phone[0]['phone_number'];
                                    }
                                } ?>
-                               <input type="text" id="contact_info[phone][1]" name="contact_info[phone][1]" class="form-control" value="<?php echo $value; ?>">
+                               <input type="text" id="contact_info[phone][1][value]" name="contact_info[phone][1][value]" class="form-control" value="<?php echo $value; ?>">
                            </div>
                        </div>
                        <div class="col-md-6">
-                           <div class="form-group" app-field-wrapper="contact_info[phone][type][1]">
+                           <div class="form-group" app-field-wrapper="contact_info[phone][1][type]">
 
-                               <label for="contact_info[phone][type][1]" class="control-label">Phone Type</label>
+                               <label for="contact_info[phone][1][type]" class="control-label">Phone Type</label>
                                <?php
                                $value="";
                                if($contact_phone){
@@ -123,7 +146,7 @@
                                        $value = $contact_phone[0]['phone_type'];
                                    }
                                } ?>
-                               <select name="contact_info[phone][type][1]" id="contact_info[phone][type][1]"   class="form-control selectpicker">
+                               <select name="contact_info[phone][1][type]" id="contact_info[phone][1][type]"   class="form-control selectpicker">
                                    <option <?php if($value=="") echo 'selected' ?> value=""></option>
                                    <option <?php if($value=="work") echo 'selected' ?> value="work">Work</option>
                                    <option <?php if($value=="personal") echo 'selected' ?> value="personal">Personal</option>
@@ -144,13 +167,13 @@
 
                                 $html = '<div class="row _contact_phone _ctp'.$numItems.'">' ;
                                 $html .=    '                        <div class="col-md-6">' .
-                                    '                            <div class="form-group" app-field-wrapper="contact_info[phone][value]['.$numItems.']">' .
-                                    '                                <input type="text" id="contact_info[phone][value]['.$numItems.']" name="contact_info[phone][value]['.$numItems.']" class="form-control" value="'.$ctp['phone_number'].'">' .
+                                    '                            <div class="form-group" app-field-wrapper="contact_info[phone]['.$numItems.'][value]">' .
+                                    '                                <input type="text" id="contact_info[phone]['.$numItems.'][value]" name="contact_info[phone]['.$numItems.'][value]" class="form-control" value="'.$ctp['phone_number'].'">' .
                                     '                            </div>' .
                                     '                        </div>' .
                                     '                        <div class="col-md-6">' .
-                                    '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[phone][type]['.$numItems.']">' .
-                                    '                                <select name="contact_info[phone][type]['.$numItems.']" id="contact_info[phone][type]['.$numItems.']"   class="form-control" >' .
+                                    '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[phone]['.$numItems.'][type]">' .
+                                    '                                <select name="contact_info[phone]['.$numItems.'][type]" id="contact_info[phone]['.$numItems.'][type]"   class="form-control" >' .
                                     '                                    <option '. ($ctp['phone_type']==''?'selected':'') .'  value=""></option>' .
                                     '                                    <option '. ($ctp['phone_type']=='work'?'selected':'') .' value="work">Work</option>' .
                                     '                                    <option '. ($ctp['phone_type']=='personal'?'selected':'') .' value="personal">Personal</option>' .
@@ -390,35 +413,5 @@
 <?php $this->load->view('admin/clients/client_group'); ?>
 
 <script>
-    function add_phone() {
-        var html="";
-        var numItems = $('._contact_phone').length+1;
-        html = '<div class="row _contact_phone _ctp'+numItems+'">' +
-            '                        <div class="col-md-6">' +
-            '                            <div class="form-group" app-field-wrapper="contact_info[phone][value]['+numItems+']">' +
-            '                                <input type="text" id="contact_info[phone][value]['+numItems+']" name="contact_info[phone][value]['+numItems+']" class="form-control" value="">' +
-            '                            </div>' +
-            '                        </div>' +
-            '                        <div class="col-md-6">' +
-            '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[phone][type]['+numItems+']">' +
-            '                                <select name="contact_info[phone][type]['+numItems+']" id="contact_info[phone][type]['+numItems+']"   class="form-control" >' +
-            '                                    <option value=""></option>' +
-            '                                    <option value="work">Work</option>' +
-            '                                    <option value="personal">Personal</option>' +
-            '                                </select>' +
-            '                            </div>' +
-            '                            <div style="float: left; font-size: 17px; margin-left: 5px">' +
-            '                                <a style="cursor: pointer" href="javascript:remove_phone(\'_ctp'+numItems+'\')">' +
-            '                                    <i class="mdi mdi-close-circle-outline"></i>' +
-            '                                </a>' +
-            '                            </div>' +
-            '                        </div>' +
-            '                    </div>';
-        $('#phone_row_1').after(html);
-    }
 
-    function remove_phone(ctpIndex) {
-        $('.'+ctpIndex).remove();
-
-    }
 </script>

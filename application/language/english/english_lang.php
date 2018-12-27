@@ -3800,3 +3800,4 @@ $lang['contact_other_info']='Other info';
 $lang['contact_phonenumber'] = 'Phone';
 $lang['contact_email'] = 'Email';
 $lang['clients_summary'] = 'Customer summary';
+$lang['contact_salutation'] = 'Salutation';

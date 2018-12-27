@@ -2189,4 +2189,22 @@ class Clients_model extends CRM_Model
         $this->db->where('contact_id',$contact_id);
         return $this->db->get('tblcontact_phonenumbers')->result_array();
     }
+
+    public function insert_contact_phone($contact_id,$data_phone){
+        $this->db->where('contact_id',$contact_id);
+        $this->db->delete('tblcontact_phonenumbers');
+
+        foreach ($data_phone as $phone){
+            if($phone['value']){
+                $data = array(
+                    'contact_id' => $contact_id,
+                    'phone_number' => $phone['value'],
+                    'phone_type' => $phone['type']
+                );
+                $this->db->insert('tblcontact_phonenumbers', $data);
+            }
+
+        }
+
+    }
 }

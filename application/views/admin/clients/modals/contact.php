@@ -44,6 +44,28 @@
 
                                 <div class="row">
                                     <div class="col-md-2">
+                                        <div class="form-group" >
+
+                                            <label for="salutation" class="control-label"><?php echo _l('contact_salutation') ?></label>
+                                            <?php
+                                            $value=( isset($contact) ? $contact->salutation : '');
+                                            ?>
+                                            <select name="salutation" id="salutation"   class="form-control selectpicker">
+                                                <option <?php if($value=="") echo 'selected' ?> value=""></option>
+                                                <option <?php if($value=="Mr.") echo 'selected' ?> value="Mr.">Mr.</option>
+                                                <option <?php if($value=="Mrs.") echo 'selected' ?> value="Mrs.">Mrs.</option>
+                                                <option <?php if($value=="Ms.") echo 'selected' ?> value="Ms.">Ms.</option>
+                                                <option <?php if($value=="Miss.") echo 'selected' ?> value="Miss.">Miss.</option>
+                                                <option <?php if($value=="Mx.") echo 'selected' ?> value="Mx.">Mx.</option>
+                                                <option <?php if($value=="Dr.") echo 'selected' ?> value="Dr.">Dr.</option>
+                                                <option <?php if($value=="Prof.") echo 'selected' ?> value="Prof.">Prof.</option>
+                                                <option <?php if($value=="Rev.") echo 'selected' ?> value="Rev.">Rev.</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
                                         <?php echo form_hidden('contactid',$contactid); ?>
                                         <?php $value=( isset($contact) ? $contact->firstname : ''); ?>
                                         <?php echo render_input( 'firstname', 'client_firstname',$value); ?>

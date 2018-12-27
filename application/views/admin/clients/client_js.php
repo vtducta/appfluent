@@ -407,4 +407,36 @@ function fetch_lat_long_from_google_cprofile() {
         }
     });
 }
+
+function add_phone() {
+    var html="";
+    var numItems = $('._contact_phone').length+1;
+    html = '<div class="row _contact_phone _ctp'+numItems+'">' +
+        '                        <div class="col-md-6">' +
+        '                            <div class="form-group" app-field-wrapper="contact_info[phone]['+numItems+'][value]">' +
+        '                                <input type="text" id="contact_info[phone]['+numItems+'][value]" name="contact_info[phone]['+numItems+'][value]" class="form-control" value="">' +
+        '                            </div>' +
+        '                        </div>' +
+        '                        <div class="col-md-6">' +
+        '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[phone]['+numItems+'][type]">' +
+        '                                <select name="contact_info[phone]['+numItems+'][type]" id="contact_info[phone]['+numItems+'][type]"   class="form-control" >' +
+        '                                    <option value=""></option>' +
+        '                                    <option value="work">Work</option>' +
+        '                                    <option value="personal">Personal</option>' +
+        '                                </select>' +
+        '                            </div>' +
+        '                            <div style="float: left; font-size: 17px; margin-left: 5px">' +
+        '                                <a style="cursor: pointer" href="javascript:remove_phone(\'_ctp'+numItems+'\')">' +
+        '                                    <i class="mdi mdi-close-circle-outline"></i>' +
+        '                                </a>' +
+        '                            </div>' +
+        '                        </div>' +
+        '                    </div>';
+    $('#phone_row_1').after(html);
+}
+
+function remove_phone(ctpIndex) {
+    $('.'+ctpIndex).remove();
+
+}
 </script>
