@@ -346,7 +346,7 @@
                            $html = '<div class="row _contact_website _ctw'.$numItems.'">' ;
                            $html .=    '                        <div class="col-md-6">' .
                                '                            <div class="form-group" app-field-wrapper="contact_info[website]['.$numItems.'][value]">' .
-                               '                                <input type="text" id="contact_info[website]['.$numItems.'][value]" name="contact_info[website]['.$numItems.'][value]" class="form-control" value="'.$ctw['mail'].'">' .
+                               '                                <input type="text" id="contact_info[website]['.$numItems.'][value]" name="contact_info[website]['.$numItems.'][value]" class="form-control" value="'.$ctw['website'].'">' .
                                '                            </div>' .
                                '                        </div>' .
                                '                        <div class="col-md-6">' .

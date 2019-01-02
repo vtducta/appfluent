@@ -57,10 +57,9 @@
                                        data-title="<?php echo _l('clients_summary'); ?>" data-placement="bottom"
                                        onclick="slideToggle('.clients-overview'); return false;"><i
                                                 class="fa fa-bar-chart"></i></a>
-                                    <a href="#" class="btn btn-default btn-with-tooltip mleft10" data-toggle="tooltip"
-                                       data-title="<?php echo _l('clients_summary'); ?>" data-placement="bottom"
-                                       onclick="slideToggle('.clients-overview'); return false;"><i
-                                                class="fa fa-filter"></i></a>
+                                    <a href="javascript:show_hide_filter();" class="btn btn-default btn-with-tooltip mleft10" data-toggle="tooltip"
+                                       data-title="<?php echo 'show/hide filter'; ?>" data-placement="bottom"
+                                       ><i class="fa fa-filter"></i></a>
 
                                 </div>
                             </div>
@@ -159,6 +158,7 @@
                             <label for="exclude_inactive"><?php echo _l('exclude_inactive'); ?><?php echo _l('clients'); ?></label>
                         </div>
                         <div class="clearfix mtop20"></div>
+                        <div class="col-md-12 _div_list" >
                         <?php
                         $table_data = array();
                         $_table_data = array(
@@ -189,6 +189,144 @@
                             'data-default-order' => get_table_last_order('customers'),
                         ]);
                         ?>
+                        </div>
+
+                        <div class="_filter_special hide" style="height: 600px ; overflow: auto">
+                            <p class="text-dark text-uppercase">
+                                <?php echo _l( 'contact_filter'); ?>
+                                <a href="#" onclick="clear_filter();" style="float: right;">clear</a>
+                            </p>
+                            <div class="form-group">
+                                <label for="default_language" class="control-label"><?php echo _l('filter_tags'); ?>
+                                </label>
+                                <select name="filter_select_tags" id="filter_select_tags" class="form-control selectpicker _select_filter_contact _select_filter" data-none-selected-text="" >
+                                    <option value=""></option>
+                                    <option value="EQUALS">contain</option>
+                                    <option value="NOTEQUALS">not contain</option>
+                                </select>
+                            </div>
+                            <?php
+                            echo render_input('filter_values_tags', '', '','','','','','_input_filter_contact');
+                            ?>
+
+                            <?php if(count($contacts_structure)> 0) {
+                                $filterTemplate = '';
+                                foreach ($contacts_structure as $item) {
+                                    ?>
+                                    <div class="form-group">
+                                        <label for="default_language" class="control-label"><?php echo _l('filter_' . $item->name); ?>
+                                        </label>
+                                        <?php
+                                        $select ='';
+                                        if(strpos('varchar',strtolower($item->type))!==false){
+                                            $select ='<select name="filter_select[' . $item->name;
+                                            $select = $select . ']" id="filter_select[';
+                                            $select = $select . $item->name . ']" class="form-control selectpicker _select_filter_contact _select_filter" data-none-selected-text="">';
+                                            $select = $select . '<option value=""></option>';
+                                            $select = $select . '<option value="EQUALS">is</option>';
+                                            $select = $select . '<option value="NOTEQUALS">isn’t</option>';
+                                            $select = $select . '<option value="LIKE">any</option>';
+                                            $select = $select . '</select>';
+                                        }
+                                        echo $select;
+                                        ?>
+                                    </div>
+                                    <?php
+                                    echo render_input('filter_values['.$item->name.']', '', '','','','','','_input_filter_contact');
+                                }
+                            }
+                            ?>
+
+                            <?php if(count($contacts_custom_field_structure)> 0) {
+                                foreach ($contacts_custom_field_structure as $item) {
+                                    ?>
+
+                                    <?php
+                                    $select ='';
+                                    if(strpos(strtolower($item['type']),'input')!==false
+                                        || strpos(strtolower($item['type']),'textarea')!==false
+                                        || strpos(strtolower($item['type']),'multiselect')!==false
+                                        || strpos(strtolower($item['type']),'select')!==false
+                                        || strpos(strtolower($item['type']),'checkbox')!==false){
+                                        ?>
+                                        <div class="form-group">
+                                            <label for="default_language" class="control-label"><?php echo $item['name']; ?>
+                                            </label>
+                                            <?php
+                                            $select ='<select name="filter_custom_string_select[' . $item['id'];
+                                            $select = $select . ']" id="filter_custom_string_select[';
+                                            $select = $select . $item['id'] . ']" class="form-control selectpicker _select_filter_contact _select_filter" data-none-selected-text="">';
+                                            $select = $select . '<option value=""></option>';
+                                            $select = $select . '<option value="EQUALS">is</option>';
+                                            $select = $select . '<option value="NOTEQUALS">isn’t</option>';
+                                            $select = $select . '<option value="LIKE">any</option>';
+                                            $select = $select . '</select>';
+                                            echo $select;
+
+                                            ?>
+                                        </div>
+                                        <?php
+                                        echo render_input('filter_custom_string_values['.$item['id'].']', '', '','','','','','_input_filter_contact');
+                                    }
+                                    if(strpos(strtolower($item['type']),'number')!==false){
+                                        ?>
+                                        <div class="form-group">
+                                            <label for="default_language" class="control-label"><?php echo $item['name']; ?>
+                                            </label>
+
+                                            <?php
+                                            $select ='<select name="filter_custom_number_select[' . $item['id'];
+                                            $select = $select . ']" id="filter_custom_number_select[';
+                                            $select = $select . $item['id'] . ']" class="form-control selectpicker _select_filter_number_contact _select_filter" data-none-selected-text="" onchange=onchageFilterNumber(this,'.$item['id'].')>';
+                                            $select = $select . '<option value="" selected></option>';
+                                            $select = $select . '<option value="IS_GREATER_THAN">greater than</option>';
+                                            $select = $select . '<option value="IS_LESS_THAN">less than</option>';
+                                            $select = $select . '<option value="BETWEEN">between</option>';
+                                            $select = $select . '</select>';
+                                            echo $select;
+                                            ?>
+                                        </div>
+                                        <?php
+                                        echo render_input('filter_custom_number_values['.$item['id'].']', '', '','number','','','','_input_filter_contact fcnc_'.$item['id']);
+                                        echo render_input('filter_custom_number_min_values['.$item['id'].']', '', '','number',array('placeholder'=>'Min Value'),'','','hide _input_filter_contact fcnc_min_'.$item['id']);
+                                        echo render_input('filter_custom_number_max_values['.$item['id'].']', '', '','number',array('placeholder'=>'Max Value'),'','','hide _input_filter_contact fcnc_max_'.$item['id']);
+                                    }
+                                    if(strpos(strtolower($item['type']),'date_picker_time')!==false ||
+                                        strpos(strtolower($item['type']),'date_picker')!==false  ){
+                                        ?>
+                                        <div class="form-group">
+                                            <label for="default_language" class="control-label"><?php echo $item['name']; ?>
+                                            </label>
+
+                                            <?php
+                                            $select ='<select name="filter_custom_time_select[' . $item['id'];
+                                            $select = $select . ']" id="filter_custom_time_select[';
+                                            $select = $select . $item['id'] . ']" class="form-control selectpicker _select_filter_time_contact _select_filter" data-none-selected-text="" onchange=onchageFilterTime(this,'.$item['id'].')>';
+                                            $select = $select . '<option value="" selected></option>';
+                                            $select = $select . '<option value="ON">on</option>';
+                                            $select = $select . '<option value="AFTER">after</option>';
+                                            $select = $select . '<option value="BEFORE">before</option>';
+                                            $select = $select . '<option value="BETWEEN">between</option>';
+                                            $select = $select . '</select>';
+                                            echo $select;
+                                            ?>
+                                        </div>
+                                        <?php
+                                        if(strpos(strtolower($item['type']),'date_picker_time')!==false){
+                                            echo render_datetime_input('filter_custom_time_values['.$item['id'].']', '', '','','','_input_filter_contact fcdtc_'.$item['id'],'_dt_filter_contact');
+                                            echo render_datetime_input('filter_custom_time_min_values['.$item['id'].']', '', '','','','hide _input_filter_contact fcdtc_min_'.$item['id'],'_dt_filter_contact');
+                                            echo render_datetime_input('filter_custom_time_max_values['.$item['id'].']', '', '','','','hide _input_filter_contact fcdtc_max_'.$item['id'],'_dt_filter_contact');
+                                        }else{
+                                            echo render_date_input('filter_custom_time_values['.$item['id'].']', '', '','','','_input_filter_contact fcdtc_'.$item['id'],'_dt_filter_contact');
+                                            echo render_date_input('filter_custom_time_min_values['.$item['id'].']', '', '','','','hide _input_filter_contact fcdtc_min_'.$item['id'],'_dt_filter_contact');
+                                            echo render_date_input('filter_custom_time_max_values['.$item['id'].']', '', '','','','hide _input_filter_contact fcdtc_max_'.$item['id'],'_dt_filter_contact');
+                                        }
+
+                                    }
+                                }
+                            }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -243,7 +381,19 @@
         }
     }
 
-
+    function show_hide_filter() {
+        if($('._filter_special').hasClass('col-md-3')){
+            $('._filter_special').removeClass('col-md-3');
+            $('._filter_special').addClass('hide');
+            $('._div_list').removeClass('col-md-9');
+            $('._div_list').addClass('col-md-12');
+        }else{
+            $('._filter_special').removeClass('hide');
+            $('._filter_special').addClass('col-md-3');
+            $('._div_list').removeClass('col-md-12');
+            $('._div_list').addClass('col-md-9');
+        }
+    }
 </script>
 </body>
 </html>

@@ -43,6 +43,10 @@ class Clients extends Admin_controller
 
         $data['customer_admins'] = $this->clients_model->get_customers_admin_unique_ids();
 
+        $arrContactField = $this->clients_model->get_structure_contact();
+        $data['contacts_structure'] =  $this->unsetObject($arrContactField,'firstname,middle_name,lastname');
+
+        //var_dump($data['contacts_structure']);die;
         $whereContactsLoggedIn = '';
         if (!has_permission('customers', '', 'view')) {
             $whereContactsLoggedIn = ' AND userid IN (SELECT customer_id FROM tblcustomeradmins WHERE staff_id=' . get_staff_user_id() . ')';
@@ -54,7 +58,16 @@ class Clients extends Admin_controller
 
         $this->load->view('admin/clients/manage', $data);
     }
-
+    function unsetObject(array $array, $skipString='')
+    {
+        $result = array();
+        foreach ($array as $item) {
+            if(in_array ($item -> name,explode(',',$skipString))){
+                $result[]=$item;
+            }
+        }
+        return $result;
+    }
     public function table()
     {
         if (!has_permission('customers', '', 'view')) {
@@ -370,6 +383,9 @@ class Clients extends Admin_controller
             $data             = $this->input->post();
             $data['password'] = $this->input->post('password', false);
 
+            $data_contact_info =  $data['contact_info'];
+            unset($data['contact_info']);
+
             unset($data['contactid']);
             if ($contact_id == '') {
                 if (!has_permission('customers', '', 'create')) {
@@ -384,6 +400,19 @@ class Clients extends Admin_controller
                 }
 
                 $id      = $this->clients_model->add_contact($data, $customer_id);
+
+                if($id && $data_contact_info){
+                    if($data_contact_info['phone']){
+                        $this->clients_model->insert_contact_phone($id,$data_contact_info['phone']);
+                    }
+                    if($data_contact_info['mail']){
+                        $this->clients_model->insert_contact_mail($id,$data_contact_info['mail']);
+                    }
+                    if($data_contact_info['website']){
+                        $this->clients_model->insert_contact_website($id,$data_contact_info['website']);
+                    }
+                }
+
                 $message = '';
                 $success = false;
                 if ($id) {
@@ -415,6 +444,19 @@ class Clients extends Admin_controller
             $proposal_warning = false;
             $original_email   = '';
             $updated          = false;
+
+            if($contact_id && $data_contact_info){
+                if($data_contact_info['phone']){
+                    $this->clients_model->insert_contact_phone($contact_id,$data_contact_info['phone']);
+                }
+                if($data_contact_info['mail']){
+                    $this->clients_model->insert_contact_mail($contact_id,$data_contact_info['mail']);
+                }
+                if($data_contact_info['website']){
+                    $this->clients_model->insert_contact_website($contact_id,$data_contact_info['website']);
+                }
+            }
+
             if (is_array($success)) {
                 if (isset($success['set_password_email_sent'])) {
                     $message = _l('set_password_email_sent_to_client');
@@ -456,6 +498,12 @@ class Clients extends Admin_controller
             $title = _l('add_new', _l('contact_lowercase'));
         } else {
             $data['contact'] = $this->clients_model->get_contact($contact_id);
+            $contact_phone = $this->clients_model->get_contact_phone($contact_id);
+            $data['contact_phone'] = $contact_phone;
+            $contact_mail = $this->clients_model->get_contact_mail($contact_id);
+            $data['contact_mail'] = $contact_mail;
+            $contact_website = $this->clients_model->get_contact_website($contact_id);
+            $data['contact_website'] = $contact_website;
 
             if (!$data['contact']) {
                 header('HTTP/1.0 400 Bad error');
