@@ -2207,4 +2207,50 @@ class Clients_model extends CRM_Model
         }
 
     }
+
+    public function get_contact_mail($contact_id){
+        $this->db->where('contact_id',$contact_id);
+        return $this->db->get('tblcontact_mails')->result_array();
+    }
+
+    public function insert_contact_mail($contact_id,$data_mail){
+        $this->db->where('contact_id',$contact_id);
+        $this->db->delete('tblcontact_mails');
+
+        foreach ($data_mail as $mail){
+            if($mail['value']){
+                $data = array(
+                    'contact_id' => $contact_id,
+                    'mail' => $mail['value'],
+                    'mail_type' => $mail['type']
+                );
+                $this->db->insert('tblcontact_mails', $data);
+            }
+
+        }
+
+    }
+
+    public function get_contact_website($contact_id){
+        $this->db->where('contact_id',$contact_id);
+        return $this->db->get('tblcontact_websites')->result_array();
+    }
+
+    public function insert_contact_website($contact_id,$data_website){
+        $this->db->where('contact_id',$contact_id);
+        $this->db->delete('tblcontact_websites');
+
+        foreach ($data_website as $website){
+            if($website['value']){
+                $data = array(
+                    'contact_id' => $contact_id,
+                    'website' => $website['value'],
+                    'website_type' => $website['type']
+                );
+                $this->db->insert('tblcontact_websites', $data);
+            }
+
+        }
+
+    }
 }

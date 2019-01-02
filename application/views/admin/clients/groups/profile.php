@@ -58,7 +58,9 @@
                   </div>
                </div>
                 <div class="col-md-12">
-                    <div class="col-md-4">
+
+                    <?php echo form_hidden('contact[id]',$contact->id); ?>
+                    <div class="col-md-3">
                         <div class="form-group" >
 
                             <label for="salutation" class="control-label"><?php echo _l('contact_salutation') ?></label>
@@ -78,23 +80,20 @@
                             </select>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12">
 
-                    <?php echo form_hidden('contact[id]',$contact->id); ?>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <?php $value=( isset($contact) ? $contact->firstname : ''); ?>
                         <?php $attrs = (isset($contact) ? array() : array('autofocus'=>true)); ?>
                         <?php echo render_input( 'contact[firstname]', 'client_first_name',$value,'text',$attrs); ?>
 
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <?php $value=( isset($contact) ? $contact->middle_name : ''); ?>
                         <?php $attrs = (isset($contact) ? array() : array('autofocus'=>true)); ?>
                         <?php echo render_input( 'contact[middle_name]', 'client_middle_name',$value,'text',$attrs); ?>
 
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <?php $value=( isset($contact) ? $contact->lastname : ''); ?>
                         <?php $attrs = (isset($contact) ? array() : array('autofocus'=>true)); ?>
                         <?php echo render_input( 'contact[lastname]', 'client_last_name',$value,'text',$attrs); ?>
@@ -116,6 +115,8 @@
 
                    <?php //$value=( isset($contact) ? $contact->phonenumber : ''); ?>
                    <?php //echo render_input( 'contact[phonenumber]', 'contact_phonenumber',$value,'text'); ?>
+
+                   <!--begin phone -->
                    <div id="phone_row_1" class="row _contact_phone">
                        <div class="col-md-6">
                            <div class="form-group" app-field-wrapper="contact_info[phone][1][value]">
@@ -148,8 +149,13 @@
                                } ?>
                                <select name="contact_info[phone][1][type]" id="contact_info[phone][1][type]"   class="form-control selectpicker">
                                    <option <?php if($value=="") echo 'selected' ?> value=""></option>
-                                   <option <?php if($value=="work") echo 'selected' ?> value="work">Work</option>
-                                   <option <?php if($value=="personal") echo 'selected' ?> value="personal">Personal</option>
+                                   <option <?php if($value=="Work") echo 'selected' ?> value="Work">Work</option>
+                                   <option <?php if($value=="Home") echo 'selected' ?> value="Home">Home</option>
+                                   <option <?php if($value=="Mobile") echo 'selected' ?> value="Mobile">Mobile</option>
+                                   <option <?php if($value=="Main") echo 'selected' ?> value="Main">Main</option>
+                                   <option <?php if($value=="Home_fax") echo 'selected' ?> value="Home_fax">Home fax</option>
+                                   <option <?php if($value=="Work_fax") echo 'selected' ?> value="Work_fax">Work fax</option>
+                                   <option <?php if($value=="Other") echo 'selected' ?> value="Other">Other</option>
                                </select>
                            </div>
                        </div>
@@ -175,8 +181,13 @@
                                     '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[phone]['.$numItems.'][type]">' .
                                     '                                <select name="contact_info[phone]['.$numItems.'][type]" id="contact_info[phone]['.$numItems.'][type]"   class="form-control" >' .
                                     '                                    <option '. ($ctp['phone_type']==''?'selected':'') .'  value=""></option>' .
-                                    '                                    <option '. ($ctp['phone_type']=='work'?'selected':'') .' value="work">Work</option>' .
-                                    '                                    <option '. ($ctp['phone_type']=='personal'?'selected':'') .' value="personal">Personal</option>' .
+                                    '                                    <option '. ($ctp['phone_type']=='Work'?'selected':'') .' value="Work">Work</option>' .
+                                    '                                    <option '. ($ctp['phone_type']=='Home'?'selected':'') .' value="Home">Home</option>' .
+                                    '                                    <option '. ($ctp['phone_type']=='Mobile'?'selected':'') .' value="Mobile">Mobile</option>' .
+                                    '                                    <option '. ($ctp['phone_type']=='Main'?'selected':'') .' value="Main">Main</option>' .
+                                    '                                    <option '. ($ctp['phone_type']=='Home_fax'?'selected':'') .' value="Home_fax">Home fax</option>' .
+                                    '                                    <option '. ($ctp['phone_type']=='Work_fax'?'selected':'') .' value="Work_fax">Work fax</option>' .
+                                    '                                    <option '. ($ctp['phone_type']=='Other'?'selected':'') .' value="Other">Other</option>' .
                                     '                                </select>' .
                                     '                            </div>' .
                                     '                            <div style="float: left; font-size: 17px; margin-left: 5px">' .
@@ -192,26 +203,185 @@
                         }
                    ?>
 
+                   <!-- end phone -->
+
+                   <!-- begin mail -->
+                   <div id="mail_row_1" class="row _contact_mail">
+                       <div class="col-md-6">
+                           <div class="form-group" app-field-wrapper="contact_info[mail][1][value]">
+                               <div style="float:left; margin-top: -5px; margin-right: 5px">
+                                   <a style="cursor: pointer;font-size: 17px" href="javascript:add_mail()">
+                                       <i class="mdi mdi-plus-circle-outline"></i>
+                                   </a>
+                               </div>
+                               <label for="contact_info[mail][1][value]" class="control-label">Mail</label>
+                               <?php
+                               $value="";
+                               if($contact_mail){
+                                   if(count($contact_mail)>0){
+                                       $value = $contact_mail[0]['mail'];
+                                   }
+                               } ?>
+                               <input type="text" id="contact_info[mail][1][value]" name="contact_info[mail][1][value]" class="form-control" value="<?php echo $value; ?>">
+                           </div>
+                       </div>
+                       <div class="col-md-6">
+                           <div class="form-group" app-field-wrapper="contact_info[mail][1][type]">
+
+                               <label for="contact_info[mail][1][type]" class="control-label">Mail Type</label>
+                               <?php
+                               $value="";
+                               if($contact_mail){
+                                   if(count($contact_mail)>0){
+                                       $value = $contact_mail[0]['mail_type'];
+                                   }
+                               } ?>
+                               <select name="contact_info[mail][1][type]" id="contact_info[mail][1][type]"   class="form-control selectpicker">
+                                   <option <?php if($value=="") echo 'selected' ?> value=""></option>
+                                   <option <?php if($value=="work") echo 'selected' ?> value="work">Work</option>
+                                   <option <?php if($value=="personal") echo 'selected' ?> value="personal">Personal</option>
+                               </select>
+                           </div>
+                       </div>
+                   </div>
+
+                   <?php
+                   if(count($contact_mail)>1){
+                       $i=0;
+
+                       foreach ($contact_mail as $ctm){
+                           //var_dump($ctp);die;
+                           $i++;
+                           if($i==1) continue;
+                           $numItems = $i;
+
+                           $html = '<div class="row _contact_mail _ctm'.$numItems.'">' ;
+                           $html .=    '                        <div class="col-md-6">' .
+                               '                            <div class="form-group" app-field-wrapper="contact_info[mail]['.$numItems.'][value]">' .
+                               '                                <input type="text" id="contact_info[mail]['.$numItems.'][value]" name="contact_info[mail]['.$numItems.'][value]" class="form-control" value="'.$ctm['mail'].'">' .
+                               '                            </div>' .
+                               '                        </div>' .
+                               '                        <div class="col-md-6">' .
+                               '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[mail]['.$numItems.'][type]">' .
+                               '                                <select name="contact_info[mail]['.$numItems.'][type]" id="contact_info[mail]['.$numItems.'][type]"   class="form-control" >' .
+                               '                                    <option '. ($ctm['mail_type']==''?'selected':'') .'  value=""></option>' .
+                               '                                    <option '. ($ctm['mail_type']=='work'?'selected':'') .' value="work">Work</option>' .
+                               '                                    <option '. ($ctm['mail_type']=='personal'?'selected':'') .' value="personal">Personal</option>' .
+                               '                                </select>' .
+                               '                            </div>' .
+                               '                            <div style="float: left; font-size: 17px; margin-left: 5px">' .
+                               '                                <a style="cursor: pointer" href="javascript:remove_mail(\'_ctm'.$numItems.'\')">' .
+                               '                                    <i class="mdi mdi-close-circle-outline"></i>' .
+                               '                                </a>' .
+                               '                            </div>' .
+                               '                        </div>' .
+                               '                    </div>';
+                           echo $html;
+
+                       }
+                   }
+                   ?>
+                    <!-- end mail -->
+
+                   <!-- begin website -->
+
+                   <div id="website_row_1" class="row _contact_website">
+                       <div class="col-md-6">
+                           <div class="form-group" app-field-wrapper="contact_info[website][1][value]">
+                               <div style="float:left; margin-top: -5px; margin-right: 5px">
+                                   <a style="cursor: pointer;font-size: 17px" href="javascript:add_website()">
+                                       <i class="mdi mdi-plus-circle-outline"></i>
+                                   </a>
+                               </div>
+                               <label for="contact_info[website][1][value]" class="control-label">Website</label>
+                               <?php
+                               $value="";
+                               if($contact_website){
+                                   if(count($contact_website)>0){
+                                       $value = $contact_website[0]['website'];
+                                   }
+                               } ?>
+                               <input type="text" id="contact_info[website][1][value]" name="contact_info[website][1][value]" class="form-control" value="<?php echo $value; ?>">
+                           </div>
+                       </div>
+                       <div class="col-md-6">
+                           <div class="form-group" app-field-wrapper="contact_info[website][1][type]">
+
+                               <label for="contact_info[website][1][type]" class="control-label">Website Type</label>
+                               <?php
+                               $value="";
+                               if($contact_website){
+                                   if(count($contact_website)>0){
+                                       $value = $contact_website[0]['website_type'];
+                                   }
+                               } ?>
+                               <select name="contact_info[website][1][type]" id="contact_info[website][1][type]"   class="form-control selectpicker">
+                                   <option <?php if($value=="") echo 'selected' ?> value=""></option>
+                                   <option <?php if($value=="Website") echo 'selected' ?> value="Website">Website</option>
+                                   <option <?php if($value=="Skype") echo 'selected' ?> value="Skype">Skype</option>
+                                   <option <?php if($value=="Twitter") echo 'selected' ?> value="Twitter">Twitter</option>
+                                   <option <?php if($value=="LinkedIn") echo 'selected' ?> value="LinkedIn">LinkedIn</option>
+                                   <option <?php if($value=="Facebook") echo 'selected' ?> value="Facebook">Facebook</option>
+                                   <option <?php if($value=="Xing") echo 'selected' ?> value="Xing">Xing</option>
+                                   <option <?php if($value=="Blog") echo 'selected' ?> value="Blog">Blog</option>
+                                   <option <?php if($value=="Google+") echo 'selected' ?> value="Google+">Google+</option>
+                                   <option <?php if($value=="Flickr") echo 'selected' ?> value="Flickr">Flickr</option>
+                                   <option <?php if($value=="GitHub") echo 'selected' ?> value="GitHub">GitHub</option>
+                                   <option <?php if($value=="YouTube") echo 'selected' ?> value="YouTube">YouTube</option>
+                               </select>
+                           </div>
+                       </div>
+                   </div>
+
+                   <?php
+                   if(count($contact_website)>1){
+                       $i=0;
+
+                       foreach ($contact_website as $ctw){
+                           //var_dump($ctp);die;
+                           $i++;
+                           if($i==1) continue;
+                           $numItems = $i;
+
+                           $html = '<div class="row _contact_website _ctw'.$numItems.'">' ;
+                           $html .=    '                        <div class="col-md-6">' .
+                               '                            <div class="form-group" app-field-wrapper="contact_info[website]['.$numItems.'][value]">' .
+                               '                                <input type="text" id="contact_info[website]['.$numItems.'][value]" name="contact_info[website]['.$numItems.'][value]" class="form-control" value="'.$ctw['mail'].'">' .
+                               '                            </div>' .
+                               '                        </div>' .
+                               '                        <div class="col-md-6">' .
+                               '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[mail]['.$numItems.'][type]">' .
+                               '                                <select name="contact_info[website]['.$numItems.'][type]" id="contact_info[website]['.$numItems.'][type]"   class="form-control" >' .
+                               '                                    <option '. ($ctw['website_type']==''?'selected':'') .'  value=""></option>' .
+                               '                                    <option '. ($ctw['website_type']=='Website'?'selected':'') .' value="Website">Website</option>' .
+                               '                                    <option '. ($ctw['website_type']=='Skype'?'selected':'') .' value="Skype">Skype</option>' .
+                               '                                    <option '. ($ctw['website_type']=='Twitter'?'selected':'') .' value="Twitter">Twitter</option>' .
+                               '                                    <option '. ($ctw['website_type']=='LinkedIn'?'selected':'') .' value="LinkedIn">LinkedIn</option>' .
+                               '                                    <option '. ($ctw['website_type']=='Facebook'?'selected':'') .' value="Facebook">Facebook</option>' .
+                               '                                    <option '. ($ctw['website_type']=='Xing'?'selected':'') .' value="Xing">Xing</option>' .
+                               '                                    <option '. ($ctw['website_type']=='Blog'?'selected':'') .' value="Blog">Blog</option>' .
+                               '                                    <option '. ($ctw['website_type']=='Google+'?'selected':'') .' value="Google+">Google+</option>' .
+                               '                                    <option '. ($ctw['website_type']=='Flickr'?'selected':'') .' value="Flickr">Flickr</option>' .
+                               '                                    <option '. ($ctw['website_type']=='GitHub'?'selected':'') .' value="GitHub">GitHub</option>' .
+                               '                                    <option '. ($ctw['website_type']=='YouTube'?'selected':'') .' value="YouTube">YouTube</option>' .
+                               '                                </select>' .
+                               '                            </div>' .
+                               '                            <div style="float: left; font-size: 17px; margin-left: 5px">' .
+                               '                                <a style="cursor: pointer" href="javascript:remove_website(\'_ctw'.$numItems.'\')">' .
+                               '                                    <i class="mdi mdi-close-circle-outline"></i>' .
+                               '                                </a>' .
+                               '                            </div>' .
+                               '                        </div>' .
+                               '                    </div>';
+                           echo $html;
+
+                       }
+                   }
+                   ?>
+                   <!-- end website -->
 
 
-                   <?php $value=( isset($contact) ? $contact->email : ''); ?>
-                   <?php echo render_input( 'contact[email]', 'contact_email',$value,'text'); ?>
-
-
-                   <?php if((isset($client) && empty($client->website)) || !isset($client)){
-                     $value=( isset($client) ? $client->website : '');
-                     echo render_input( 'website', 'client_website',$value);
-                     } else { ?>
-                  <div class="form-group">
-                     <label for="website"><?php echo _l('client_website'); ?></label>
-                     <div class="input-group">
-                        <input type="text" name="website" id="website" value="<?php echo $client->website; ?>" class="form-control">
-                        <div class="input-group-addon">
-                           <span><a href="<?php echo maybe_add_http($client->website); ?>" target="_blank" tabindex="-1"><i class="fa fa-globe"></i></a></span>
-                        </div>
-                     </div>
-                  </div>
-                  <?php }
+                  <?php
                      $selected = array();
                      if(isset($customer_groups)){
                        foreach($customer_groups as $group){

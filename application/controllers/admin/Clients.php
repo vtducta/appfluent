@@ -126,6 +126,12 @@ class Clients extends Admin_controller
                         if($data_contact_info['phone']){
                             $this->clients_model->insert_contact_phone($contact_id,$data_contact_info['phone']);
                         }
+                        if($data_contact_info['mail']){
+                            $this->clients_model->insert_contact_mail($contact_id,$data_contact_info['mail']);
+                        }
+                        if($data_contact_info['website']){
+                            $this->clients_model->insert_contact_website($contact_id,$data_contact_info['website']);
+                        }
                     }
                     //
                     set_alert('success', _l('added_successfully', _l('client')));
@@ -158,6 +164,12 @@ class Clients extends Admin_controller
                     if($data_contact['id'] && $data_contact_info){
                         if($data_contact_info['phone']){
                             $this->clients_model->insert_contact_phone($data_contact['id'],$data_contact_info['phone']);
+                        }
+                        if($data_contact_info['mail']){
+                            $this->clients_model->insert_contact_mail($data_contact['id'],$data_contact_info['mail']);
+                        }
+                        if($data_contact_info['website']){
+                            $this->clients_model->insert_contact_website($data_contact['id'],$data_contact_info['website']);
                         }
                     }
                 }
@@ -196,6 +208,10 @@ class Clients extends Admin_controller
                 $data['contact']= $contact_primary;
                 $contact_phone = $this->clients_model->get_contact_phone($contact_primary->id);
                 $data['contact_phone'] = $contact_phone;
+                $contact_mail = $this->clients_model->get_contact_mail($contact_primary->id);
+                $data['contact_mail'] = $contact_mail;
+                $contact_website = $this->clients_model->get_contact_website($contact_primary->id);
+                $data['contact_website'] = $contact_website;
             }
 
             if (!$client) {

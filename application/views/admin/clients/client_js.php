@@ -421,8 +421,13 @@ function add_phone() {
         '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[phone]['+numItems+'][type]">' +
         '                                <select name="contact_info[phone]['+numItems+'][type]" id="contact_info[phone]['+numItems+'][type]"   class="form-control" >' +
         '                                    <option value=""></option>' +
-        '                                    <option value="work">Work</option>' +
-        '                                    <option value="personal">Personal</option>' +
+        '                                    <option value="Work">Work</option>' +
+        '                                    <option value="Home">Home</option>' +
+        '                                    <option value="Mobile">Mobile</option>' +
+        '                                    <option value="Main">Main</option>' +
+        '                                    <option value="Home_fax">Home fax</option>' +
+        '                                    <option value="Work_fax">Work fax</option>' +
+        '                                    <option value="Other">Other</option>' +
         '                                </select>' +
         '                            </div>' +
         '                            <div style="float: left; font-size: 17px; margin-left: 5px">' +
@@ -437,6 +442,79 @@ function add_phone() {
 
 function remove_phone(ctpIndex) {
     $('.'+ctpIndex).remove();
+
+}
+
+function add_mail() {
+    var html="";
+    var numItems = $('._contact_mail').length+1;
+    html = '<div class="row _contact_mail _ctm'+numItems+'">' +
+        '                        <div class="col-md-6">' +
+        '                            <div class="form-group" app-field-wrapper="contact_info[mail]['+numItems+'][value]">' +
+        '                                <input type="text" id="contact_info[mail]['+numItems+'][value]" name="contact_info[mail]['+numItems+'][value]" class="form-control" value="">' +
+        '                            </div>' +
+        '                        </div>' +
+        '                        <div class="col-md-6">' +
+        '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[mail]['+numItems+'][type]">' +
+        '                                <select name="contact_info[mail]['+numItems+'][type]" id="contact_info[mail]['+numItems+'][type]"   class="form-control" >' +
+        '                                    <option value=""></option>' +
+        '                                    <option value="work">Work</option>' +
+        '                                    <option value="personal">Personal</option>' +
+        '                                </select>' +
+        '                            </div>' +
+        '                            <div style="float: left; font-size: 17px; margin-left: 5px">' +
+        '                                <a style="cursor: pointer" href="javascript:remove_mail(\'_ctm'+numItems+'\')">' +
+        '                                    <i class="mdi mdi-close-circle-outline"></i>' +
+        '                                </a>' +
+        '                            </div>' +
+        '                        </div>' +
+        '                    </div>';
+    $('#mail_row_1').after(html);
+}
+
+function remove_mail(ctmIndex) {
+    $('.'+ctmIndex).remove();
+
+}
+
+function add_website() {
+    var html="";
+    var numItems = $('._contact_website').length+1;
+    html = '<div class="row _contact_website _ctw'+numItems+'">' +
+        '                        <div class="col-md-6">' +
+        '                            <div class="form-group" app-field-wrapper="contact_info[website]['+numItems+'][value]">' +
+        '                                <input type="text" id="contact_info[website]['+numItems+'][value]" name="contact_info[website]['+numItems+'][value]" class="form-control" value="">' +
+        '                            </div>' +
+        '                        </div>' +
+        '                        <div class="col-md-6">' +
+        '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[website]['+numItems+'][type]">' +
+        '                                <select name="contact_info[website]['+numItems+'][type]" id="contact_info[website]['+numItems+'][type]"   class="form-control" >' +
+        '                                    <option value=""></option>' +
+        '                                    <option value="Website">Website</option>' +
+        '                                    <option value="Skype">Skype</option>' +
+        '                                    <option value="Twitter">Twitter</option>' +
+        '                                    <option value="LinkedIn">LinkedIn</option>' +
+        '                                    <option value="Facebook">Facebook</option>' +
+        '                                    <option value="Xing">Xing</option>' +
+        '                                    <option value="Blog">Blog</option>' +
+        '                                    <option value="Google+">Google+</option>' +
+        '                                    <option value="Flickr">Flickr</option>' +
+        '                                    <option value="GitHub">GitHub</option>' +
+        '                                    <option value="YouTube">YouTube</option>' +
+        '                                </select>' +
+        '                            </div>' +
+        '                            <div style="float: left; font-size: 17px; margin-left: 5px">' +
+        '                                <a style="cursor: pointer" href="javascript:remove_website(\'_ctw'+numItems+'\')">' +
+        '                                    <i class="mdi mdi-close-circle-outline"></i>' +
+        '                                </a>' +
+        '                            </div>' +
+        '                        </div>' +
+        '                    </div>';
+    $('#website_row_1').after(html);
+}
+
+function remove_website(ctwIndex) {
+    $('.'+ctwIndex).remove();
 
 }
 </script>

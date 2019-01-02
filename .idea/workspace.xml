@@ -4,11 +4,9 @@
     <list default="true" id="f8b839a2-def0-44f4-999f-9f6d24db8a7d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/admin/Clients.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/admin/Clients.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/language/english/english_lang.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/language/english/english_lang.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/models/Clients_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Clients_model.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/admin/clients/client_js.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/clients/client_js.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/admin/clients/groups/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/clients/groups/profile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/admin/clients/modals/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/admin/clients/modals/contact.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,25 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="client.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/admin/clients/client.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="profile.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/admin/clients/groups/profile.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="415" selection-start-line="415" selection-end-line="415" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="6205">
+              <caret line="365" column="153" selection-start-line="365" selection-start-column="153" selection-end-line="365" selection-end-column="153" />
             </state>
           </provider>
         </entry>
@@ -48,9 +32,15 @@
       <file leaf-file-name="client_js.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/admin/clients/client_js.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="524">
-              <caret line="440" column="1" selection-start-line="440" selection-start-column="1" selection-end-line="440" selection-end-column="1" />
+            <state relative-caret-position="357">
+              <caret line="503" column="53" selection-start-line="503" selection-start-column="53" selection-end-line="503" selection-end-column="53" />
               <folding>
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -103,8 +93,8 @@
       <file leaf-file-name="Clients.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/admin/Clients.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="193" selection-start-line="193" selection-end-line="193" />
+            <state relative-caret-position="2703">
+              <caret line="159" column="40" selection-start-line="159" selection-start-column="40" selection-end-line="159" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -112,8 +102,8 @@
       <file leaf-file-name="Clients_model.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/Clients_model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37264">
-              <caret line="2192" column="40" selection-start-line="2192" selection-start-column="20" selection-end-line="2192" selection-end-column="40" />
+            <state relative-caret-position="38199">
+              <caret line="2247" column="28" selection-start-line="2247" selection-start-column="28" selection-end-line="2247" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -269,12 +259,6 @@
               <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
               <item name="appfluent" type="462c0819:PsiDirectoryNode" />
               <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -283,89 +267,6 @@
               <item name="application" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="language" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="language" type="462c0819:PsiDirectoryNode" />
-              <item name="english" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="clients" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="clients" type="462c0819:PsiDirectoryNode" />
-              <item name="groups" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="clients" type="462c0819:PsiDirectoryNode" />
-              <item name="modals" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="tables" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="appfluent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="appfluent" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -441,18 +342,24 @@
       <workItem from="1545892214605" duration="857000" />
       <workItem from="1545894022287" duration="1789000" />
       <workItem from="1545895837389" duration="1877000" />
-      <workItem from="1545898306020" duration="69000" />
+      <workItem from="1545898306020" duration="734000" />
+      <workItem from="1546392072655" duration="1758000" />
+      <workItem from="1546393891138" duration="719000" />
+      <workItem from="1546395705600" duration="1784000" />
+      <workItem from="1546397515465" duration="1545000" />
+      <workItem from="1546399758685" duration="1326000" />
+      <workItem from="1546401576146" duration="1532000" />
+      <workItem from="1546403565758" duration="500000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46891000" />
+    <option name="totallyTimeSpent" value="56720000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20196672" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22314675" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -480,9 +387,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/core/Clients_controller.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/core/Admin_controller.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -706,13 +610,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/helpers/fields_helper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="281" column="9" selection-start-line="281" selection-start-column="9" selection-end-line="281" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/language/english/english_lang.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64634">
@@ -720,13 +617,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Clients.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/clients/modals/contact.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1122">
           <caret line="66" column="49" selection-start-line="66" selection-start-column="49" selection-end-line="66" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/Clients_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38199">
+          <caret line="2247" column="28" selection-start-line="2247" selection-start-column="28" selection-end-line="2247" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Clients.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/helpers/fields_helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/helpers/misc_helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="676" column="9" selection-start-line="676" selection-start-column="9" selection-end-line="676" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -737,37 +655,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/Clients_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37264">
-          <caret line="2192" column="40" selection-start-line="2192" selection-start-column="20" selection-end-line="2192" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/admin/Clients.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="193" selection-start-line="193" selection-end-line="193" />
+        <state relative-caret-position="2703">
+          <caret line="159" column="40" selection-start-line="159" selection-start-column="40" selection-end-line="159" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/clients/groups/profile.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="415" selection-start-line="415" selection-end-line="415" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="6205">
+          <caret line="365" column="153" selection-start-line="365" selection-start-column="153" selection-end-line="365" selection-end-column="153" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/clients/client_js.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="440" column="1" selection-start-line="440" selection-start-column="1" selection-end-line="440" selection-end-column="1" />
+        <state relative-caret-position="357">
+          <caret line="503" column="53" selection-start-line="503" selection-start-column="53" selection-end-line="503" selection-end-column="53" />
           <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
