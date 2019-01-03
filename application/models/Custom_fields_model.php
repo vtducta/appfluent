@@ -69,6 +69,12 @@ class Custom_fields_model extends CRM_Model
             $data['show_on_table'] = 0;
         }
 
+        if (isset($data['show_on_filter'])) {
+            $data['show_on_filter'] = 1;
+        } else {
+            $data['show_on_filter'] = 0;
+        }
+
         if (isset($data['only_admin'])) {
             $data['only_admin'] = 1;
         } else {
@@ -179,6 +185,12 @@ class Custom_fields_model extends CRM_Model
             $data['show_on_table'] = 1;
         } else {
             $data['show_on_table'] = 0;
+        }
+
+        if (isset($data['show_on_filter'])) {
+            $data['show_on_filter'] = 1;
+        } else {
+            $data['show_on_filter'] = 0;
         }
 
         if (!isset($data['display_inline'])) {

@@ -135,6 +135,12 @@
                                 <label for="required"><?php echo _l('custom_field_required'); ?></label>
                             </div>
                             <p class="bold text-info"><?php echo _l('custom_field_visibility'); ?></p>
+
+                            <div class="checkbox checkbox-primary">
+                                <input type="checkbox" name="show_on_filter" id="show_on_filter" <?php if(isset($custom_field) && $custom_field->show_on_filter == 1){echo 'checked';} ?> <?php if(isset($custom_field) && $custom_field->fieldto == 'company'){echo 'disabled';} ?>>
+                                <label for="show_on_filter"><?php echo _l('custom_field_show_on_filter'); ?></label>
+                            </div>
+
                             <div class="checkbox checkbox-primary">
                                 <input type="checkbox" name="show_on_table" id="show_on_table" <?php if(isset($custom_field) && $custom_field->show_on_table == 1){echo 'checked';} ?> <?php if(isset($custom_field) && $custom_field->fieldto == 'company'){echo 'disabled';} ?>>
                                 <label for="show_on_table"><?php echo _l('custom_field_show_on_table'); ?></label>

@@ -46,6 +46,9 @@ class Clients extends Admin_controller
         $arrContactField = $this->clients_model->get_structure_contact();
         $data['contacts_structure'] =  $this->unsetObject($arrContactField,'firstname,middle_name,lastname');
 
+        $arrContactCustomField = get_custom_fields('contacts', ['show_on_filter'=>1]);
+        $data['contacts_custom_field_structure'] = $arrContactCustomField;
+
         //var_dump($data['contacts_structure']);die;
         $whereContactsLoggedIn = '';
         if (!has_permission('customers', '', 'view')) {
@@ -119,7 +122,9 @@ class Clients extends Admin_controller
                 $data_contact_info =  $data['contact_info'];
                 unset($data['contact_info']);
 
-
+                $custom_field = $data['custom_fields'];
+                unset($data['custom_fields']);
+                $data_contact['custom_fields']=$custom_field;
 
                 $save_and_add_contact = false;
                 if (isset($data['save_and_add_contact'])) {
@@ -166,6 +171,10 @@ class Clients extends Admin_controller
                 //update primary contact
                 $data_contact= $data['contact'];
                 unset($data['contact']);
+
+                $custom_field = $data['custom_fields'];
+                unset($data['custom_fields']);
+                $data_contact['custom_fields']=$custom_field;
 
                 $data_contact_info =  $data['contact_info'];
                 unset($data['contact_info']);

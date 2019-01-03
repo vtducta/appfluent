@@ -196,19 +196,6 @@
                                 <?php echo _l( 'contact_filter'); ?>
                                 <a href="#" onclick="clear_filter();" style="float: right;">clear</a>
                             </p>
-                            <div class="form-group">
-                                <label for="default_language" class="control-label"><?php echo _l('filter_tags'); ?>
-                                </label>
-                                <select name="filter_select_tags" id="filter_select_tags" class="form-control selectpicker _select_filter_contact _select_filter" data-none-selected-text="" >
-                                    <option value=""></option>
-                                    <option value="EQUALS">contain</option>
-                                    <option value="NOTEQUALS">not contain</option>
-                                </select>
-                            </div>
-                            <?php
-                            echo render_input('filter_values_tags', '', '','','','','','_input_filter_contact');
-                            ?>
-
                             <?php if(count($contacts_structure)> 0) {
                                 $filterTemplate = '';
                                 foreach ($contacts_structure as $item) {
@@ -342,10 +329,34 @@
         });
         CustomersServerParams['exclude_inactive'] = '[name="exclude_inactive"]:checked';
 
+        $.each($('._filter_special input'),function(){
+            CustomersServerParams[$(this).attr('name')] = '[name="'+$(this).attr('name')+'"]';
+        });
+
+        $.each($('._filter_special select'),function(){
+            CustomersServerParams[$(this).attr('name')] = '[name="'+$(this).attr('name')+'"]';
+        });
+
         var tAPI = initDataTable('.table-clients', admin_url + 'clients/table', [0], [0], CustomersServerParams,<?php echo do_action('customers_table_default_order', json_encode(array(2, 'asc'))); ?>);
         $('input[name="exclude_inactive"]').on('change', function () {
             tAPI.ajax.reload();
         });
+
+        $('._select_filter_contact').on('change',function(){
+            tAPI.ajax.reload();
+        })
+
+        $('._input_filter_contact').on('keyup',function(){
+            tAPI.ajax.reload();
+        });
+        $('._input_filter_contact').on('blur',function(){
+            tAPI.ajax.reload();
+        });
+        $('._dt_filter_contact').on('blur',function(){
+            tAPI.ajax.reload();
+        });
+
+
     });
 
     function customers_bulk_action(event) {
@@ -394,6 +405,12 @@
             $('._div_list').addClass('col-md-9');
         }
     }
+
+
+    function clear_filter() {
+        location.reload();
+
+    };
 </script>
 </body>
 </html>

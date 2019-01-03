@@ -3801,3 +3801,5 @@ $lang['contact_phonenumber'] = 'Phone';
 $lang['contact_email'] = 'Email';
 $lang['clients_summary'] = 'Customer summary';
 $lang['contact_salutation'] = 'Salutation';
+$lang['filter_middle_name'] = 'Middle name';
+$lang['custom_field_show_on_filter'] = 'Show on filter';

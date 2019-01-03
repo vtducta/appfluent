@@ -4,7 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 $hasPermissionDelete = has_permission('customers', '', 'delete');
 
-$custom_fields = get_table_custom_fields('customers');
+//$custom_fields = get_table_custom_fields('customers');
+$custom_fields = get_table_custom_fields('contacts');
 $this->ci->db->query("SET sql_mode = ''");
 
 $aColumns = [
@@ -32,12 +33,28 @@ $join = [
     'LEFT JOIN tblcustomersgroups ON tblcustomersgroups.id = tblcustomergroups_in.groupid',
 ];
 
+//foreach ($custom_fields as $key => $field) {
+//    $selectAs = (is_cf_date($field) ? 'date_picker_cvalue_' . $key : 'cvalue_' . $key);
+//    array_push($customFieldsColumns, $selectAs);
+//    array_push($aColumns, 'ctable_' . $key . '.value as ' . $selectAs);
+//    array_push($join, 'LEFT JOIN tblcustomfieldsvalues as ctable_' . $key . ' ON tblclients.userid = ctable_' . $key . '.relid AND ctable_' . $key . '.fieldto="' . $field['fieldto'] . '" AND ctable_' . $key . '.fieldid=' . $field['id']);
+//}
+
 foreach ($custom_fields as $key => $field) {
-    $selectAs = (is_cf_date($field) ? 'date_picker_cvalue_' . $key : 'cvalue_' . $key);
+    $selectAs = 'cvalue_'.$key;
+    if(is_cf_date($field)){
+        $selectAs = 'date_picker_cvalue_' . $key ;
+    }else if (is_related_to_contact($field)){
+        $selectAs = 'related_to_contact_cvalue_' . $key ;
+    }else if (is_related_to_company($field)){
+        $selectAs = 'related_to_company_cvalue_' . $key ;
+    }
+    //$selectAs = (is_cf_date($field) ? 'date_picker_cvalue_' . $key : 'cvalue_'.$key);
     array_push($customFieldsColumns, $selectAs);
     array_push($aColumns, 'ctable_' . $key . '.value as ' . $selectAs);
-    array_push($join, 'LEFT JOIN tblcustomfieldsvalues as ctable_' . $key . ' ON tblclients.userid = ctable_' . $key . '.relid AND ctable_' . $key . '.fieldto="' . $field['fieldto'] . '" AND ctable_' . $key . '.fieldid=' . $field['id']);
+    array_push($join, 'LEFT JOIN tblcustomfieldsvalues as ctable_'.$key . ' ON tblcontacts.id = ctable_'.$key . '.relid AND ctable_'.$key . '.fieldto="'.$field['fieldto'].'" AND ctable_'.$key . '.fieldid='.$field['id']);
 }
+
 // Filter by custom groups
 $groups   = $this->ci->clients_model->get_groups();
 $groupIds = [];
@@ -154,6 +171,124 @@ if ($this->ci->input->post('exclude_inactive')) {
 
 if ($this->ci->input->post('my_customers')) {
     array_push($where, 'AND tblclients.userid IN (SELECT customer_id FROM tblcustomeradmins WHERE staff_id=' . get_staff_user_id() . ')');
+}
+
+//begin for filter
+if($this->_instance->input->post('filter_select[firstname]')){
+    $compareType = $this->_instance->input->post('filter_select[firstname]');
+
+    $compareValue = $this->_instance->input->post('filter_values[firstname]');
+    if($compareType=='EQUALS'){
+        array_push($where, 'AND tblcontacts.firstname=\''.$compareValue.'\'');
+    }elseif ($compareType=='NOTEQUALS'){
+        array_push($where, 'AND tblcontacts.firstname <> \''.$compareValue.'\'');
+    }elseif ($compareType=='LIKE'){
+        array_push($where, 'AND tblcontacts.firstname like \'%'.$compareValue.'%\'');
+    }
+}
+
+if($this->_instance->input->post('filter_select[middle_name]')){
+    $compareType = $this->_instance->input->post('filter_select[middle_name]');
+
+    $compareValue = $this->_instance->input->post('filter_values[middle_name]');
+    if($compareType=='EQUALS'){
+        array_push($where, 'AND tblcontacts.middle_name=\''.$compareValue.'\'');
+    }elseif ($compareType=='NOTEQUALS'){
+        array_push($where, 'AND tblcontacts.middle_name <> \''.$compareValue.'\'');
+    }elseif ($compareType=='LIKE'){
+        array_push($where, 'AND tblcontacts.middle_name like \'%'.$compareValue.'%\'');
+    }
+}
+
+if($this->_instance->input->post('filter_select[lastname]')){
+    $compareType = $this->_instance->input->post('filter_select[lastname]');
+
+    $compareValue = $this->_instance->input->post('filter_values[lastname]');
+    if($compareType=='EQUALS'){
+        array_push($where, 'AND tblcontacts.lastname=\''.$compareValue.'\'');
+    }elseif ($compareType=='NOTEQUALS'){
+        array_push($where, 'AND tblcontacts.lastname <> \''.$compareValue.'\'');
+    }elseif ($compareType=='LIKE'){
+        array_push($where, 'AND tblcontacts.lastname like \'%'.$compareValue.'%\'');
+    }
+}
+
+if($this->_instance->input->post('filter_custom_string_select')){
+    $arrSelectString = $this->_instance->input->post('filter_custom_string_select');
+    foreach ($arrSelectString as $key => $value){
+        $compareValue = $this->_instance->input->post('filter_custom_string_values['.$key.']');
+        if($value=='EQUALS'){
+            if($compareValue){
+                array_push($where, 'AND tblcontacts.id in (select relid from tblcustomfieldsvalues where fieldto=\'contacts\' and fieldid='.$key.' and value = \''.$compareValue.'\' )');
+            }else{
+                array_push($where, 'AND tblcontacts.id not in (select relid from tblcustomfieldsvalues where fieldto=\'contacts\' and fieldid='.$key.' )');
+            }
+        }elseif ($value=='NOTEQUALS'){
+            if($compareValue) {
+                array_push($where, 'AND ( tblcontacts.id not in (select relid from tblcustomfieldsvalues where fieldto=\'contacts\' and fieldid='.$key.' ) OR tblcontacts.id in (select relid from tblcustomfieldsvalues where fieldto=\'contacts\' and fieldid=' . $key . ' and value <> \'' . $compareValue . '\' ))');
+            }else{
+                array_push($where, 'AND tblcontacts.id in (select relid from tblcustomfieldsvalues where fieldto=\'contacts\' and fieldid='.$key.' )');
+            }
+        }elseif ($value=='LIKE'){
+            if($compareValue) {
+                array_push($where, 'AND tblcontacts.id in (select relid from tblcustomfieldsvalues where fieldto=\'contacts\' and fieldid=' . $key . ' and value like \'%' . $compareValue . '%\' )');
+            }
+        }
+    }
+}
+
+if($this->_instance->input->post('filter_custom_number_select')){
+    $arrSelectString = $this->_instance->input->post('filter_custom_number_select');
+    foreach ($arrSelectString as $key => $value){
+        if($value=='IS_GREATER_THAN'){
+            $compareValue = $this->_instance->input->post('filter_custom_number_values['.$key.']');
+            if($compareValue){
+                array_push($where, 'AND tblcontacts.id in (select relid from tblcustomfieldsvalues where fieldto=\'contacts\' and fieldid='.$key.' and value >= '.$compareValue.' )');
+            }
+        }elseif ($value=='IS_LESS_THAN'){
+            $compareValue = $this->_instance->input->post('filter_custom_number_values['.$key.']');
+            if($compareValue) {
+                array_push($where, 'AND tblcontacts.id in (select relid from tblcustomfieldsvalues where fieldto=\'contacts\' and fieldid='.$key.' and value < '.$compareValue.' )');
+            }
+        }elseif ($value=='BETWEEN'){
+            $compareMinValue = $this->_instance->input->post('filter_custom_number_min_values['.$key.']');
+            $compareMaxValue = $this->_instance->input->post('filter_custom_number_max_values['.$key.']');
+
+            if($compareMinValue&&$compareMaxValue) {
+                array_push($where, 'AND tblcontacts.id in (select relid from tblcustomfieldsvalues where fieldto=\'contacts\' and fieldid='.$key.' and value >= '.$compareMinValue.' and value <= '.$compareMaxValue.' )');
+            }
+        }
+    }
+}
+
+if($this->_instance->input->post('filter_custom_time_select')){
+    $arrSelectString = $this->_instance->input->post('filter_custom_time_select');
+    foreach ($arrSelectString as $key => $value){
+        if($value=='ON'){
+            $compareValue = $this->_instance->input->post('filter_custom_time_values['.$key.']');
+            if($compareValue){
+                array_push($where, 'AND tblcontacts.id in (select relid from tblcustomfieldsvalues where fieldto=\'contacts\' and fieldid='.$key.' and STR_TO_DATE(value,\'%Y-%m-%d %H:%i\') = STR_TO_DATE(\''.$compareValue.'\',\'%Y-%m-%d %H:%i\') )');
+            }
+        }elseif ($value=='AFTER'){
+            $compareValue = $this->_instance->input->post('filter_custom_time_values['.$key.']');
+            if($compareValue) {
+                array_push($where, 'AND tblcontacts.id in (select relid from tblcustomfieldsvalues where fieldto=\'contacts\' and fieldid='.$key.' and STR_TO_DATE(value,\'%Y-%m-%d %H:%i\') < STR_TO_DATE(\''.$compareValue.'\',\'%Y-%m-%d %H:%i\') )');
+            }
+        }elseif ($value=='BEFORE'){
+            $compareValue = $this->_instance->input->post('filter_custom_time_values['.$key.']');
+            if($compareValue) {
+                array_push($where, 'AND tblcontacts.id in (select relid from tblcustomfieldsvalues where fieldto=\'contacts\' and fieldid='.$key.' and STR_TO_DATE(value,\'%Y-%m-%d %H:%i\') > STR_TO_DATE(\''.$compareValue.'\',\'%Y-%m-%d %H:%i\') )');
+            }
+        }
+        elseif ($value=='BETWEEN'){
+            $compareMinValue = $this->_instance->input->post('filter_custom_time_min_values['.$key.']');
+            $compareMaxValue = $this->_instance->input->post('filter_custom_time_max_values['.$key.']');
+
+            if($compareMinValue&&$compareMaxValue) {
+                array_push($where, 'AND tblcontacts.id in (select relid from tblcustomfieldsvalues where fieldto=\'contacts\' and fieldid='.$key.' and STR_TO_DATE(value,\'%Y-%m-%d %H:%i\') >= STR_TO_DATE(\''.$compareMinValue.'\',\'%Y-%m-%d %H:%i\') and STR_TO_DATE(value,\'%Y-%m-%d %H:%i\') <= STR_TO_DATE(\''.$compareMaxValue.'\',\'%Y-%m-%d %H:%i\') )');
+            }
+        }
+    }
 }
 
 $aColumns = do_action('customers_table_sql_columns', $aColumns);

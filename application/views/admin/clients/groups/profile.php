@@ -15,7 +15,7 @@
          </li>
          <?php
             $customer_custom_fields = false;
-            if(total_rows('tblcustomfields',array('fieldto'=>'customers','active'=>1)) > 0 ){
+            if(total_rows('tblcustomfields',array('fieldto'=>'contacts','active'=>1)) > 0 ){
                  $customer_custom_fields = true;
              ?>
          <li role="presentation" class="<?php if($this->input->get('tab') == 'custom_fields'){echo 'active';}; ?>">
@@ -43,10 +43,10 @@
 </div>
       <div class="tab-content">
          <?php do_action('after_custom_profile_tab_content',isset($client) ? $client : false); ?>
-         <?php if($customer_custom_fields) { ?>
+         <?php if($customer_custom_fields ) { ?>
          <div role="tabpanel" class="tab-pane <?php if($this->input->get('tab') == 'custom_fields'){echo ' active';}; ?>" id="custom_fields">
-            <?php $rel_id=( isset($client) ? $client->userid : false); ?>
-            <?php echo render_custom_fields( 'customers',$rel_id); ?>
+            <?php $rel_id=( isset($contact) ? $contact->id : false); ?>
+            <?php echo render_custom_fields( 'contacts',$rel_id); ?>
          </div>
          <?php } ?>
          <div role="tabpanel" class="tab-pane<?php if(!$this->input->get('tab')){echo ' active';}; ?>" id="contact_info">
