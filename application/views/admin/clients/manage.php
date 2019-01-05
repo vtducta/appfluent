@@ -44,7 +44,7 @@
                                    class="btn btn-info pull-left display-block mright5 hidden-xs">
                                     <?php echo _l('import_customers'); ?></a>
                             <?php } ?>
-                            <a href="<?php echo admin_url('client_families'); ?>"
+                            <a href="<?php  echo admin_url('clients/all_contacts'); ?>"
                                class="btn btn-info pull-left display-block mright5">
                                 <?php echo _l('customer_contacts'); ?></a>
                             <div class="visible-xs">
