@@ -58,7 +58,7 @@
                                        onclick="slideToggle('.clients-overview'); return false;"><i
                                                 class="fa fa-bar-chart"></i></a>
                                     <a href="javascript:show_hide_filter();" class="btn btn-default btn-with-tooltip mleft10" data-toggle="tooltip"
-                                       data-title="<?php echo 'show/hide filter'; ?>" data-placement="bottom"
+                                       data-title="<?php echo 'Show/Hide Filter'; ?>" data-placement="bottom"
                                        ><i class="fa fa-filter"></i></a>
 
                                 </div>

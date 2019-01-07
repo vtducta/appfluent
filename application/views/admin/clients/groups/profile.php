@@ -179,7 +179,7 @@
                                     '                        </div>' .
                                     '                        <div class="col-md-6">' .
                                     '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[phone]['.$numItems.'][type]">' .
-                                    '                                <select name="contact_info[phone]['.$numItems.'][type]" id="contact_info[phone]['.$numItems.'][type]"   class="form-control" >' .
+                                    '                                <select name="contact_info[phone]['.$numItems.'][type]" id="contact_info[phone]['.$numItems.'][type]"   class="form-control selectpicker" >' .
                                     '                                    <option '. ($ctp['phone_type']==''?'selected':'') .'  value=""></option>' .
                                     '                                    <option '. ($ctp['phone_type']=='Work'?'selected':'') .' value="Work">Work</option>' .
                                     '                                    <option '. ($ctp['phone_type']=='Home'?'selected':'') .' value="Home">Home</option>' .
@@ -214,7 +214,7 @@
                                        <i class="mdi mdi-plus-circle-outline"></i>
                                    </a>
                                </div>
-                               <label for="contact_info[mail][1][value]" class="control-label">Mail</label>
+                               <label for="contact_info[mail][1][value]" class="control-label">Email</label>
                                <?php
                                $value="";
                                if($contact_mail){
@@ -228,7 +228,7 @@
                        <div class="col-md-6">
                            <div class="form-group" app-field-wrapper="contact_info[mail][1][type]">
 
-                               <label for="contact_info[mail][1][type]" class="control-label">Mail Type</label>
+                               <label for="contact_info[mail][1][type]" class="control-label">Email Type</label>
                                <?php
                                $value="";
                                if($contact_mail){
@@ -263,7 +263,7 @@
                                '                        </div>' .
                                '                        <div class="col-md-6">' .
                                '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[mail]['.$numItems.'][type]">' .
-                               '                                <select name="contact_info[mail]['.$numItems.'][type]" id="contact_info[mail]['.$numItems.'][type]"   class="form-control" >' .
+                               '                                <select name="contact_info[mail]['.$numItems.'][type]" id="contact_info[mail]['.$numItems.'][type]"   class="form-control selectpicker" >' .
                                '                                    <option '. ($ctm['mail_type']==''?'selected':'') .'  value=""></option>' .
                                '                                    <option '. ($ctm['mail_type']=='work'?'selected':'') .' value="work">Work</option>' .
                                '                                    <option '. ($ctm['mail_type']=='personal'?'selected':'') .' value="personal">Personal</option>' .
@@ -351,7 +351,7 @@
                                '                        </div>' .
                                '                        <div class="col-md-6">' .
                                '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[mail]['.$numItems.'][type]">' .
-                               '                                <select name="contact_info[website]['.$numItems.'][type]" id="contact_info[website]['.$numItems.'][type]"   class="form-control" >' .
+                               '                                <select name="contact_info[website]['.$numItems.'][type]" id="contact_info[website]['.$numItems.'][type]"   class="form-control selectpicker" >' .
                                '                                    <option '. ($ctw['website_type']==''?'selected':'') .'  value=""></option>' .
                                '                                    <option '. ($ctw['website_type']=='Website'?'selected':'') .' value="Website">Website</option>' .
                                '                                    <option '. ($ctw['website_type']=='Skype'?'selected':'') .' value="Skype">Skype</option>' .

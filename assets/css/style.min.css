@@ -634,11 +634,13 @@ a.disabled {
 }
 
 .modal-header {
-    background: #226faa;
+    /*background: #226faa;
     background: -webkit-gradient(linear, left top, right top, from(#226faa), color-stop(37%, #2989d8), to(#72c0d3));
     background: linear-gradient(to right, #226faa 0, #2989d8 37%, #72c0d3 100%);
+    */
+    background: white;
     border-radius: 6px;
-    color: #fff;
+    color: black;
     padding: 18px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -7992,7 +7994,7 @@ body.rtl .ajax-remove-values-option .ajax-clear-values {
     margin-top: -3px;
     font-size: 24px;
     font-weight: 400;
-    color: #fff;
+    color: black;
     opacity: .9;
     width: 28px;
     height: 28px;
@@ -8923,4 +8925,8 @@ body:not(.hide-sidebar) .hide-menu span{
     font-size: 16px;
     font-weight: bold;
     margin-left: 20px;
+}
+
+.color-black{
+    color: #0a0a0a;
 }
