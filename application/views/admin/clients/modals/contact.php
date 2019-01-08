@@ -26,6 +26,18 @@
                                         </a>
                                     </li>
                                     <?php do_action('after_contact_basic_info_tab', false); ?>
+                                    <?php
+                                    $customer_custom_fields = false;
+                                    if(total_rows('tblcustomfields',array('fieldto'=>'contacts','active'=>1)) > 0 ){
+                                        $customer_custom_fields = true;
+                                        ?>
+                                        <li role="presentation" >
+                                            <a href="#custom_fields" aria-controls="custom_fields" role="tab" data-toggle="tab">
+                                                <?php echo do_action('customer_profile_tab_custom_fields_text',_l( 'custom_fields')); ?>
+                                            </a>
+                                        </li>
+                                    <?php } ?>
+
                                     <li role="presentation">
                                         <a href="#contact_other_info" aria-controls="contact_other_info" role="tab"
                                            data-toggle="tab">
@@ -402,11 +414,15 @@
                                         <!-- end website -->
                                     </div>
                                 </div>
-                                <?php $rel_id = (isset($contact) ? $contact->id : false); ?>
-                                <?php echo render_custom_fields('contacts', $rel_id); ?>
-
 
                             </div>
+                            <?php if($customer_custom_fields ) { ?>
+                                <div role="tabpanel" class="tab-pane" id="custom_fields">
+                                    <?php $rel_id=( isset($contact) ? $contact->id : false); ?>
+                                    <?php echo render_custom_fields( 'contacts',$rel_id); ?>
+                                </div>
+                            <?php } ?>
+
                             <div role="tabpanel" class="tab-pane" id="contact_other_info">
 
                                 <?php if (isset($contact)) { ?>
