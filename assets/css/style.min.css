@@ -1403,8 +1403,8 @@ body.page-small.show-sidebar #wrapper {
     left: 0;
     position: absolute;
     top: 53px;
-    -webkit-transition: all .5s ease 0s;
-    transition: all .5s ease 0s;
+    /*-webkit-transition: all .5s ease 0s;*/
+    /*transition: all .5s ease 0s;*/
     /*z-index: -1;*/
 }
 
@@ -1681,8 +1681,8 @@ li .nav-second-level li {
     margin: 0 0 0 200px;
     padding: 0;
     background: #e9ebef;
-    -webkit-transition: all .4s ease 0s;
-    transition: all .4s ease 0s;
+    /*-webkit-transition: all .4s ease 0s;*/
+    /*transition: all .4s ease 0s;*/
     position: relative;
     min-height: 100%
 }
@@ -2994,8 +2994,8 @@ body.rtl.hide-sidebar #wrapper {
         pointer-events: auto;
         opacity: 1;
         z-index: 55;
-        -webkit-transition: opacity .3s cubic-bezier(0, 0, .3, 1);
-        transition: opacity .3s cubic-bezier(0, 0, .3, 1)
+        /*-webkit-transition: opacity .3s cubic-bezier(0, 0, .3, 1);*/
+        /*transition: opacity .3s cubic-bezier(0, 0, .3, 1)*/
     }
     body.show-sidebar,
     body.show-sidebar #wrapper,
@@ -8913,9 +8913,17 @@ body.gantt {
 
 body.hide-sidebar:not(.show-sidebar) .hide-menu {
     width: 60px;
+    /*-webkit-transition: all .4s ease 0s;*/
+    /*transition: all .4s ease 0s;*/
 }
 body:not(.hide-sidebar) .hide-menu {
     width: 200px;
+    /*-webkit-transition: all 0.4s ease 0s;*/
+    /*transition: all 0.4s ease 0s;*/
+}
+._display_delay{
+    /*-webkit-transition: display 1s;*/
+    /*transition: display 1s;*/
 }
 body.hide-sidebar:not(.show-sidebar) .hide-menu span{
     display: none;
@@ -8929,4 +8937,10 @@ body:not(.hide-sidebar) .hide-menu span{
 
 .color-black{
     color: #0a0a0a;
+}
+
+body.hide-sidebar:not(.show-sidebar) #menu:hover {
+    z-index: 8;
+    /*-webkit-transition: all .4s ease 0s;*/
+    /*transition: all .4s ease 0s;*/
 }

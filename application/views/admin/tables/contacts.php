@@ -16,6 +16,7 @@ $aColumns = array_merge($aColumns, [
     'phonenumber',
     'active',
     'last_login',
+    'link_type'
 ]);
 
 $sIndexColumn = 'id';
@@ -81,10 +82,11 @@ foreach ($rResult as $aRow) {
 
     $row[] = '<a href="mailto:' . $aRow['email'] . '">' . $aRow['email'] . '</a>';
 
-    $row[] = $aRow['title'];
+
 
     $row[] = '<a href="tel:' . $aRow['phonenumber'] . '">' . $aRow['phonenumber'] . '</a>';
-
+    $row[] = $aRow['link_type'];
+    $row[] = $aRow['title'];
     $outputActive = '<div class="onoffswitch">
                 <input type="checkbox"'.(total_rows('tblclients','registration_confirmed=0 AND userid='.$aRow['userid']) > 0 ? ' disabled' : '').' data-switch-url="' . admin_url() . 'clients/change_contact_status" name="onoffswitch" class="onoffswitch-checkbox" id="c_' . $aRow['id'] . '" data-id="' . $aRow['id'] . '"' . ($aRow['active'] == 1 ? ' checked': '') . '>
                 <label class="onoffswitch-label" for="c_' . $aRow['id'] . '"></label>

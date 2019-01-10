@@ -17,7 +17,7 @@
 <div id="header">
    <div class="hide-menu">
        <i class="fa fa-bars"></i>
-        <span  >Revv CRM</span>
+        <span class="_display_delay" >Revv CRM</span>
    </div>
    <div id="logo">
       <?php get_company_logo(get_admin_uri().'/') ?>

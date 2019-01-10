@@ -23,7 +23,7 @@
             'th_attrs'=>array('id'=>'th-consent', 'class'=>'not-export')
          ));
    }
-  $table_data = array_merge($table_data, array(_l('client_email'),_l('contact_position'),_l('client_phonenumber'),_l('contact_active'),_l('clients_list_last_login')));
+  $table_data = array_merge($table_data, array(_l('client_email'),_l('client_phonenumber'),_l('contact_link_type'),_l('contact_position'),_l('contact_active'),_l('clients_list_last_login')));
    $custom_fields = get_custom_fields('contacts',array('show_on_table'=>1));
    foreach($custom_fields as $field){
       array_push($table_data,$field['name']);

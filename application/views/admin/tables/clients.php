@@ -14,7 +14,7 @@ $aColumns = [
     'company',
     'firstname',
     'email',
-    'tblclients.phonenumber as phonenumber',
+    'tblcontacts.phonenumber as phonenumber',
     'tblclients.active',
     'GROUP_CONCAT(DISTINCT(tblcustomersgroups.name)) as customerGroups',
     'tblclients.datecreated as datecreated',
@@ -328,9 +328,9 @@ foreach ($rResult as $aRow) {
 
     $url = admin_url('clients/client/' . $aRow['userid']);
 
-    if ($isPerson && $aRow['contact_id']) {
-        $url .= '?contactid=' . $aRow['contact_id'];
-    }
+//    if ($isPerson && $aRow['contact_id']) {
+//        $url .= '?contactid=' . $aRow['contact_id'];
+//    }
 
 //    $company = '<a href="' . $url . '">' . $company . '</a>';
 //
@@ -366,9 +366,9 @@ foreach ($rResult as $aRow) {
     if ($aRow['registration_confirmed'] == 0 && is_admin()) {
         $company .= ' | <a href="' . admin_url('clients/confirm_registration/' . $aRow['userid']) . '" class="text-success bold">' . _l('confirm_registration') . '</a>';
     }
-    if (!$isPerson) {
+    //if (!$isPerson) {
         $company .= ' | <a href="' . admin_url('clients/client/' . $aRow['userid'] . '?group=contacts') . '">' . _l('customer_contacts') . '</a>';
-    }
+    //}
     if ($hasPermissionDelete) {
         $company .= ' | <a href="' . admin_url('clients/delete/' . $aRow['userid']) . '" class="text-danger _delete">' . _l('delete') . '</a>';
     }

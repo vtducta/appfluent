@@ -292,6 +292,20 @@ class Clients_model extends CRM_Model
         } else {
             $data['is_primary'] = 0;
         }
+
+        if ($data['link_type']=='Primary'||$data['link_type']=='Principal') {
+            $data['is_primary'] = 1;
+            $this->db->where('userid', $contact->userid);
+            $this->db->update('tblcontacts', [
+                'is_primary' => 0,
+            ]);
+
+            $this->db->where("link_type = 'Primary' or link_type = 'Principal'");
+            $this->db->update('tblcontacts', [
+                'link_type' => '',
+            ]);
+
+        }
         // Contact cant change if is primary or not
         if ($client_request == true) {
             unset($data['is_primary']);
@@ -453,6 +467,8 @@ class Clients_model extends CRM_Model
             $data['is_primary'] = 1;
         }
 
+
+
         if (isset($data['is_primary'])) {
             $data['is_primary'] = 1;
             $this->db->where('userid', $customer_id);
@@ -461,6 +477,19 @@ class Clients_model extends CRM_Model
             ]);
         } else {
             $data['is_primary'] = 0;
+        }
+
+        if ($data['link_type']=='Primary'||$data['link_type']=='Principal') {
+            $data['is_primary'] = 1;
+            $this->db->where('userid', $customer_id);
+            $this->db->update('tblcontacts', [
+                'is_primary' => 0,
+            ]);
+
+            $this->db->where("link_type = 'Primary' or link_type = 'Principal'");
+            $this->db->update('tblcontacts', [
+                'link_type' => '',
+            ]);
         }
 
         $password_before_hash = '';
@@ -2194,6 +2223,12 @@ class Clients_model extends CRM_Model
         $this->db->where('contact_id',$contact_id);
         $this->db->delete('tblcontact_phonenumbers');
 
+        if(count($data_phone)>0){
+            $this->db->where('id = '.$contact_id)->update('tblcontacts',
+                ['phonenumber' =>$data_phone[1]['value']]
+            );
+        }
+
         foreach ($data_phone as $phone){
             if($phone['value']){
                 $data = array(
@@ -2217,6 +2252,11 @@ class Clients_model extends CRM_Model
         $this->db->where('contact_id',$contact_id);
         $this->db->delete('tblcontact_mails');
 
+        if(count($data_mail)>0){
+            $this->db->where('id = '.$contact_id)->update('tblcontacts',
+                ['email' =>$data_mail[1]['value']]
+            );
+        }
         foreach ($data_mail as $mail){
             if($mail['value']){
                 $data = array(

@@ -117,7 +117,51 @@
                                         <?php $value = (isset($contact) ? $contact->title : ''); ?>
                                         <?php echo render_input('title', 'contact_position', $value); ?>
                                     </div>
+                                    <div class="col-md-2">
+                                        <label for="salutation"
+                                               class="control-label"><?php echo _l('contact_link_type') ?></label>
+                                        <?php $value = (isset($contact) ? $contact->link_type : ''); ?>
+                                        <select name="link_type" id="link_type" class="form-control selectpicker">
+                                            <option <?php if($value=='') echo 'selected';?> value=""></option>
+                                            <optgroup  label="Person">
+                                                <option <?php if($value=='Primary') echo 'selected';?> value="Primary">Primary</option>
+                                                <option <?php if($value=='Spouse') echo 'selected';?> value="Spouse">Spouse</option>
+                                                <option <?php if($value=='Husband') echo 'selected';?> value="Husband">Husband</option>
+                                                <option <?php if($value=='Wife') echo 'selected';?> value="Wife">Wife</option>
+                                                <option <?php if($value=='Common Law') echo 'selected';?> value="Common Law">Common Law</option>
+                                                <option <?php if($value=='Child') echo 'selected';?> value="Child">Child</option>
+                                                <option <?php if($value=='Son') echo 'selected';?> value="Son">Son</option>
+                                                <option <?php if($value=='Daughter') echo 'selected';?> value="Daughter">Daughter</option>
+                                                <option <?php if($value=='Sibling') echo 'selected';?> value="Sibling">Sibling</option>
+                                                <option <?php if($value=='Brother') echo 'selected';?> value="Brother">Brother</option>
+                                                <option <?php if($value=='Sister') echo 'selected';?> value="Sister">Sister</option>
+                                                <option <?php if($value=='Grandchild') echo 'selected';?> value="Grandchild">Grandchild</option>
+                                                <option <?php if($value=='Grandson') echo 'selected';?> value="Grandson">Grandson</option>
+                                                <option <?php if($value=='Granddaughter') echo 'selected';?> value="Granddaughter">Granddaughter</option>
+                                                <option <?php if($value=='Mother') echo 'selected';?> value="Mother">Mother</option>
+                                                <option <?php if($value=='Father') echo 'selected';?> value="Father">Father</option>
+                                                <option <?php if($value=='Uncle') echo 'selected';?> value="Uncle">Uncle</option>
+                                                <option <?php if($value=='Aunt') echo 'selected';?> value="Aunt">Aunt</option>
+                                                <option <?php if($value=='Nephew') echo 'selected';?> value="Nephew">Nephew</option>
+                                                <option <?php if($value=='Niece') echo 'selected';?> value="Niece">Niece</option>
+                                                <option <?php if($value=='Grandfather') echo 'selected';?> value="Grandfather">Grandfather</option>
+                                                <option <?php if($value=='Grandmother') echo 'selected';?> value="Grandmother">Grandmother</option>
+                                                <option <?php if($value=='Boyfriend') echo 'selected';?> value="Boyfriend">Boyfriend</option>
+                                                <option <?php if($value=='Girlfriend') echo 'selected';?> value="Girlfriend">Girlfriend</option>
+                                                <option <?php if($value=='Friend') echo 'selected';?> value="Friend">Friend</option>
+                                                <option <?php if($value=='Missing') echo 'selected';?> value="Missing">Missing</option>
 
+                                            </optgroup>
+                                            <optgroup label="Company" >
+                                                <option <?php if($value=='Principal') echo 'selected';?> value="Principal">Principal</option>
+                                                <option <?php if($value=='Partner') echo 'selected';?> value="Partner">Partner</option>
+                                                <option <?php if($value=='Key Person') echo 'selected';?> value="Key Person">Key Person</option>
+                                                <option <?php if($value=='Executive') echo 'selected';?> value="Executive">Executive</option>
+                                                <option <?php if($value=='Manager') echo 'selected';?> value="Manager">Manager</option>
+                                                <option <?php if($value=='Shareholder') echo 'selected';?> value="Shareholder">Shareholder</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
 
                                 </div>
                                 <!-- // For email exist check -->
@@ -425,250 +469,271 @@
 
                             <div role="tabpanel" class="tab-pane" id="contact_other_info">
 
-                                <?php if (isset($contact)) { ?>
-                                    <img src="<?php echo contact_profile_image_url($contact->id, 'thumb'); ?>"
-                                         id="contact-img" class="client-profile-image-small">
-                                    <?php if (!empty($contact->profile_image)) { ?>
-                                        <a href="#"
-                                           onclick="delete_contact_profile_image(<?php echo $contact->id; ?>); return false;"
-                                           class="text-danger pull-right" id="contact-remove-img"><i
-                                                    class="fa fa-remove"></i></a>
-                                    <?php } ?>
-                                    <hr/>
-                                <?php } ?>
-                                <div id="contact-profile-image"
-                                     class="form-group<?php if (isset($contact) && !empty($contact->profile_image)) {
-                                         echo ' hide';
-                                     } ?>">
-                                    <label for="profile_image"
-                                           class="profile-image"><?php echo _l('client_profile_image'); ?></label>
-                                    <input type="file" name="profile_image" class="form-control" id="profile_image">
-                                </div>
+                                <div class="row">
+                                    <div class="col-md-1" style="text-align: center;">
+                                        <?php if (isset($contact)) { ?>
+                                            <img src="<?php echo contact_profile_image_url($contact->id, 'thumb'); ?>"
+                                                 id="contact-img" class="client-profile-image-small" style="margin-top: 20px">
+                                            <?php if (!empty($contact->profile_image)) { ?>
+                                                <a href="#"
+                                                   onclick="delete_contact_profile_image(<?php echo $contact->id; ?>); return false;"
+                                                   class="text-danger pull-right" id="contact-remove-img"><i
+                                                            class="fa fa-remove"></i></a>
+                                            <?php } ?>
 
-                                <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
-                                <input type="text" class="fake-autofill-field" name="fakeusernameremembered" value=''
-                                       tabindex="-1"/>
-                                <input type="password" class="fake-autofill-field" name="fakepasswordremembered"
-                                       value='' tabindex="-1"/>
+                                        <?php } ?>
 
-                                <div class="client_password_set_wrapper form-group">
-                                    <label for="password" class="control-label">
-                                        <?php echo _l('client_password'); ?>
-                                    </label>
-                                    <div class="input-group">
 
-                                        <input type="password" class="form-control password" name="password"
-                                               autocomplete="false">
-                                        <span class="input-group-addon">
-                                        <a href="#password" class="show_password"
-                                           onclick="showPassword('password'); return false;"><i
-                                                    class="fa fa-eye"></i></a>
-                                    </span>
-                                        <span class="input-group-addon">
-                                        <a href="#" class="generate_password"
-                                           onclick="generatePassword(this);return false;"><i class="fa fa-refresh"></i></a>
-                                    </span>
+
                                     </div>
-                                    <?php if (isset($contact)) { ?>
-                                        <p class="text-muted">
-                                            <?php echo _l('client_password_change_populate_note'); ?>
-                                        </p>
-                                        <?php if ($contact->last_password_change != NULL) {
-                                            echo _l('client_password_last_changed');
-                                            echo '<span class="text-has-action" data-toggle="tooltip" data-title="' . _dt($contact->last_password_change) . '"> ' . time_ago($contact->last_password_change) . '</span>';
-                                        }
-                                    } ?>
-                                </div>
+                                    <div class="col-md-2">
+                                        <div id="contact-profile-image"
+                                             class="form-group<?php if (isset($contact) && !empty($contact->profile_image)) {
+                                                 echo ' hide';
+                                             } ?>">
+                                            <label for="profile_image"
+                                                   class="profile-image"><?php echo _l('client_profile_image'); ?></label>
+                                            <input type="file" name="profile_image" class="form-control" id="profile_image">
+                                        </div>
+                                    </div>
 
-                                <div class="form-group contact-direction-option">
-                                    <label for="direction"><?php echo _l('document_direction'); ?></label>
-                                    <select class="selectpicker"
-                                            data-none-selected-text="<?php echo _l('system_default_string'); ?>"
-                                            data-width="100%" name="direction" id="direction">
-                                        <option value="" <?php if (isset($contact) && empty($contact->direction)) {
-                                            echo 'selected';
-                                        } ?>></option>
-                                        <option value="ltr" <?php if (isset($contact) && $contact->direction == 'ltr') {
-                                            echo 'selected';
-                                        } ?>>LTR
-                                        </option>
-                                        <option value="rtl" <?php if (isset($contact) && $contact->direction == 'rtl') {
-                                            echo 'selected';
-                                        } ?>>RTL
-                                        </option>
-                                    </select>
+                                    <div class="col-md-2">
+                                        <div class="form-group contact-direction-option">
+                                            <label for="direction"><?php echo _l('document_direction'); ?></label>
+                                            <select class="selectpicker"
+                                                    data-none-selected-text="<?php echo _l('system_default_string'); ?>"
+                                                    data-width="100%" name="direction" id="direction">
+                                                <option value="" <?php if (isset($contact) && empty($contact->direction)) {
+                                                    echo 'selected';
+                                                } ?>></option>
+                                                <option value="ltr" <?php if (isset($contact) && $contact->direction == 'ltr') {
+                                                    echo 'selected';
+                                                } ?>>LTR
+                                                </option>
+                                                <option value="rtl" <?php if (isset($contact) && $contact->direction == 'rtl') {
+                                                    echo 'selected';
+                                                } ?>>RTL
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2" >
+                                        <div class="checkbox checkbox-primary">
+                                            <input type="checkbox" name="is_primary"
+                                                   id="contact_primary" <?php if ((!isset($contact) && total_rows('tblcontacts', array('is_primary' => 1, 'userid' => $customer_id)) == 0) || (isset($contact) && $contact->is_primary == 1)) {
+                                                echo 'checked';
+                                            }; ?> <?php if ((isset($contact) && total_rows('tblcontacts', array('is_primary' => 1, 'userid' => $customer_id)) == 1 && $contact->is_primary == 1)) {
+                                                echo 'disabled';
+                                            } ?>>
+                                            <label for="contact_primary">
+                                                <?php echo _l('contact_primary'); ?>
+                                            </label>
+                                        </div>
+                                        <?php if (!isset($contact) && total_rows('tblemailtemplates', array('slug' => 'new-client-created', 'active' => 0)) == 0) { ?>
+                                            <div class="checkbox checkbox-primary">
+                                                <input type="checkbox" name="donotsendwelcomeemail" id="donotsendwelcomeemail">
+                                                <label for="donotsendwelcomeemail">
+                                                    <?php echo _l('client_do_not_send_welcome_email'); ?>
+                                                </label>
+                                            </div>
+                                        <?php } ?>
+                                        <?php if (total_rows('tblemailtemplates', array('slug' => 'contact-set-password', 'active' => 0)) == 0) { ?>
+                                            <div class="checkbox checkbox-primary">
+                                                <input type="checkbox" name="send_set_password_email"
+                                                       id="send_set_password_email">
+                                                <label for="send_set_password_email">
+                                                    <?php echo _l('client_send_set_password_email'); ?>
+                                                </label>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <input type="text" class="fake-autofill-field hide" name="fakeusernameremembered" value=''
+                                               tabindex="-1"/>
+                                        <input type="password" class="fake-autofill-field hide" name="fakepasswordremembered"
+                                               value='' tabindex="-1"/>
+
+                                        <div class="client_password_set_wrapper form-group">
+                                            <label for="password" class="control-label">
+                                                <?php echo _l('client_password'); ?>
+                                            </label>
+                                            <div class="input-group">
+
+                                                <input type="password" class="form-control password" name="password"
+                                                       autocomplete="false">
+                                                <span class="input-group-addon">
+                                                <a href="#password" class="show_password"
+                                                   onclick="showPassword('password'); return false;"><i
+                                                            class="fa fa-eye"></i></a>
+                                                </span>
+                                                <span class="input-group-addon">
+                                                    <a href="#" class="generate_password"
+                                                       onclick="generatePassword(this);return false;"><i class="fa fa-refresh"></i></a>
+                                                </span>
+                                            </div>
+                                            <?php if (isset($contact)) { ?>
+                                                <p class="text-muted">
+                                                    <?php echo _l('client_password_change_populate_note'); ?>
+                                                </p>
+                                                <?php if ($contact->last_password_change != NULL) {
+                                                    echo _l('client_password_last_changed');
+                                                    echo '<span class="text-has-action" data-toggle="tooltip" data-title="' . _dt($contact->last_password_change) . '"> ' . time_ago($contact->last_password_change) . '</span>';
+                                                }
+                                            } ?>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <hr/>
-                                <div class="checkbox checkbox-primary">
-                                    <input type="checkbox" name="is_primary"
-                                           id="contact_primary" <?php if ((!isset($contact) && total_rows('tblcontacts', array('is_primary' => 1, 'userid' => $customer_id)) == 0) || (isset($contact) && $contact->is_primary == 1)) {
-                                        echo 'checked';
-                                    }; ?> <?php if ((isset($contact) && total_rows('tblcontacts', array('is_primary' => 1, 'userid' => $customer_id)) == 1 && $contact->is_primary == 1)) {
-                                        echo 'disabled';
-                                    } ?>>
-                                    <label for="contact_primary">
-                                        <?php echo _l('contact_primary'); ?>
-                                    </label>
-                                </div>
-                                <?php if (!isset($contact) && total_rows('tblemailtemplates', array('slug' => 'new-client-created', 'active' => 0)) == 0) { ?>
-                                    <div class="checkbox checkbox-primary">
-                                        <input type="checkbox" name="donotsendwelcomeemail" id="donotsendwelcomeemail">
-                                        <label for="donotsendwelcomeemail">
-                                            <?php echo _l('client_do_not_send_welcome_email'); ?>
-                                        </label>
-                                    </div>
-                                <?php } ?>
-                                <?php if (total_rows('tblemailtemplates', array('slug' => 'contact-set-password', 'active' => 0)) == 0) { ?>
-                                    <div class="checkbox checkbox-primary">
-                                        <input type="checkbox" name="send_set_password_email"
-                                               id="send_set_password_email">
-                                        <label for="send_set_password_email">
-                                            <?php echo _l('client_send_set_password_email'); ?>
-                                        </label>
-                                    </div>
-                                <?php } ?>
-                                <hr/>
-                                <p class="bold"><?php echo _l('customer_permissions'); ?></p>
-                                <p class="text-danger"><?php echo _l('contact_permissions_info'); ?></p>
-                                <?php
-                                $default_contact_permissions = array();
-                                if (!isset($contact)) {
-                                    $default_contact_permissions = @unserialize(get_option('default_contact_permissions'));
-                                }
-                                ?>
-                                <?php foreach ($customer_permissions as $permission) { ?>
-                                    <div class="col-md-6 row">
-                                        <div class="row">
-                                            <div class="col-md-6 mtop10 border-right">
-                                                <span><?php echo $permission['name']; ?></span>
-                                            </div>
-                                            <div class="col-md-6 mtop10">
-                                                <div class="onoffswitch">
-                                                    <input type="checkbox" id="<?php echo $permission['id']; ?>"
-                                                           class="onoffswitch-checkbox" <?php if (isset($contact) && has_contact_permission($permission['short_name'], $contact->id) || is_array($default_contact_permissions) && in_array($permission['id'], $default_contact_permissions)) {
-                                                        echo 'checked';
-                                                    } ?> value="<?php echo $permission['id']; ?>" name="permissions[]">
-                                                    <label class="onoffswitch-label"
-                                                           for="<?php echo $permission['id']; ?>"></label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                            <p class="bold"><?php echo _l('customer_permissions'); ?></p>
+                                            <p class="text-danger"><?php echo _l('contact_permissions_info'); ?></p>
+                                            <?php
+                                            $default_contact_permissions = array();
+                                            if (!isset($contact)) {
+                                                $default_contact_permissions = @unserialize(get_option('default_contact_permissions'));
+                                            }
+                                            ?>
+
+                                            <?php foreach ($customer_permissions as $permission) { ?>
+                                                <div class="col-md-12 row">
+                                                    <div class="row">
+                                                        <div class="col-md-6 mtop10 border-right">
+                                                            <span><?php echo $permission['name']; ?></span>
+                                                        </div>
+                                                        <div class="col-md-6 mtop10">
+                                                            <div class="onoffswitch">
+                                                                <input type="checkbox" id="<?php echo $permission['id']; ?>"
+                                                                       class="onoffswitch-checkbox" <?php if (isset($contact) && has_contact_permission($permission['short_name'], $contact->id) || is_array($default_contact_permissions) && in_array($permission['id'], $default_contact_permissions)) {
+                                                                    echo 'checked';
+                                                                } ?> value="<?php echo $permission['id']; ?>" name="permissions[]">
+                                                                <label class="onoffswitch-label"
+                                                                       for="<?php echo $permission['id']; ?>"></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                <?php } ?>
-                                <hr/>
-                                <p class="bold"><?php echo _l('email_notifications'); ?><?php if (is_sms_trigger_active()) {
-                                        echo '/SMS';
-                                    } ?></p>
-                                <div id="contact_email_notifications">
-                                    <div class="col-md-6 row">
-                                        <div class="row">
-                                            <div class="col-md-6 mtop10 border-right">
-                                                <span><?php echo _l('invoice'); ?></span>
-                                            </div>
-                                            <div class="col-md-6 mtop10">
-                                                <div class="onoffswitch">
-                                                    <input type="checkbox" id="invoice_emails" data-perm-id="1"
-                                                           class="onoffswitch-checkbox" <?php if (isset($contact) && $contact->invoice_emails == '1') {
-                                                        echo 'checked';
-                                                    } ?> value="invoice_emails" name="invoice_emails">
-                                                    <label class="onoffswitch-label" for="invoice_emails"></label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 row">
-                                        <div class="row">
-                                            <div class="col-md-6 mtop10 border-right">
-                                                <span><?php echo _l('estimate'); ?></span>
-                                            </div>
-                                            <div class="col-md-6 mtop10">
-                                                <div class="onoffswitch">
-                                                    <input type="checkbox" id="estimate_emails" data-perm-id="2"
-                                                           class="onoffswitch-checkbox" <?php if (isset($contact) && $contact->estimate_emails == '1') {
-                                                        echo 'checked';
-                                                    } ?> value="estimate_emails" name="estimate_emails">
-                                                    <label class="onoffswitch-label" for="estimate_emails"></label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 row">
-                                        <div class="row">
-                                            <div class="col-md-6 mtop10 border-right">
-                                                <span><?php echo _l('credit_note'); ?></span>
-                                            </div>
-                                            <div class="col-md-6 mtop10">
-                                                <div class="onoffswitch">
-                                                    <input type="checkbox" id="credit_note_emails" data-perm-id="1"
-                                                           class="onoffswitch-checkbox" <?php if (isset($contact) && $contact->credit_note_emails == '1') {
-                                                        echo 'checked';
-                                                    } ?> value="credit_note_emails" name="credit_note_emails">
-                                                    <label class="onoffswitch-label" for="credit_note_emails"></label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                <div class="clearfix"></div>
+                                            <?php } ?>
                                     </div>
 
-                                    <div class="col-md-6 row">
-                                        <div class="row">
-                                            <div class="col-md-6 mtop10 border-right">
-                                                <span><?php echo _l('project'); ?></span>
-                                            </div>
-                                            <div class="col-md-6 mtop10">
-                                                <div class="onoffswitch">
-                                                    <input type="checkbox" id="project_emails" data-perm-id="6"
-                                                           class="onoffswitch-checkbox" <?php if (isset($contact) && $contact->project_emails == '1') {
-                                                        echo 'checked';
-                                                    } ?> value="project_emails" name="project_emails">
-                                                    <label class="onoffswitch-label" for="project_emails"></label>
+                                    <div class="col-md-6">
+                                        <p class="bold"><?php echo _l('email_notifications'); ?><?php if (is_sms_trigger_active()) {
+                                                echo '/SMS';
+                                            } ?></p>
+                                        <div id="contact_email_notifications">
+                                            <div class="col-md-6 row">
+                                                <div class="row">
+                                                    <div class="col-md-6 mtop10 border-right">
+                                                        <span><?php echo _l('invoice'); ?></span>
+                                                    </div>
+                                                    <div class="col-md-6 mtop10">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" id="invoice_emails" data-perm-id="1"
+                                                                   class="onoffswitch-checkbox" <?php if (isset($contact) && $contact->invoice_emails == '1') {
+                                                                echo 'checked';
+                                                            } ?> value="invoice_emails" name="invoice_emails">
+                                                            <label class="onoffswitch-label" for="invoice_emails"></label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 row">
-                                        <div class="row">
-                                            <div class="col-md-6 mtop10 border-right">
-                                                <span><?php echo _l('tickets'); ?></span>
-                                            </div>
-                                            <div class="col-md-6 mtop10">
-                                                <div class="onoffswitch">
-                                                    <input type="checkbox" id="ticket_emails" data-perm-id="5"
-                                                           class="onoffswitch-checkbox" <?php if (isset($contact) && $contact->ticket_emails == '1') {
-                                                        echo 'checked';
-                                                    } ?> value="ticket_emails" name="ticket_emails">
-                                                    <label class="onoffswitch-label" for="ticket_emails"></label>
+                                            <div class="col-md-6 row">
+                                                <div class="row">
+                                                    <div class="col-md-6 mtop10 border-right">
+                                                        <span><?php echo _l('estimate'); ?></span>
+                                                    </div>
+                                                    <div class="col-md-6 mtop10">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" id="estimate_emails" data-perm-id="2"
+                                                                   class="onoffswitch-checkbox" <?php if (isset($contact) && $contact->estimate_emails == '1') {
+                                                                echo 'checked';
+                                                            } ?> value="estimate_emails" name="estimate_emails">
+                                                            <label class="onoffswitch-label" for="estimate_emails"></label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 mtop10 border-right">
+                                            <div class="col-md-6 row">
+                                                <div class="row">
+                                                    <div class="col-md-6 mtop10 border-right">
+                                                        <span><?php echo _l('credit_note'); ?></span>
+                                                    </div>
+                                                    <div class="col-md-6 mtop10">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" id="credit_note_emails" data-perm-id="1"
+                                                                   class="onoffswitch-checkbox" <?php if (isset($contact) && $contact->credit_note_emails == '1') {
+                                                                echo 'checked';
+                                                            } ?> value="credit_note_emails" name="credit_note_emails">
+                                                            <label class="onoffswitch-label" for="credit_note_emails"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 row">
+                                                <div class="row">
+                                                    <div class="col-md-6 mtop10 border-right">
+                                                        <span><?php echo _l('project'); ?></span>
+                                                    </div>
+                                                    <div class="col-md-6 mtop10">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" id="project_emails" data-perm-id="6"
+                                                                   class="onoffswitch-checkbox" <?php if (isset($contact) && $contact->project_emails == '1') {
+                                                                echo 'checked';
+                                                            } ?> value="project_emails" name="project_emails">
+                                                            <label class="onoffswitch-label" for="project_emails"></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 row">
+                                                <div class="row">
+                                                    <div class="col-md-6 mtop10 border-right">
+                                                        <span><?php echo _l('tickets'); ?></span>
+                                                    </div>
+                                                    <div class="col-md-6 mtop10">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" id="ticket_emails" data-perm-id="5"
+                                                                   class="onoffswitch-checkbox" <?php if (isset($contact) && $contact->ticket_emails == '1') {
+                                                                echo 'checked';
+                                                            } ?> value="ticket_emails" name="ticket_emails">
+                                                            <label class="onoffswitch-label" for="ticket_emails"></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 mtop10 border-right">
                                                 <span><i class="fa fa-question-circle" data-toggle="tooltip"
                                                          data-title="<?php echo _l('only_project_tasks'); ?>"></i> <?php echo _l('task'); ?></span>
-                                            </div>
-                                            <div class="col-md-6 mtop10">
-                                                <div class="onoffswitch">
-                                                    <input type="checkbox" id="task_emails" data-perm-id="6"
-                                                           class="onoffswitch-checkbox" <?php if (isset($contact) && $contact->task_emails == '1') {
-                                                        echo 'checked';
-                                                    } ?> value="task_emails" name="task_emails">
-                                                    <label class="onoffswitch-label" for="task_emails"></label>
+                                                    </div>
+                                                    <div class="col-md-6 mtop10">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" id="task_emails" data-perm-id="6"
+                                                                   class="onoffswitch-checkbox" <?php if (isset($contact) && $contact->task_emails == '1') {
+                                                                echo 'checked';
+                                                            } ?> value="task_emails" name="task_emails">
+                                                            <label class="onoffswitch-label" for="task_emails"></label>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 row">
-                                        <div class="row">
-                                            <div class="col-md-6 mtop10 border-right">
-                                                <span><?php echo _l('contract'); ?></span>
-                                            </div>
-                                            <div class="col-md-6 mtop10">
-                                                <div class="onoffswitch">
-                                                    <input type="checkbox" id="contract_emails" data-perm-id="3"
-                                                           class="onoffswitch-checkbox" <?php if (isset($contact) && $contact->contract_emails == '1') {
-                                                        echo 'checked';
-                                                    } ?> value="contract_emails" name="contract_emails">
-                                                    <label class="onoffswitch-label" for="contract_emails"></label>
+                                            <div class="col-md-6 row">
+                                                <div class="row">
+                                                    <div class="col-md-6 mtop10 border-right">
+                                                        <span><?php echo _l('contract'); ?></span>
+                                                    </div>
+                                                    <div class="col-md-6 mtop10">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" id="contract_emails" data-perm-id="3"
+                                                                   class="onoffswitch-checkbox" <?php if (isset($contact) && $contact->contract_emails == '1') {
+                                                                echo 'checked';
+                                                            } ?> value="contract_emails" name="contract_emails">
+                                                            <label class="onoffswitch-label" for="contract_emails"></label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
