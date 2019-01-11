@@ -83,7 +83,14 @@
                   <?php } ?>
                   <div>
                      <div class="tab-content">
-                        <?php $this->load->view('admin/clients/groups/'.$group); ?>
+                        <?php
+                        if(strpos($group,'section') === 0 ){
+                            $this->load->view('admin/clients/groups/custom_section');
+                        }else{
+                            $this->load->view('admin/clients/groups/'.$group);
+                        }
+
+                        ?>
                      </div>
                   </div>
                </div>

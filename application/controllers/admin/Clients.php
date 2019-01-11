@@ -297,6 +297,19 @@ class Clients extends Admin_controller
                 if (total_rows('tblemailtemplates', ['slug' => $data['template_name'], 'active' => 0]) > 0) {
                     $data['template_disabled'] = true;
                 }
+            } elseif ( strpos($group,'section_') === 0) {
+
+                $slug = substr($group,8);
+                $this->load->model('custom_tabs_model');
+
+                $data['list_custom_tab'] = $this->custom_tabs_model->get_by_section_slug($slug);
+
+                $this->load->model('custom_sections_model');
+                $section = $this->custom_sections_model->get_by_section_slug($slug,'contacts');
+                $data['title']                = $section["name"];
+
+                $data['customer_id']=$id;
+
             }
 
             $data['staff'] = $this->staff_model->get('', ['active' => 1]);
@@ -344,6 +357,29 @@ class Clients extends Admin_controller
 
             $data['customer_currency'] = $customer_currency;
         }
+
+        if( $id !=''){
+            $contact_primary = $this->clients_model->get_contact_primary($id);
+            $this->load->model('custom_sections_model');
+            $arraySection = $this->custom_sections_model->get(false,'contacts');
+            $arrayListGroup =  array();
+            $i=20;
+
+            foreach ($arraySection as $section ){
+
+                $obj = array();
+                $obj['name'] = $section['name'];
+                $obj['url'] = admin_url('clients/client/'.$id.'?group=section_'.$section["slug"]);
+                $obj['icon'] = 'fa fa-list-alt';
+                $obj['lang'] = $section['name'];
+                $obj['visible'] = true;
+                $obj['order'] = $i++;
+                $arrayListGroup[] = $obj;
+            }
+
+            $data['list_custom_section'] = $arrayListGroup;
+        }
+
 
         $data['bodyclass'] = 'customer-profile dynamic-create-groups';
         $data['title']     = $title;

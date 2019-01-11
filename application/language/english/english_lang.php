@@ -2456,7 +2456,7 @@ $lang['project_invoice_select_all_tasks'] = 'Select all tasks';
 $lang['lead_company'] = 'Company';
 
 $lang['custom_section_dt_name'] = 'Submenu name';
-$lang['asc_custom_sections'] = 'Custom submenu';
+$lang['asc_custom_sections'] = 'Custom Submenus';
 $lang['new_custom_section'] = 'New submenu';
 $lang['custom_section_add_edit_active'] = 'Active';
 $lang['custom_section_lowercase'] = 'submenu';

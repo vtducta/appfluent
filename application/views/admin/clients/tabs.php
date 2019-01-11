@@ -1,5 +1,10 @@
 <?php
     $customer_tabs = get_customer_profile_tabs($client->userid);
+    if($list_custom_section){
+        $customer_tabs = array_merge($customer_tabs,$list_custom_section);
+        //var_dump($customer_tabs);die;
+    }
+
 ?>
 <ul class="nav navbar-pills navbar-pills-flat nav-tabs nav-stacked customer-tabs" role="tablist">
    <?php
