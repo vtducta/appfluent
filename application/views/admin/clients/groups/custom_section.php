@@ -2,7 +2,7 @@
 <div class="row">
    <?php echo form_open_multipart($this->uri->uri_string(),array('class'=>'custom-section-form','autocomplete'=>'off')); ?>
    <div class="additional"></div>
-    <?php echo form_hidden('contact[contactid]',$contactid); ?>
+    <?php echo form_hidden('contact[id]',$contact->id); ?>
    <div class="col-md-12">
       <ul class="nav nav-tabs profile-tabs row customer-profile-tabs" role="tablist">
           <?php $index=0;
