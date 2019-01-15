@@ -246,6 +246,10 @@ class Clients extends Admin_controller
             if ($group == 'profile') {
                 $data['customer_groups'] = $this->clients_model->get_customer_groups($id);
                 $data['customer_admins'] = $this->clients_model->get_admins($id);
+
+                $this->load->model('custom_tabs_model');
+                $data['list_custom_tab'] = $this->custom_tabs_model->get_tab_show_in_profile('contact_profile');
+
             } elseif ($group == 'attachments') {
                 $data['attachments'] = get_all_customer_attachments($id);
             } elseif ($group == 'vault') {
@@ -539,6 +543,10 @@ class Clients extends Admin_controller
                 ]);
             die;
         }
+
+        $this->load->model('custom_tabs_model');
+        $data['list_custom_tab'] = $this->custom_tabs_model->get_tab_show_in_profile('contact_profile');
+
         if ($contact_id == '') {
             $title = _l('add_new', _l('contact_lowercase'));
         } else {
@@ -549,6 +557,8 @@ class Clients extends Admin_controller
             $data['contact_mail'] = $contact_mail;
             $contact_website = $this->clients_model->get_contact_website($contact_id);
             $data['contact_website'] = $contact_website;
+
+
 
             if (!$data['contact']) {
                 header('HTTP/1.0 400 Bad error');

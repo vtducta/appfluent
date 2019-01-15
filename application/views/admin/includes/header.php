@@ -15,7 +15,7 @@
    ob_end_clean();
    ?>
 <div id="header">
-   <div class="hide-menu">
+   <div id="menu_button" class="hide-menu">
        <i class="fa fa-bars"></i>
         <span class="_display_delay" >Revv CRM</span>
    </div>

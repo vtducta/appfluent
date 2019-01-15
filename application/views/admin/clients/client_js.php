@@ -419,7 +419,7 @@ function add_phone() {
         '                        </div>' +
         '                        <div class="col-md-6">' +
         '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[phone]['+numItems+'][type]">' +
-        '                                <select name="contact_info[phone]['+numItems+'][type]" id="contact_info[phone]['+numItems+'][type]"   class="form-control selectpicker" >' +
+        '                                <select data-dropup-auto="false" name="contact_info[phone]['+numItems+'][type]" id="contact_info[phone]['+numItems+'][type]"   class="form-control selectpicker" >' +
         '                                    <option value=""></option>' +
         '                                    <option value="Work">Work</option>' +
         '                                    <option value="Home">Home</option>' +
@@ -457,7 +457,7 @@ function add_mail() {
         '                        </div>' +
         '                        <div class="col-md-6">' +
         '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[mail]['+numItems+'][type]">' +
-        '                                <select name="contact_info[mail]['+numItems+'][type]" id="contact_info[mail]['+numItems+'][type]"   class="form-control selectpicker" >' +
+        '                                <select data-dropup-auto="false" name="contact_info[mail]['+numItems+'][type]" id="contact_info[mail]['+numItems+'][type]"   class="form-control selectpicker" >' +
         '                                    <option value=""></option>' +
         '                                    <option value="work">Work</option>' +
         '                                    <option value="personal">Personal</option>' +
@@ -490,7 +490,7 @@ function add_website() {
         '                        </div>' +
         '                        <div class="col-md-6">' +
         '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[website]['+numItems+'][type]">' +
-        '                                <select name="contact_info[website]['+numItems+'][type]" id="contact_info[website]['+numItems+'][type]"   class="form-control selectpicker" >' +
+        '                                <select data-dropup-auto="false" name="contact_info[website]['+numItems+'][type]" id="contact_info[website]['+numItems+'][type]"   class="form-control selectpicker" >' +
         '                                    <option value=""></option>' +
         '                                    <option value="Website">Website</option>' +
         '                                    <option value="Skype">Skype</option>' +

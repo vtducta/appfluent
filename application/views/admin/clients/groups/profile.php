@@ -13,17 +13,7 @@
             <?php echo _l( 'customer_profile_details'); ?>
             </a>
          </li>
-         <?php
-            $customer_custom_fields = false;
-            if(total_rows('tblcustomfields',array('fieldto'=>'contacts','active'=>1)) > 0 ){
-                 $customer_custom_fields = true;
-             ?>
-         <li role="presentation" class="<?php if($this->input->get('tab') == 'custom_fields'){echo 'active';}; ?>">
-            <a href="#custom_fields" aria-controls="custom_fields" role="tab" data-toggle="tab">
-            <?php echo do_action('customer_profile_tab_custom_fields_text',_l( 'custom_fields')); ?>
-            </a>
-         </li>
-         <?php } ?>
+
          <li role="presentation">
             <a href="#billing_and_shipping" aria-controls="billing_and_shipping" role="tab" data-toggle="tab">
             <?php echo _l( 'billing_shipping'); ?>
@@ -38,17 +28,20 @@
          </li>
          <?php do_action('after_customer_admins_tab',$client); ?>
          <?php } ?>
+
+          <?php  foreach ($list_custom_tab as $customtab) { ?>
+              <li role="presentation" class="">
+                  <a href="#<?=$customtab['slug']?>" aria-controls="<?=$customtab['slug']?>" role="tab" data-toggle="tab">
+                      <?php echo $customtab['name']; ?>
+                  </a>
+              </li>
+              <?php do_action('after_'.$customtab['slug'].'_tab',isset($contact) ? $contact : false); ?>
+          <?php  }?>
       </ul>
    </div>
 </div>
       <div class="tab-content">
          <?php do_action('after_custom_profile_tab_content',isset($client) ? $client : false); ?>
-         <?php if($customer_custom_fields ) { ?>
-         <div role="tabpanel" class="tab-pane <?php if($this->input->get('tab') == 'custom_fields'){echo ' active';}; ?>" id="custom_fields">
-            <?php $rel_id=( isset($contact) ? $contact->id : false); ?>
-            <?php echo render_custom_fields( 'contacts',$rel_id); ?>
-         </div>
-         <?php } ?>
          <div role="tabpanel" class="tab-pane<?php if(!$this->input->get('tab')){echo ' active';}; ?>" id="contact_info">
             <div class="row">
                <div class="col-md-12<?php if(isset($client) && (!is_empty_customer_company($client->userid) && total_rows('tblcontacts',array('userid'=>$client->userid,'is_primary'=>1)) > 0)) { echo ''; } else {echo ' hide';} ?>" id="client-show-primary-contact-wrapper">
@@ -137,7 +130,7 @@
                            </div>
                        </div>
                        <div class="col-md-6">
-                           <div class="form-group" app-field-wrapper="contact_info[phone][1][type]">
+                           <div class="select-placeholder form-group" app-field-wrapper="contact_info[phone][1][type]">
 
                                <label for="contact_info[phone][1][type]" class="control-label">Phone Type</label>
                                <?php
@@ -147,7 +140,7 @@
                                        $value = $contact_phone[0]['phone_type'];
                                    }
                                } ?>
-                               <select name="contact_info[phone][1][type]" id="contact_info[phone][1][type]"   class="form-control selectpicker">
+                               <select data-dropup-auto="false" name="contact_info[phone][1][type]" id="contact_info[phone][1][type]"   class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
                                    <option <?php if($value=="") echo 'selected' ?> value=""></option>
                                    <option <?php if($value=="Work") echo 'selected' ?> value="Work">Work</option>
                                    <option <?php if($value=="Home") echo 'selected' ?> value="Home">Home</option>
@@ -178,8 +171,8 @@
                                     '                            </div>' .
                                     '                        </div>' .
                                     '                        <div class="col-md-6">' .
-                                    '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[phone]['.$numItems.'][type]">' .
-                                    '                                <select name="contact_info[phone]['.$numItems.'][type]" id="contact_info[phone]['.$numItems.'][type]"   class="form-control selectpicker" >' .
+                                    '                            <div style="float:left ;width: 80%" class="select-placeholder form-group" app-field-wrapper="contact_info[phone]['.$numItems.'][type]">' .
+                                    '                                <select data-dropup-auto="false" name="contact_info[phone]['.$numItems.'][type]" id="contact_info[phone]['.$numItems.'][type]"   class="form-control selectpicker" >' .
                                     '                                    <option '. ($ctp['phone_type']==''?'selected':'') .'  value=""></option>' .
                                     '                                    <option '. ($ctp['phone_type']=='Work'?'selected':'') .' value="Work">Work</option>' .
                                     '                                    <option '. ($ctp['phone_type']=='Home'?'selected':'') .' value="Home">Home</option>' .
@@ -236,7 +229,7 @@
                                        $value = $contact_mail[0]['mail_type'];
                                    }
                                } ?>
-                               <select name="contact_info[mail][1][type]" id="contact_info[mail][1][type]"   class="form-control selectpicker">
+                               <select data-dropup-auto="false" name="contact_info[mail][1][type]" id="contact_info[mail][1][type]"   class="form-control selectpicker">
                                    <option <?php if($value=="") echo 'selected' ?> value=""></option>
                                    <option <?php if($value=="work") echo 'selected' ?> value="work">Work</option>
                                    <option <?php if($value=="personal") echo 'selected' ?> value="personal">Personal</option>
@@ -263,7 +256,7 @@
                                '                        </div>' .
                                '                        <div class="col-md-6">' .
                                '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[mail]['.$numItems.'][type]">' .
-                               '                                <select name="contact_info[mail]['.$numItems.'][type]" id="contact_info[mail]['.$numItems.'][type]"   class="form-control selectpicker" >' .
+                               '                                <select data-dropup-auto="false" name="contact_info[mail]['.$numItems.'][type]" id="contact_info[mail]['.$numItems.'][type]"   class="form-control selectpicker" >' .
                                '                                    <option '. ($ctm['mail_type']==''?'selected':'') .'  value=""></option>' .
                                '                                    <option '. ($ctm['mail_type']=='work'?'selected':'') .' value="work">Work</option>' .
                                '                                    <option '. ($ctm['mail_type']=='personal'?'selected':'') .' value="personal">Personal</option>' .
@@ -315,7 +308,7 @@
                                        $value = $contact_website[0]['website_type'];
                                    }
                                } ?>
-                               <select name="contact_info[website][1][type]" id="contact_info[website][1][type]"   class="form-control selectpicker">
+                               <select data-dropup-auto="false" name="contact_info[website][1][type]" id="contact_info[website][1][type]"   class="form-control selectpicker">
                                    <option <?php if($value=="") echo 'selected' ?> value=""></option>
                                    <option <?php if($value=="Website") echo 'selected' ?> value="Website">Website</option>
                                    <option <?php if($value=="Skype") echo 'selected' ?> value="Skype">Skype</option>
@@ -351,7 +344,7 @@
                                '                        </div>' .
                                '                        <div class="col-md-6">' .
                                '                            <div style="float:left ;width: 80%" class="form-group" app-field-wrapper="contact_info[mail]['.$numItems.'][type]">' .
-                               '                                <select name="contact_info[website]['.$numItems.'][type]" id="contact_info[website]['.$numItems.'][type]"   class="form-control selectpicker" >' .
+                               '                                <select data-dropup-auto="false" name="contact_info[website]['.$numItems.'][type]" id="contact_info[website]['.$numItems.'][type]"   class="form-control selectpicker" >' .
                                '                                    <option '. ($ctw['website_type']==''?'selected':'') .'  value=""></option>' .
                                '                                    <option '. ($ctw['website_type']=='Website'?'selected':'') .' value="Website">Website</option>' .
                                '                                    <option '. ($ctw['website_type']=='Skype'?'selected':'') .' value="Skype">Skype</option>' .
@@ -451,7 +444,7 @@
                                <div class="form-group select-placeholder">
                                    <label for="default_language" class="control-label"><?php echo _l('localization_default_language'); ?>
                                    </label>
-                                   <select name="default_language" id="default_language" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
+                                   <select data-dropup-auto="false" name="default_language" id="default_language" class="form-control selectpicker" data-none-selected-text="<?php echo _l('dropdown_non_selected_tex'); ?>">
                                        <option value=""><?php echo _l('system_default_string'); ?></option>
                                        <?php foreach(list_folders(APPPATH .'language') as $language){
                                            $selected = '';
@@ -569,6 +562,18 @@
                </div>
             </div>
          </div>
+
+          <?php
+          foreach ($list_custom_tab as $customtab) { ?>
+              <div role="tabpanel" class="tab-pane" id="<?= $customtab['slug'] ?>">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <?php $rel_id = (isset($contact) ? $contact->id : false); ?>
+                          <?php echo render_custom_fields('contacts', $rel_id, array('custom_tab_id' => $customtab['id'])); ?>
+                      </div>
+                  </div>
+              </div>
+          <?php } ?>
       </div>
    </div>
    <?php echo form_close(); ?>

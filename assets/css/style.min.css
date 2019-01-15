@@ -8944,3 +8944,10 @@ body.hide-sidebar:not(.show-sidebar) #menu:hover {
     /*-webkit-transition: all .4s ease 0s;*/
     /*transition: all .4s ease 0s;*/
 }
+
+.show_span_menu{
+    display: unset !important;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 20px;
+}
