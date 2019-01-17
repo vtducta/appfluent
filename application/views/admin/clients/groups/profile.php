@@ -21,12 +21,19 @@
          </li>
          <?php do_action('after_customer_billing_and_shipping_tab',isset($client) ? $client : false); ?>
          <?php if(isset($client)){ ?>
-         <li role="presentation">
-            <a href="#customer_admins" aria-controls="customer_admins" role="tab" data-toggle="tab">
-            <?php echo _l( 'customer_admins' ); ?>
-            </a>
-         </li>
-         <?php do_action('after_customer_admins_tab',$client); ?>
+             <li role="presentation">
+                 <a href="#customer_admins" aria-controls="customer_admins" role="tab" data-toggle="tab">
+                     <?php echo _l('customer_admins'); ?>
+                 </a>
+             </li>
+             <?php do_action('after_customer_admins_tab', $client); ?>
+
+             <li role="presentation">
+                 <a href="#contact_tags" aria-controls="contact_tags" role="tab" data-toggle="tab">
+                     <?php echo _l('contact_tags'); ?>
+                 </a>
+             </li>
+             <?php do_action('after_contact_tags_tab', $client); ?>
          <?php } ?>
 
           <?php  foreach ($list_custom_tab as $customtab) { ?>
@@ -72,6 +79,8 @@
                                 <option <?php if($value=="Rev.") echo 'selected' ?> value="Rev.">Rev.</option>
                             </select>
                         </div>
+
+
                     </div>
 
                     <div class="col-md-3">
@@ -574,6 +583,19 @@
                   </div>
               </div>
           <?php } ?>
+
+          <div role="tabpanel" class="tab-pane" id="contact_tags">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="form-group">
+
+                          <label for="tags" class="control-label"><i class="fa fa-tag" aria-hidden="true"></i> <?php echo _l('tags'); ?></label>
+                          <?php $value=( isset($contact_tags) ? $contact_tags : ''); ?>
+                          <input type="text" class="tagsinput" id="contact[tags]" name="contact[tags]" data-role="tagsinput" value="<?php echo $value; ?>">
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
    </div>
    <?php echo form_close(); ?>

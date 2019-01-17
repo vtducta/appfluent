@@ -114,7 +114,6 @@ class Clients extends Admin_controller
 
                 $data = $this->input->post();
 
-
                 $data_contact= $data['contact'];
                 $data_contact['is_primary']=1;
                 unset($data['contact']);
@@ -125,6 +124,12 @@ class Clients extends Admin_controller
                 $custom_field = $data['custom_fields'];
                 unset($data['custom_fields']);
                 $data_contact['custom_fields']=$custom_field;
+
+
+                $tags = $data_contact['tags'];
+                unset($data_contact['tags']);
+
+                //var_dump($data_contact);die;
 
                 $save_and_add_contact = false;
                 if (isset($data['save_and_add_contact'])) {
@@ -151,6 +156,10 @@ class Clients extends Admin_controller
                             $this->clients_model->insert_contact_website($contact_id,$data_contact_info['website']);
                         }
                     }
+
+                    //tag
+                    handle_tags_save($tags, $contact_id, 'contact');
+
                     //
                     set_alert('success', _l('added_successfully', _l('client')));
                     if ($save_and_add_contact == false) {
@@ -176,12 +185,18 @@ class Clients extends Admin_controller
                 unset($data['custom_fields']);
                 $data_contact['custom_fields']=$custom_field;
 
+                $tags = $data_contact['tags'];
+                unset($data_contact['tags']);
+
                 $data_contact_info =  $data['contact_info'];
                 unset($data['contact_info']);
 
                 if($data_contact['id']){
                     $data_contact['is_primary']=1;
                     $this->clients_model->update_contact($data_contact,$data_contact['id']);
+
+                    //tag
+                    handle_tags_save($tags, $data_contact['id'], 'contact');
 
                     if($data_contact['id'] && $data_contact_info){
                         if($data_contact_info['phone']){
@@ -234,6 +249,8 @@ class Clients extends Admin_controller
                 $data['contact_mail'] = $contact_mail;
                 $contact_website = $this->clients_model->get_contact_website($contact_primary->id);
                 $data['contact_website'] = $contact_website;
+
+                $data['contact_tags'] = implode(',',get_tags_in($contact_primary->id,'contact'));
             }
 
             if (!$client) {
@@ -435,6 +452,9 @@ class Clients extends Admin_controller
             $data_contact_info =  $data['contact_info'];
             unset($data['contact_info']);
 
+            $tags = $data['contact']['tags'];
+            unset($data['contact']);
+
             unset($data['contactid']);
             if ($contact_id == '') {
                 if (!has_permission('customers', '', 'create')) {
@@ -462,6 +482,10 @@ class Clients extends Admin_controller
                     }
                 }
 
+                //tag
+                handle_tags_save($tags, $id, 'contact');
+
+
                 $message = '';
                 $success = false;
                 if ($id) {
@@ -487,6 +511,7 @@ class Clients extends Admin_controller
                     die;
                 }
             }
+
             $original_contact = $this->clients_model->get_contact($contact_id);
             $success          = $this->clients_model->update_contact($data, $contact_id);
             $message          = '';
@@ -505,6 +530,10 @@ class Clients extends Admin_controller
                     $this->clients_model->insert_contact_website($contact_id,$data_contact_info['website']);
                 }
             }
+
+            //tag
+            handle_tags_save($tags, $contact_id, 'contact');
+
 
             if (is_array($success)) {
                 if (isset($success['set_password_email_sent'])) {
@@ -558,7 +587,7 @@ class Clients extends Admin_controller
             $contact_website = $this->clients_model->get_contact_website($contact_id);
             $data['contact_website'] = $contact_website;
 
-
+            $data['contact_tags'] = implode(',',get_tags_in($contact_id,'contact'));
 
             if (!$data['contact']) {
                 header('HTTP/1.0 400 Bad error');

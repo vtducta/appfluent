@@ -421,6 +421,10 @@ class Clients_model extends CRM_Model
      */
     public function add_contact($data, $customer_id, $not_manual_request = false)
     {
+        if (isset($data['id'])) {
+            unset($data['id']);
+        }
+
         if (isset($data['fakeusernameremembered'])) {
             unset($data['fakeusernameremembered']);
         }
@@ -438,6 +442,8 @@ class Clients_model extends CRM_Model
 
         if (isset($data['custom_fields'])) {
             $custom_fields = $data['custom_fields'];
+            unset($data['custom_fields']);
+        }else{
             unset($data['custom_fields']);
         }
 
@@ -491,6 +497,7 @@ class Clients_model extends CRM_Model
                 'link_type' => '',
             ]);
         }
+
 
         $password_before_hash = '';
         $data['userid']       = $customer_id;

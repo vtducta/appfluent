@@ -1551,7 +1551,7 @@ $lang['customer_billing_copy']                                 = 'Copy Billing A
 $lang['customer_map']                                          = 'Map';
 $lang['set_password_email_sent_to_client']                     = 'Email to set password is successfully sent to contact';
 $lang['set_password_email_sent_to_client_and_profile_updated'] = 'Profile updated and email to set password is successfully sent to contact';
-$lang['customer_attachments']                                  = 'Files';
+$lang['customer_attachments']                                  = 'File Box';
 $lang['customer_longitude']                                    = 'Longitude (Google Maps)';
 $lang['customer_latitude']                                     = 'Latitude (Google Maps)';
 
@@ -2490,7 +2490,7 @@ $lang['not_new_ticket_created'] = 'New ticket opened in your department - %s';
 $lang['receive_notification_on_new_ticket'] = 'Receive notification on new ticket opened';
 $lang['receive_notification_on_new_ticket_help'] = 'All staff members which belong to the ticket department will receive notification that new ticket is opened';
 $lang['event_updated'] = 'Event updated successfully';
-$lang['customer_contacts'] = 'Contacts';
+$lang['customer_contacts'] = 'Linked Contacts';
 $lang['customer_contacts_family'] = 'Related Contacts';
 $lang['new_contact'] = 'New Contact';
 $lang['new_contact_family'] = 'Add Related Contact';
@@ -2548,7 +2548,7 @@ $lang['view_pdf'] = 'View PDF';
 $lang['expense_repeat_every'] = 'Repeat every';
 
 # Version 1.1.2
-$lang['leads_switch_to_kanban'] = 'Switch to kan ban';
+$lang['leads_switch_to_kanban'] = 'Switch view';
 $lang['survey_no_questions'] = 'This survey does not have questions added yet.';
 $lang['survey_submit'] = 'Submit';
 $lang['contract_content'] = 'Contract';
@@ -3804,3 +3804,4 @@ $lang['contact_salutation'] = 'Salutation';
 $lang['filter_middle_name'] = 'Middle Name';
 $lang['custom_field_show_on_filter'] = 'Show On Filter';
 $lang['contact_link_type'] = 'Link Type';
+$lang['contact_tags'] = 'Tags';

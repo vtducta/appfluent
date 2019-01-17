@@ -27,6 +27,13 @@
                                     </li>
                                     <?php do_action('after_contact_basic_info_tab', false); ?>
 
+                                    <li role="presentation">
+                                        <a href="#contact_tags" aria-controls="contact_tags" role="tab" data-toggle="tab">
+                                            <?php echo _l('contact_tags'); ?>
+                                        </a>
+                                    </li>
+                                    <?php do_action('after_contact_tags_tab', $contact); ?>
+
                                     <?php  foreach ($list_custom_tab as $customtab) { ?>
                                         <li role="presentation" class="">
                                             <a href="#<?=$customtab['slug']?>" aria-controls="<?=$customtab['slug']?>" role="tab" data-toggle="tab">
@@ -472,125 +479,137 @@
                             <div role="tabpanel" class="tab-pane" id="contact_other_info">
 
                                 <div class="row">
-                                    <div class="col-md-1" style="text-align: center;">
-                                        <?php if (isset($contact)) { ?>
-                                            <img src="<?php echo contact_profile_image_url($contact->id, 'thumb'); ?>"
-                                                 id="contact-img" class="client-profile-image-small" style="margin-top: 20px">
-                                            <?php if (!empty($contact->profile_image)) { ?>
-                                                <a href="#"
-                                                   onclick="delete_contact_profile_image(<?php echo $contact->id; ?>); return false;"
-                                                   class="text-danger pull-right" id="contact-remove-img"><i
-                                                            class="fa fa-remove"></i></a>
+                                    <div class="col-md-4">
+                                        <div class="" style="text-align: center;">
+                                            <?php if (isset($contact)) { ?>
+                                                <img src="<?php echo contact_profile_image_url($contact->id, 'thumb'); ?>"
+                                                     id="contact-img" class="client-profile-image-small" style="margin-top: 20px">
+                                                <?php if (!empty($contact->profile_image)) { ?>
+                                                    <a href="#"
+                                                       onclick="delete_contact_profile_image(<?php echo $contact->id; ?>); return false;"
+                                                       class="text-danger pull-right" id="contact-remove-img"><i
+                                                                class="fa fa-remove"></i></a>
+                                                <?php } ?>
+
                                             <?php } ?>
 
-                                        <?php } ?>
 
 
-
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div id="contact-profile-image"
-                                             class="form-group<?php if (isset($contact) && !empty($contact->profile_image)) {
-                                                 echo ' hide';
-                                             } ?>">
-                                            <label for="profile_image"
-                                                   class="profile-image"><?php echo _l('client_profile_image'); ?></label>
-                                            <input type="file" name="profile_image" class="form-control" id="profile_image">
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group contact-direction-option">
-                                            <label for="direction"><?php echo _l('document_direction'); ?></label>
-                                            <select class="selectpicker"
-                                                    data-none-selected-text="<?php echo _l('system_default_string'); ?>"
-                                                    data-width="100%" name="direction" id="direction">
-                                                <option value="" <?php if (isset($contact) && empty($contact->direction)) {
-                                                    echo 'selected';
-                                                } ?>></option>
-                                                <option value="ltr" <?php if (isset($contact) && $contact->direction == 'ltr') {
-                                                    echo 'selected';
-                                                } ?>>LTR
-                                                </option>
-                                                <option value="rtl" <?php if (isset($contact) && $contact->direction == 'rtl') {
-                                                    echo 'selected';
-                                                } ?>>RTL
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2" >
-                                        <div class="checkbox checkbox-primary">
-                                            <input type="checkbox" name="is_primary"
-                                                   id="contact_primary" <?php if ((!isset($contact) && total_rows('tblcontacts', array('is_primary' => 1, 'userid' => $customer_id)) == 0) || (isset($contact) && $contact->is_primary == 1)) {
-                                                echo 'checked';
-                                            }; ?> <?php if ((isset($contact) && total_rows('tblcontacts', array('is_primary' => 1, 'userid' => $customer_id)) == 1 && $contact->is_primary == 1)) {
-                                                echo 'disabled';
-                                            } ?>>
-                                            <label for="contact_primary">
-                                                <?php echo _l('contact_primary'); ?>
-                                            </label>
-                                        </div>
-                                        <?php if (!isset($contact) && total_rows('tblemailtemplates', array('slug' => 'new-client-created', 'active' => 0)) == 0) { ?>
-                                            <div class="checkbox checkbox-primary">
-                                                <input type="checkbox" name="donotsendwelcomeemail" id="donotsendwelcomeemail">
-                                                <label for="donotsendwelcomeemail">
-                                                    <?php echo _l('client_do_not_send_welcome_email'); ?>
-                                                </label>
+                                        <div class="">
+                                            <div id="contact-profile-image"
+                                                 class="form-group<?php if (isset($contact) && !empty($contact->profile_image)) {
+                                                     echo ' hide';
+                                                 } ?>">
+                                                <label for="profile_image"
+                                                       class="profile-image"><?php echo _l('client_profile_image'); ?></label>
+                                                <input type="file" name="profile_image" class="form-control" id="profile_image">
                                             </div>
-                                        <?php } ?>
-                                        <?php if (total_rows('tblemailtemplates', array('slug' => 'contact-set-password', 'active' => 0)) == 0) { ?>
-                                            <div class="checkbox checkbox-primary">
-                                                <input type="checkbox" name="send_set_password_email"
-                                                       id="send_set_password_email">
-                                                <label for="send_set_password_email">
-                                                    <?php echo _l('client_send_set_password_email'); ?>
-                                                </label>
-                                            </div>
-                                        <?php } ?>
+                                        </div>
                                     </div>
 
-                                    <div class="col-md-2">
-                                        <input type="text" class="fake-autofill-field hide" name="fakeusernameremembered" value=''
-                                               tabindex="-1"/>
-                                        <input type="password" class="fake-autofill-field hide" name="fakepasswordremembered"
-                                               value='' tabindex="-1"/>
+                                    <div class="col-md-4">
+                                        <div class="row">
 
-                                        <div class="client_password_set_wrapper form-group">
-                                            <label for="password" class="control-label">
-                                                <?php echo _l('client_password'); ?>
-                                            </label>
-                                            <div class="input-group">
 
-                                                <input type="password" class="form-control password" name="password"
-                                                       autocomplete="false">
-                                                <span class="input-group-addon">
+                                            <div class="col-md-6" >
+                                                <div class="checkbox checkbox-primary">
+                                                    <input type="checkbox" name="is_primary"
+                                                           id="contact_primary" <?php if ((!isset($contact) && total_rows('tblcontacts', array('is_primary' => 1, 'userid' => $customer_id)) == 0) || (isset($contact) && $contact->is_primary == 1)) {
+                                                        echo 'checked';
+                                                    }; ?> <?php if ((isset($contact) && total_rows('tblcontacts', array('is_primary' => 1, 'userid' => $customer_id)) == 1 && $contact->is_primary == 1)) {
+                                                        echo 'disabled';
+                                                    } ?>>
+                                                    <label for="contact_primary">
+                                                        <?php echo _l('contact_primary'); ?>
+                                                    </label>
+                                                </div>
+                                                <?php if (!isset($contact) && total_rows('tblemailtemplates', array('slug' => 'new-client-created', 'active' => 0)) == 0) { ?>
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input type="checkbox" name="donotsendwelcomeemail" id="donotsendwelcomeemail">
+                                                        <label for="donotsendwelcomeemail">
+                                                            <?php echo _l('client_do_not_send_welcome_email'); ?>
+                                                        </label>
+                                                    </div>
+                                                <?php } ?>
+                                                <?php if (total_rows('tblemailtemplates', array('slug' => 'contact-set-password', 'active' => 0)) == 0) { ?>
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input type="checkbox" name="send_set_password_email"
+                                                               id="send_set_password_email">
+                                                        <label for="send_set_password_email">
+                                                            <?php echo _l('client_send_set_password_email'); ?>
+                                                        </label>
+                                                    </div>
+                                                <?php } ?>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="fake-autofill-field hide" name="fakeusernameremembered" value=''
+                                                       tabindex="-1"/>
+                                                <input type="password" class="fake-autofill-field hide" name="fakepasswordremembered"
+                                                       value='' tabindex="-1"/>
+
+                                                <div class="client_password_set_wrapper form-group">
+                                                    <label for="password" class="control-label">
+                                                        <?php echo _l('client_password'); ?>
+                                                    </label>
+                                                    <div class="input-group">
+
+                                                        <input type="password" class="form-control password" name="password"
+                                                               autocomplete="false">
+                                                        <span class="input-group-addon">
                                                 <a href="#password" class="show_password"
                                                    onclick="showPassword('password'); return false;"><i
                                                             class="fa fa-eye"></i></a>
                                                 </span>
-                                                <span class="input-group-addon">
+                                                        <span class="input-group-addon">
                                                     <a href="#" class="generate_password"
                                                        onclick="generatePassword(this);return false;"><i class="fa fa-refresh"></i></a>
                                                 </span>
+                                                    </div>
+                                                    <?php if (isset($contact)) { ?>
+                                                        <p class="text-muted">
+                                                            <?php echo _l('client_password_change_populate_note'); ?>
+                                                        </p>
+                                                        <?php if ($contact->last_password_change != NULL) {
+                                                            echo _l('client_password_last_changed');
+                                                            echo '<span class="text-has-action" data-toggle="tooltip" data-title="' . _dt($contact->last_password_change) . '"> ' . time_ago($contact->last_password_change) . '</span>';
+                                                        }
+                                                    } ?>
+                                                </div>
                                             </div>
-                                            <?php if (isset($contact)) { ?>
-                                                <p class="text-muted">
-                                                    <?php echo _l('client_password_change_populate_note'); ?>
-                                                </p>
-                                                <?php if ($contact->last_password_change != NULL) {
-                                                    echo _l('client_password_last_changed');
-                                                    echo '<span class="text-has-action" data-toggle="tooltip" data-title="' . _dt($contact->last_password_change) . '"> ' . time_ago($contact->last_password_change) . '</span>';
-                                                }
-                                            } ?>
+
                                         </div>
                                     </div>
+                                    <div class="col-md-4" >
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group contact-direction-option">
+                                                    <label for="direction"><?php echo _l('document_direction'); ?></label>
+                                                    <select class="selectpicker"
+                                                            data-none-selected-text="<?php echo _l('system_default_string'); ?>"
+                                                            data-width="100%" name="direction" id="direction">
+                                                        <option value="" <?php if (isset($contact) && empty($contact->direction)) {
+                                                            echo 'selected';
+                                                        } ?>></option>
+                                                        <option value="ltr" <?php if (isset($contact) && $contact->direction == 'ltr') {
+                                                            echo 'selected';
+                                                        } ?>>LTR
+                                                        </option>
+                                                        <option value="rtl" <?php if (isset($contact) && $contact->direction == 'rtl') {
+                                                            echo 'selected';
+                                                        } ?>>RTL
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <hr/>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                             <p class="bold"><?php echo _l('customer_permissions'); ?></p>
                                             <p class="text-danger"><?php echo _l('contact_permissions_info'); ?></p>
                                             <?php
@@ -622,7 +641,7 @@
                                             <?php } ?>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <p class="bold"><?php echo _l('email_notifications'); ?><?php if (is_sms_trigger_active()) {
                                                 echo '/SMS';
                                             } ?></p>
@@ -742,6 +761,19 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div role="tabpanel" class="tab-pane" id="contact_tags">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+
+                                            <label for="tags" class="control-label"><i class="fa fa-tag" aria-hidden="true"></i> <?php echo _l('tags'); ?></label>
+                                            <?php $value=( isset($contact_tags) ? $contact_tags : ''); ?>
+                                            <input type="text" class="tagsinput" id="contact[tags]" name="contact[tags]" data-role="tagsinput" value="<?php echo $value; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -766,6 +798,13 @@
                     $('#contact_email_notifications [data-perm-id="' + input.val() + '"]').prop('checked', true);
                 }
             });
+
+
         });
     </script>
 <?php } ?>
+
+<script>
+    console.log('call contact modal');
+    init_tags_inputs();
+</script>

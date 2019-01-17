@@ -86,7 +86,7 @@ function get_customer_profile_tabs($customer_id)
         'name'    => 'contacts',
         'url'     => admin_url('clients/client/' . $customer_id . '?group=contacts'),
         'icon'    => 'fa fa-users',
-        'lang'    => !is_empty_customer_company($customer_id) || empty($customer_id) ? _l('customer_contacts') : _l('contact'),
+        'lang'    => !is_empty_customer_company($customer_id) || empty($customer_id) ? _l('contact') : _l('contact'),
         'visible' => true,
         'order'   => 2,
     ],

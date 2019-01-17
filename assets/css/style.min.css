@@ -1403,13 +1403,15 @@ body.page-small.show-sidebar #wrapper {
     left: 0;
     position: absolute;
     top: 53px;
+    min-height: max-content;
     /*-webkit-transition: all .5s ease 0s;*/
     /*transition: all .5s ease 0s;*/
     /*z-index: -1;*/
 }
 
 #side-menu {
-    background: #626f80
+    background: #626f80;
+    height: 100%;
 }
 
 #side-menu .dashboard {
