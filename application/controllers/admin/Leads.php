@@ -40,9 +40,28 @@ class Leads extends Admin_controller
         $data['title']    = _l('leads');
         // in case accesed the url leads/index/ directly with id - used in search
         $data['leadid'] = $id;
+
+        //
+
+        $arrLeadField = $this->leads_model->get_structure_lead();
+        $data['leads_structure'] =  $this->unsetObject($arrLeadField,'name');
+
+        $arrLeadCustomField = get_custom_fields('leads', ['show_on_filter'=>1]);
+        $data['leads_custom_field_structure'] = $arrLeadCustomField;
+
+
         $this->load->view('admin/leads/manage_leads', $data);
     }
-
+    function unsetObject(array $array, $skipString='')
+    {
+        $result = array();
+        foreach ($array as $item) {
+            if(in_array ($item -> name,explode(',',$skipString))){
+                $result[]=$item;
+            }
+        }
+        return $result;
+    }
     public function table()
     {
         if (!is_staff_member()) {

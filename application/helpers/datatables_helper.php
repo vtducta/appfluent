@@ -271,6 +271,7 @@ function get_sorting_due_date_columns()
  */
 function render_datatable($headings = [], $class = '', $additional_classes = [''], $table_attributes = [])
 {
+
     $_additional_classes = '';
     $_table_attributes   = ' ';
     if (count($additional_classes) > 0) {
@@ -308,6 +309,7 @@ function render_datatable($headings = [], $class = '', $additional_classes = [''
     $table .= '</thead>';
     $table .= '<tbody></tbody>';
     $table .= '</table></div>';
+
     echo $table;
 }
 

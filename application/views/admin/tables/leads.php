@@ -106,6 +106,7 @@ $additionalColumns = do_action('leads_table_additional_columns_sql', [
     'zip',
 ]);
 
+
 $result = data_tables_init($aColumns, $sIndexColumn, $sTable, $join, $where, $additionalColumns);
 
 $output  = $result['output'];
@@ -151,7 +152,7 @@ foreach ($rResult as $aRow) {
         }
         $row[] = $consentHTML;
     }
-    $row[] = $aRow['company'];
+    //$row[] = $aRow['company'];
 
     $row[] = ($aRow['email'] != '' ? '<a href="mailto:' . $aRow['email'] . '">' . $aRow['email'] . '</a>' : '');
 

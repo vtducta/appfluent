@@ -1172,4 +1172,8 @@ class Leads_model extends CRM_Model
 
         return $data;
     }
+
+    public function get_structure_lead(){
+        return $this->db->field_data('tblleads');
+    }
 }
