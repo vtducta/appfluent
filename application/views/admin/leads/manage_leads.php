@@ -87,68 +87,6 @@
                      </div>
                      <?php } else { ?>
                      <div class="row" id="leads-table">
-                        <div class="col-md-12">
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <p class="bold"><?php echo _l('filter_by'); ?></p>
-                              </div>
-                              <?php if(has_permission('leads','','view')){ ?>
-                              <div class="col-md-3 leads-filter-column">
-                                 <?php echo render_select('view_assigned',$staff,array('staffid',array('firstname','lastname')),'','',array('data-width'=>'100%','data-none-selected-text'=>_l('leads_dt_assigned')),array(),'no-mbot'); ?>
-                              </div>
-                              <?php } ?>
-                              <div class="col-md-3 leads-filter-column">
-                                 <?php
-                                    $selected = array();
-                                    if($this->input->get('status')) {
-                                     $selected[] = $this->input->get('status');
-                                    } else {
-                                     foreach($statuses as $key => $status) {
-                                       if($status['isdefault'] == 0) {
-                                         $selected[] = $status['id'];
-                                       } else {
-                                         $statuses[$key]['option_attributes'] = array('data-subtext'=>_l('leads_converted_to_client'));
-                                       }
-                                     }
-                                    }
-                                    echo '<div id="leads-filter-status">';
-                                    echo render_select('view_status[]',$statuses,array('id','name'),'',$selected,array('data-width'=>'100%','data-none-selected-text'=>_l('leads_all'),'multiple'=>true,'data-actions-box'=>true),array(),'no-mbot','',false);
-                                    echo '</div>';
-                                    ?>
-                              </div>
-                              <div class="col-md-3 leads-filter-column">
-                                 <?php
-                                    echo render_select('view_source',$sources,array('id','name'),'','',array('data-width'=>'100%','data-none-selected-text'=>_l('leads_source')),array(),'no-mbot');
-                                    ?>
-                              </div>
-                              <div class="col-md-3 leads-filter-column">
-                                 <div class="select-placeholder">
-                                    <select name="custom_view" title="<?php echo _l('additional_filters'); ?>" id="custom_view" class="selectpicker" data-width="100%">
-                                       <option value=""></option>
-                                       <option value="lost"><?php echo _l('lead_lost'); ?></option>
-                                       <option value="junk"><?php echo _l('lead_junk'); ?></option>
-                                       <option value="public"><?php echo _l('lead_public'); ?></option>
-                                       <option value="contacted_today"><?php echo _l('lead_add_edit_contacted_today'); ?></option>
-                                       <option value="created_today"><?php echo _l('created_today'); ?></option>
-                                       <?php if(has_permission('leads','','edit')){ ?>
-                                       <option value="not_assigned"><?php echo _l('leads_not_assigned'); ?></option>
-                                       <?php } ?>
-                                       <?php if(isset($consent_purposes)) { ?>
-                                         <optgroup label="<?php echo _l('gdpr_consent'); ?>">
-                                             <?php foreach($consent_purposes as $purpose) { ?>
-                                             <option value="consent_<?php echo $purpose['id']; ?>">
-                                                <?php echo $purpose['name']; ?>
-                                             </option>
-                                             <?php } ?>
-                                         </optgroup>
-                                       <?php } ?>
-                                    </select>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <hr class="hr-panel-heading" />
                              <div class="col-md-12 _div_list">
                                <a href="#" data-toggle="modal" data-table=".table-leads" data-target="#leads_bulk_actions" class="hide bulk-actions-btn table-btn"><?php echo _l('bulk_actions'); ?></a>
                                <div class="modal fade bulk_actions" id="leads_bulk_actions" tabindex="-1" role="dialog">
@@ -301,6 +239,58 @@
                                          <?php echo _l( 'contact_filter'); ?>
                                          <a href="#" onclick="clear_filter();" style="float: right;">clear</a>
                                      </p>
+
+                                     <?php if(has_permission('leads','','view')){ ?>
+                                             <?php echo render_select('view_assigned',$staff,array('staffid',array('firstname','lastname')),_l('leads_dt_assigned'),'',array('data-width'=>'100%','data-none-selected-text'=>_l('leads_dt_assigned')),array(),''); ?>
+                                     <?php } ?>
+
+                                    <?php
+                                         $selected = array();
+                                         if($this->input->get('status')) {
+                                             $selected[] = $this->input->get('status');
+                                         } else {
+                                             foreach($statuses as $key => $status) {
+                                                 if($status['isdefault'] == 0) {
+                                                     $selected[] = $status['id'];
+                                                 } else {
+                                                     $statuses[$key]['option_attributes'] = array('data-subtext'=>_l('leads_converted_to_client'));
+                                                 }
+                                             }
+                                         }
+                                         echo '<div id="leads-filter-status">';
+                                         echo render_select('view_status[]',$statuses,array('id','name'),_l('leads_dt_status'),$selected,array('data-width'=>'100%','data-none-selected-text'=>_l('leads_all'),'multiple'=>true,'data-actions-box'=>true,'data-dropup-auto' => false),array(),'','',false);
+                                         echo '</div>';
+                                         ?>
+
+                                     <?php
+                                        echo render_select('view_source',$sources,array('id','name'),_l('leads_source'),'',array('data-width'=>'100%','data-none-selected-text'=>_l('leads_source'),'data-dropup-auto' => false),array(),'');
+                                     ?>
+
+                                 <div class="form-group">
+                                     <label for="default_language" class="control-label"><?php echo _l('additional_filters'); ?>
+                                     </label>
+                                     <select  data-dropup-auto="false" name="custom_view" title="<?php echo _l('additional_filters'); ?>" id="custom_view" class="selectpicker" data-width="100%">
+                                         <option value=""></option>
+                                         <option value="lost"><?php echo _l('lead_lost'); ?></option>
+                                         <option value="junk"><?php echo _l('lead_junk'); ?></option>
+                                         <option value="public"><?php echo _l('lead_public'); ?></option>
+                                         <option value="contacted_today"><?php echo _l('lead_add_edit_contacted_today'); ?></option>
+                                         <option value="created_today"><?php echo _l('created_today'); ?></option>
+                                         <?php if(has_permission('leads','','edit')){ ?>
+                                             <option value="not_assigned"><?php echo _l('leads_not_assigned'); ?></option>
+                                         <?php } ?>
+                                         <?php if(isset($consent_purposes)) { ?>
+                                             <optgroup label="<?php echo _l('gdpr_consent'); ?>">
+                                                 <?php foreach($consent_purposes as $purpose) { ?>
+                                                     <option value="consent_<?php echo $purpose['id']; ?>">
+                                                         <?php echo $purpose['name']; ?>
+                                                     </option>
+                                                 <?php } ?>
+                                             </optgroup>
+                                         <?php } ?>
+                                     </select>
+                                 </div>
+
                                      <?php if(count($leads_structure)> 0) {
                                          $filterTemplate = '';
                                          foreach ($leads_structure as $item) {
@@ -311,9 +301,9 @@
                                                  <?php
                                                  $select ='';
                                                  if(strpos('varchar',strtolower($item->type))!==false){
-                                                     $select ='<select name="filter_select[' . $item->name;
+                                                     $select ='<select data-dropup-auto="false" name="filter_select[' . $item->name;
                                                      $select = $select . ']" id="filter_select[';
-                                                     $select = $select . $item->name . ']" class="form-control selectpicker _select_filter_contact _select_filter" data-none-selected-text="">';
+                                                     $select = $select . $item->name . ']" class="form-control selectpicker _select_filter_lead _select_filter" data-none-selected-text="">';
                                                      $select = $select . '<option value=""></option>';
                                                      $select = $select . '<option value="EQUALS">is</option>';
                                                      $select = $select . '<option value="NOTEQUALS">isn’t</option>';
@@ -324,7 +314,7 @@
                                                  ?>
                                              </div>
                                              <?php
-                                             echo render_input('filter_values['.$item->name.']', '', '','','','','','_input_filter_contact');
+                                             echo render_input('filter_values['.$item->name.']', '', '','','','','','_input_filter_lead');
                                          }
                                      }
                                      ?>
@@ -345,7 +335,7 @@
                                                      <label for="default_language" class="control-label"><?php echo $item['name']; ?>
                                                      </label>
                                                      <?php
-                                                     $select ='<select name="filter_custom_string_select[' . $item['id'];
+                                                     $select ='<select data-dropup-auto="false" name="filter_custom_string_select[' . $item['id'];
                                                      $select = $select . ']" id="filter_custom_string_select[';
                                                      $select = $select . $item['id'] . ']" class="form-control selectpicker _select_filter_contact _select_filter" data-none-selected-text="">';
                                                      $select = $select . '<option value=""></option>';
@@ -367,7 +357,7 @@
                                                      </label>
 
                                                      <?php
-                                                     $select ='<select name="filter_custom_number_select[' . $item['id'];
+                                                     $select ='<select data-dropup-auto="false" name="filter_custom_number_select[' . $item['id'];
                                                      $select = $select . ']" id="filter_custom_number_select[';
                                                      $select = $select . $item['id'] . ']" class="form-control selectpicker _select_filter_number_contact _select_filter" data-none-selected-text="" onchange=onchageFilterNumber(this,'.$item['id'].')>';
                                                      $select = $select . '<option value="" selected></option>';
@@ -391,7 +381,7 @@
                                                      </label>
 
                                                      <?php
-                                                     $select ='<select name="filter_custom_time_select[' . $item['id'];
+                                                     $select ='<select data-dropup-auto="false" name="filter_custom_time_select[' . $item['id'];
                                                      $select = $select . ']" id="filter_custom_time_select[';
                                                      $select = $select . $item['id'] . ']" class="form-control selectpicker _select_filter_time_contact _select_filter" data-none-selected-text="" onchange=onchageFilterTime(this,'.$item['id'].')>';
                                                      $select = $select . '<option value="" selected></option>';

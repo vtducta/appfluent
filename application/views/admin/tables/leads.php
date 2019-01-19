@@ -88,6 +88,20 @@ if (!has_permission('leads', '', 'view')) {
     array_push($where, 'AND (assigned =' . get_staff_user_id() . ' OR addedfrom = ' . get_staff_user_id() . ' OR is_public = 1)');
 }
 
+//begin for filter
+if($this->_instance->input->post('filter_select[name]')){
+    $compareType = $this->_instance->input->post('filter_select[name]');
+
+    $compareValue = $this->_instance->input->post('filter_values[name]');
+    if($compareType=='EQUALS'){
+        array_push($where, 'AND tblleads.name=\''.$compareValue.'\'');
+    }elseif ($compareType=='NOTEQUALS'){
+        array_push($where, 'AND tblleads.name <> \''.$compareValue.'\'');
+    }elseif ($compareType=='LIKE'){
+        array_push($where, 'AND tblleads.name like \'%'.$compareValue.'%\'');
+    }
+}
+
 $aColumns = do_action('leads_table_sql_columns', $aColumns);
 
 // Fix for big queries. Some hosting have max_join_limit
