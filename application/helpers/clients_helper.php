@@ -90,13 +90,21 @@ function get_customer_profile_tabs($customer_id)
         'visible' => true,
         'order'   => 2,
     ],
+    [
+        'name'=>'policies',
+        'url'=>admin_url('clients/client/'.$customer_id.'/'.$contact->id.'?group=policies'),
+        'icon'=>'fa fa-address-card-o',
+        'lang'=>_l('Policies'),
+        'visible'=>true,
+        'order'=>3
+    ],
       [
         'name'    => 'notes',
         'url'     => admin_url('clients/client/' . $customer_id . '?group=notes'),
         'icon'    => 'fa fa-sticky-note-o',
         'lang'    => _l('contracts_notes_tab'),
         'visible' => true,
-        'order'   => 3,
+        'order'   => 4,
     ],
       [
         'name'    => 'statement',
@@ -104,7 +112,7 @@ function get_customer_profile_tabs($customer_id)
         'icon'    => 'fa fa-area-chart',
         'lang'    => _l('customer_statement'),
         'visible' => (has_permission('invoices', '', 'view') && has_permission('payments', '', 'view')),
-        'order'   => 4,
+        'order'   => 5,
     ],
       [
         'name'    => 'invoices',
@@ -112,7 +120,7 @@ function get_customer_profile_tabs($customer_id)
         'icon'    => 'fa fa-file-text',
         'lang'    => _l('client_invoices_tab'),
         'visible' => (has_permission('invoices', '', 'view') || has_permission('invoices', '', 'view_own') || (get_option('allow_staff_view_invoices_assigned') == 1 && staff_has_assigned_invoices())),
-        'order'   => 5,
+        'order'   => 6,
     ],
       [
         'name'    => 'payments',
@@ -120,7 +128,7 @@ function get_customer_profile_tabs($customer_id)
         'icon'    => 'fa fa-line-chart',
         'lang'    => _l('client_payments_tab'),
         'visible' => (has_permission('payments', '', 'view') || has_permission('invoices', '', 'view_own') || (get_option('allow_staff_view_invoices_assigned') == 1 && staff_has_assigned_invoices())),
-        'order'   => 6,
+        'order'   => 7,
     ],
       [
         'name'    => 'proposals',
@@ -128,7 +136,7 @@ function get_customer_profile_tabs($customer_id)
         'icon'    => 'fa fa-file-powerpoint-o',
         'lang'    => _l('proposals'),
         'visible' => (has_permission('proposals', '', 'view') || has_permission('proposals', '', 'view_own') || (get_option('allow_staff_view_proposals_assigned') == 1 && staff_has_assigned_proposals())),
-        'order'   => 7,
+        'order'   => 8,
     ],
       [
         'name'    => 'credit_notes',
@@ -136,7 +144,7 @@ function get_customer_profile_tabs($customer_id)
         'icon'    => 'fa fa-sticky-note-o',
         'lang'    => _l('credit_notes'),
         'visible' => (has_permission('credit_notes', '', 'view') || has_permission('credit_notes', '', 'view_own')),
-        'order'   => 8,
+        'order'   => 9,
     ],
       [
         'name'    => 'estimates',
@@ -144,7 +152,7 @@ function get_customer_profile_tabs($customer_id)
         'icon'    => 'fa fa-clipboard',
         'lang'    => _l('estimates'),
         'visible' => (has_permission('estimates', '', 'view') || has_permission('estimates', '', 'view_own') || (get_option('allow_staff_view_estimates_assigned') == 1 && staff_has_assigned_estimates())),
-        'order'   => 9,
+        'order'   => 10,
     ],
     [
             'name'    => 'subscriptions',
@@ -152,7 +160,7 @@ function get_customer_profile_tabs($customer_id)
             'icon'    => 'fa fa-repeat',
             'lang'    => _l('subscriptions'),
             'visible' => (has_permission('subscriptions', '', 'view') || has_permission('subscriptions', '', 'view_own')),
-            'order'   => 10,
+            'order'   => 11,
       ],
       [
         'name'    => 'expenses',
@@ -160,7 +168,7 @@ function get_customer_profile_tabs($customer_id)
         'icon'    => 'fa fa-file-text-o',
         'lang'    => _l('expenses'),
         'visible' => (has_permission('expenses', '', 'view') || has_permission('expenses', '', 'view_own')),
-        'order'   => 11,
+        'order'   => 12,
     ],
       [
         'name'    => 'contracts',
@@ -168,7 +176,7 @@ function get_customer_profile_tabs($customer_id)
         'icon'    => 'fa fa-file',
         'lang'    => _l('contracts'),
         'visible' => (has_permission('contracts', '', 'view') || has_permission('contracts', '', 'view_own')),
-        'order'   => 12,
+        'order'   => 13,
     ],
       [
         'name'    => 'projects',
@@ -176,7 +184,7 @@ function get_customer_profile_tabs($customer_id)
         'icon'    => 'fa fa-bars',
         'lang'    => _l('projects'),
         'visible' => true,
-        'order'   => 13,
+        'order'   => 14,
     ],
       [
         'name'    => 'tasks',
@@ -184,7 +192,7 @@ function get_customer_profile_tabs($customer_id)
         'icon'    => 'fa fa-tasks',
         'lang'    => _l('tasks'),
         'visible' => true,
-        'order'   => 14,
+        'order'   => 15,
     ],
       [
         'name'    => 'tickets',
@@ -192,7 +200,7 @@ function get_customer_profile_tabs($customer_id)
         'icon'    => 'fa fa-ticket',
         'lang'    => _l('tickets'),
         'visible' => ((get_option('access_tickets_to_none_staff_members') == 1 && !is_staff_member()) || is_staff_member()),
-        'order'   => 15,
+        'order'   => 16,
     ],
       [
         'name'    => 'attachments',
@@ -200,7 +208,7 @@ function get_customer_profile_tabs($customer_id)
         'icon'    => 'fa fa-paperclip',
         'lang'    => _l('customer_attachments'),
         'visible' => true,
-        'order'   => 16,
+        'order'   => 17,
     ],
       [
         'name'    => 'vault',
@@ -208,7 +216,7 @@ function get_customer_profile_tabs($customer_id)
         'icon'    => 'fa fa-lock',
         'lang'    => _l('vault'),
         'visible' => true,
-        'order'   => 17,
+        'order'   => 18,
     ],
       [
         'name'    => 'reminders',
@@ -216,7 +224,7 @@ function get_customer_profile_tabs($customer_id)
         'icon'    => 'fa fa-clock-o',
         'lang'    => _l('client_reminders_tab'),
         'visible' => true,
-        'order'   => 18,
+        'order'   => 19,
         'id'      => 'reminders',
     ],
       [
@@ -225,7 +233,7 @@ function get_customer_profile_tabs($customer_id)
         'icon'    => 'fa fa-map-marker',
         'lang'    => _l('customer_map'),
         'visible' => true,
-        'order'   => 19,
+        'order'   => 20,
     ],
 
   ];

@@ -2,10 +2,6 @@
     <h4 class="customer-profile-group-heading"><?php echo _l('policies_related_tab'); ?></h4>
     <div class="col-md-12">
     <div class="clearfix"></div>
-    <div class="row">
-        <hr class="hr-panel-heading" />
-    </div>
-    <div class="clearfix"></div>
     <div class="mtop15">
 
         <table class="table dt-table scroll-responsive" data-order-col="2" data-order-type="desc">
@@ -31,7 +27,7 @@
                 <tr>
                     <td>
                         <div data-note-description="<?php echo $policy['id']; ?>">
-                            <?php echo '<a href="'.admin_url( 'policy/'.$policy['id']). '">' . $policy['firstname'] . ' ' .$policy['lastname'] . '</a>'; ?>
+                            <?php echo '<a href="'.admin_url( 'policies/policy/'.$policy['id']). '">' . $policy['firstname'] . ' ' .$policy['lastname'] . '</a>'; ?>
                         </div>
                     </td>
                     <td>

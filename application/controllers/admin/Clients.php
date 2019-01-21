@@ -292,6 +292,15 @@ class Clients extends Admin_controller
             } elseif ($group == 'projects') {
                 $this->load->model('projects_model');
                 $data['project_statuses'] = $this->projects_model->get_project_statuses();
+            } elseif ($group == 'policies') {
+                $this->load->model('policies_model');
+                $data['list_policies'] = $this->policies_model->get_policy_by_contact($contact_primary->id);
+                $data['title']                = _l('policies');
+
+                // To load js files
+                $data['customer_id']=$id;
+
+
             } elseif ($group == 'statement') {
                 if (!has_permission('invoices', '', 'view') && !has_permission('payments', '', 'view')) {
                     set_alert('danger', _l('access_denied'));
@@ -380,7 +389,6 @@ class Clients extends Admin_controller
         }
 
         if( $id !=''){
-            $contact_primary = $this->clients_model->get_contact_primary($id);
             $this->load->model('custom_sections_model');
             $arraySection = $this->custom_sections_model->get(false,'contacts');
             $arrayListGroup =  array();

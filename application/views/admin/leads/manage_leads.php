@@ -337,7 +337,7 @@
                                                      <?php
                                                      $select ='<select data-dropup-auto="false" name="filter_custom_string_select[' . $item['id'];
                                                      $select = $select . ']" id="filter_custom_string_select[';
-                                                     $select = $select . $item['id'] . ']" class="form-control selectpicker _select_filter_contact _select_filter" data-none-selected-text="">';
+                                                     $select = $select . $item['id'] . ']" class="form-control selectpicker _select_filter_lead _select_filter" data-none-selected-text="">';
                                                      $select = $select . '<option value=""></option>';
                                                      $select = $select . '<option value="EQUALS">is</option>';
                                                      $select = $select . '<option value="NOTEQUALS">isn’t</option>';
@@ -348,7 +348,7 @@
                                                      ?>
                                                  </div>
                                                  <?php
-                                                 echo render_input('filter_custom_string_values['.$item['id'].']', '', '','','','','','_input_filter_contact');
+                                                 echo render_input('filter_custom_string_values['.$item['id'].']', '', '','','','','','_input_filter_lead');
                                              }
                                              if(strpos(strtolower($item['type']),'number')!==false){
                                                  ?>
@@ -359,7 +359,7 @@
                                                      <?php
                                                      $select ='<select data-dropup-auto="false" name="filter_custom_number_select[' . $item['id'];
                                                      $select = $select . ']" id="filter_custom_number_select[';
-                                                     $select = $select . $item['id'] . ']" class="form-control selectpicker _select_filter_number_contact _select_filter" data-none-selected-text="" onchange=onchageFilterNumber(this,'.$item['id'].')>';
+                                                     $select = $select . $item['id'] . ']" class="form-control selectpicker _select_filter_number_lead _select_filter" data-none-selected-text="" onchange=onchageFilterNumber(this,'.$item['id'].')>';
                                                      $select = $select . '<option value="" selected></option>';
                                                      $select = $select . '<option value="IS_GREATER_THAN">greater than</option>';
                                                      $select = $select . '<option value="IS_LESS_THAN">less than</option>';
@@ -369,9 +369,9 @@
                                                      ?>
                                                  </div>
                                                  <?php
-                                                 echo render_input('filter_custom_number_values['.$item['id'].']', '', '','number','','','','_input_filter_contact fcnc_'.$item['id']);
-                                                 echo render_input('filter_custom_number_min_values['.$item['id'].']', '', '','number',array('placeholder'=>'Min Value'),'','','hide _input_filter_contact fcnc_min_'.$item['id']);
-                                                 echo render_input('filter_custom_number_max_values['.$item['id'].']', '', '','number',array('placeholder'=>'Max Value'),'','','hide _input_filter_contact fcnc_max_'.$item['id']);
+                                                 echo render_input('filter_custom_number_values['.$item['id'].']', '', '','number','','','','_input_filter_lead fcnc_'.$item['id']);
+                                                 echo render_input('filter_custom_number_min_values['.$item['id'].']', '', '','number',array('placeholder'=>'Min Value'),'','','hide _input_filter_lead fcnc_min_'.$item['id']);
+                                                 echo render_input('filter_custom_number_max_values['.$item['id'].']', '', '','number',array('placeholder'=>'Max Value'),'','','hide _input_filter_lead fcnc_max_'.$item['id']);
                                              }
                                              if(strpos(strtolower($item['type']),'date_picker_time')!==false ||
                                                  strpos(strtolower($item['type']),'date_picker')!==false  ){
@@ -383,7 +383,7 @@
                                                      <?php
                                                      $select ='<select data-dropup-auto="false" name="filter_custom_time_select[' . $item['id'];
                                                      $select = $select . ']" id="filter_custom_time_select[';
-                                                     $select = $select . $item['id'] . ']" class="form-control selectpicker _select_filter_time_contact _select_filter" data-none-selected-text="" onchange=onchageFilterTime(this,'.$item['id'].')>';
+                                                     $select = $select . $item['id'] . ']" class="form-control selectpicker _select_filter_time_lead _select_filter" data-none-selected-text="" onchange=onchageFilterTime(this,'.$item['id'].')>';
                                                      $select = $select . '<option value="" selected></option>';
                                                      $select = $select . '<option value="ON">on</option>';
                                                      $select = $select . '<option value="AFTER">after</option>';
@@ -395,13 +395,13 @@
                                                  </div>
                                                  <?php
                                                  if(strpos(strtolower($item['type']),'date_picker_time')!==false){
-                                                     echo render_datetime_input('filter_custom_time_values['.$item['id'].']', '', '','','','_input_filter_contact fcdtc_'.$item['id'],'_dt_filter_contact');
-                                                     echo render_datetime_input('filter_custom_time_min_values['.$item['id'].']', '', '','','','hide _input_filter_contact fcdtc_min_'.$item['id'],'_dt_filter_contact');
-                                                     echo render_datetime_input('filter_custom_time_max_values['.$item['id'].']', '', '','','','hide _input_filter_contact fcdtc_max_'.$item['id'],'_dt_filter_contact');
+                                                     echo render_datetime_input('filter_custom_time_values['.$item['id'].']', '', '','','','_input_filter_lead fcdtc_'.$item['id'],'_dt_filter_lead');
+                                                     echo render_datetime_input('filter_custom_time_min_values['.$item['id'].']', '', '','','','hide _input_filter_lead fcdtc_min_'.$item['id'],'_dt_filter_lead');
+                                                     echo render_datetime_input('filter_custom_time_max_values['.$item['id'].']', '', '','','','hide _input_filter_lead fcdtc_max_'.$item['id'],'_dt_filter_lead');
                                                  }else{
-                                                     echo render_date_input('filter_custom_time_values['.$item['id'].']', '', '','','','_input_filter_contact fcdtc_'.$item['id'],'_dt_filter_contact');
-                                                     echo render_date_input('filter_custom_time_min_values['.$item['id'].']', '', '','','','hide _input_filter_contact fcdtc_min_'.$item['id'],'_dt_filter_contact');
-                                                     echo render_date_input('filter_custom_time_max_values['.$item['id'].']', '', '','','','hide _input_filter_contact fcdtc_max_'.$item['id'],'_dt_filter_contact');
+                                                     echo render_date_input('filter_custom_time_values['.$item['id'].']', '', '','','','_input_filter_lead fcdtc_'.$item['id'],'_dt_filter_contact');
+                                                     echo render_date_input('filter_custom_time_min_values['.$item['id'].']', '', '','','','hide _input_filter_lead fcdtc_min_'.$item['id'],'_dt_filter_lead');
+                                                     echo render_date_input('filter_custom_time_max_values['.$item['id'].']', '', '','','','hide _input_filter_lead fcdtc_max_'.$item['id'],'_dt_filter_lead');
                                                  }
 
                                              }

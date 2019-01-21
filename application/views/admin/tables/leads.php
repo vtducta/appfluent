@@ -102,6 +102,85 @@ if($this->_instance->input->post('filter_select[name]')){
     }
 }
 
+if($this->_instance->input->post('filter_custom_string_select')){
+    $arrSelectString = $this->_instance->input->post('filter_custom_string_select');
+    foreach ($arrSelectString as $key => $value){
+        $compareValue = $this->_instance->input->post('filter_custom_string_values['.$key.']');
+        if($value=='EQUALS'){
+            if($compareValue){
+                array_push($where, 'AND tblleads.id in (select relid from tblcustomfieldsvalues where fieldto=\'leads\' and fieldid='.$key.' and value = \''.$compareValue.'\' )');
+            }else{
+                array_push($where, 'AND tblleads.id not in (select relid from tblcustomfieldsvalues where fieldto=\'leads\' and fieldid='.$key.' )');
+            }
+        }elseif ($value=='NOTEQUALS'){
+            if($compareValue) {
+                array_push($where, 'AND ( tblleads.id not in (select relid from tblcustomfieldsvalues where fieldto=\'leads\' and fieldid='.$key.' ) OR tblleads.id in (select relid from tblcustomfieldsvalues where fieldto=\'leads\' and fieldid=' . $key . ' and value <> \'' . $compareValue . '\' ))');
+            }else{
+                array_push($where, 'AND tblleads.id in (select relid from tblcustomfieldsvalues where fieldto=\'leads\' and fieldid='.$key.' )');
+            }
+        }elseif ($value=='LIKE'){
+            if($compareValue) {
+                array_push($where, 'AND tblleads.id in (select relid from tblcustomfieldsvalues where fieldto=\'leads\' and fieldid=' . $key . ' and value like \'%' . $compareValue . '%\' )');
+            }
+        }
+    }
+}
+
+if($this->_instance->input->post('filter_custom_number_select')){
+    $arrSelectString = $this->_instance->input->post('filter_custom_number_select');
+    foreach ($arrSelectString as $key => $value){
+        if($value=='IS_GREATER_THAN'){
+            $compareValue = $this->_instance->input->post('filter_custom_number_values['.$key.']');
+            if($compareValue){
+                array_push($where, 'AND tblleads.id in (select relid from tblcustomfieldsvalues where fieldto=\'leads\' and fieldid='.$key.' and value >= '.$compareValue.' )');
+            }
+        }elseif ($value=='IS_LESS_THAN'){
+            $compareValue = $this->_instance->input->post('filter_custom_number_values['.$key.']');
+            if($compareValue) {
+                array_push($where, 'AND tblleads.id in (select relid from tblcustomfieldsvalues where fieldto=\'leads\' and fieldid='.$key.' and value < '.$compareValue.' )');
+            }
+        }elseif ($value=='BETWEEN'){
+            $compareMinValue = $this->_instance->input->post('filter_custom_number_min_values['.$key.']');
+            $compareMaxValue = $this->_instance->input->post('filter_custom_number_max_values['.$key.']');
+
+            if($compareMinValue&&$compareMaxValue) {
+                array_push($where, 'AND tblleads.id in (select relid from tblcustomfieldsvalues where fieldto=\'leads\' and fieldid='.$key.' and value >= '.$compareMinValue.' and value <= '.$compareMaxValue.' )');
+            }
+        }
+    }
+}
+
+if($this->_instance->input->post('filter_custom_time_select')){
+    $arrSelectString = $this->_instance->input->post('filter_custom_time_select');
+    foreach ($arrSelectString as $key => $value){
+        if($value=='ON'){
+            $compareValue = $this->_instance->input->post('filter_custom_time_values['.$key.']');
+            if($compareValue){
+                array_push($where, 'AND tblleads.id in (select relid from tblcustomfieldsvalues where fieldto=\'leads\' and fieldid='.$key.' and STR_TO_DATE(value,\'%Y-%m-%d %H:%i\') = STR_TO_DATE(\''.$compareValue.'\',\'%Y-%m-%d %H:%i\') )');
+            }
+        }elseif ($value=='AFTER'){
+            $compareValue = $this->_instance->input->post('filter_custom_time_values['.$key.']');
+            if($compareValue) {
+                array_push($where, 'AND tblleads.id in (select relid from tblcustomfieldsvalues where fieldto=\'leads\' and fieldid='.$key.' and STR_TO_DATE(value,\'%Y-%m-%d %H:%i\') < STR_TO_DATE(\''.$compareValue.'\',\'%Y-%m-%d %H:%i\') )');
+            }
+        }elseif ($value=='BEFORE'){
+            $compareValue = $this->_instance->input->post('filter_custom_time_values['.$key.']');
+            if($compareValue) {
+                array_push($where, 'AND tblleads.id in (select relid from tblcustomfieldsvalues where fieldto=\'leads\' and fieldid='.$key.' and STR_TO_DATE(value,\'%Y-%m-%d %H:%i\') > STR_TO_DATE(\''.$compareValue.'\',\'%Y-%m-%d %H:%i\') )');
+            }
+        }
+        elseif ($value=='BETWEEN'){
+            $compareMinValue = $this->_instance->input->post('filter_custom_time_min_values['.$key.']');
+            $compareMaxValue = $this->_instance->input->post('filter_custom_time_max_values['.$key.']');
+
+            if($compareMinValue&&$compareMaxValue) {
+                array_push($where, 'AND tblleads.id in (select relid from tblcustomfieldsvalues where fieldto=\'leads\' and fieldid='.$key.' and STR_TO_DATE(value,\'%Y-%m-%d %H:%i\') >= STR_TO_DATE(\''.$compareMinValue.'\',\'%Y-%m-%d %H:%i\') and STR_TO_DATE(value,\'%Y-%m-%d %H:%i\') <= STR_TO_DATE(\''.$compareMaxValue.'\',\'%Y-%m-%d %H:%i\') )');
+            }
+        }
+    }
+}
+
+
 $aColumns = do_action('leads_table_sql_columns', $aColumns);
 
 // Fix for big queries. Some hosting have max_join_limit

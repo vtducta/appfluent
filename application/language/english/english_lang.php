@@ -3806,3 +3806,4 @@ $lang['custom_field_show_on_filter'] = 'Show On Filter';
 $lang['contact_link_type'] = 'Link Type';
 $lang['contact_tags'] = 'Tags';
 $lang['filter_name'] = 'Name';
+$lang['policy_timeline_tab'] = 'Timeline';
