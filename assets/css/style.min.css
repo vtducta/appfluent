@@ -1403,7 +1403,7 @@ body.page-small.show-sidebar #wrapper {
     left: 0;
     position: absolute;
     top: 53px;
-    min-height: max-content;
+    min-height: 1000px;
     /*-webkit-transition: all .5s ease 0s;*/
     /*transition: all .5s ease 0s;*/
     /*z-index: -1;*/
